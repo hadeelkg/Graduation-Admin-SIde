@@ -11,7 +11,7 @@
 
                     <div class="card-body">
                       <div class="row mb-3">
-                          <Input :MyValue="form.name" id="name" title="اسم الفئة" @myInput="HandleInput('name',$event)" Mykey="title" :errors='errors' class_bs="col-md-12"/>
+                          <Input :MyValue="form.name" id="name" title="اسم الفئة" @myInput="HandleInput('name',$event)" Mykey="name" :errors= 'errors' class_bs="col-md-12"/>
                       </div>
                       <button type="button" class="btn btn-primary pull-right" v-if="IsNew" @click="onSubmit()">اضافة</button>
                       <button type="button" class="btn btn-primary pull-right" v-if="!IsNew" @click="onUpdate()">تعديل</button>
@@ -52,6 +52,7 @@
         ...mapState({
                 Category:state=>state.admin.Categories.categories.data,
                 errors:state=>state.admin.Categories.category.errors,
+                // errors:state=>state.admin.Categories.category.errors,
             }),
 
             IsNew(){
@@ -84,13 +85,13 @@
             },
 
             onSubmit(){
-                store.dispatch('admin/NewCategory',this.form).then((response) => {
-                    this.cleanErrors();
-                    this.Alert.message='تمّت اضافة فئة جديدة بنجاح';
-                    this.$refs.MySuccessAlert.showModel();
-                }).catch((error) => {
-                });
-            },
+              store.dispatch('admin/NewCategory',this.form).then((response) => {
+                  this.cleanErrors();
+                  this.Alert.message='تمّت اضافة فئة جديدة بنجاح!';
+                  this.$refs.MySuccessAlert.showModel();
+              }).catch((error) => {
+              });
+          },
             
             onUpdate(){
                 store.dispatch('admin/updateCategory',this.form).then((response) => {

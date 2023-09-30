@@ -44,9 +44,9 @@
                     <!-- <router-link :to="{name:'admin.dashboard.client.edit', params:{id:item.id}}" type="button" class="btn my_btn btn-sm">
                       <i class="material-icons edit_icon">edit</i>
                     </router-link> -->
-                    <button @click="deleteClient(item.id)" type="button" class="btn my_btn btn-sm">
+                    <!-- <button @click="deleteClient(item.id)" type="button" class="btn my_btn btn-sm">
                       <i class="material-icons delete_icon">delete</i>                      
-                    </button>
+                    </button> -->
                     </td>
                   </tr>
                   <tr v-if="!ClientsList.data.length" centre>
@@ -104,39 +104,39 @@
 
     methods:{
 
-      deleteClient(client_id){
-        this.client_id = client_id;
-        this.Alert.message='هل تريد حذف هذا العميل؟';
-        this.$refs.MyConfirmAlert.showModel();
-      },
+      // deleteClient(client_id){
+      //   this.client_id = client_id;
+      //   this.Alert.message='هل تريد حذف هذا العميل؟';
+      //   this.$refs.MyConfirmAlert.showModel();
+      // },
 
-      YesIamSure(value){
-        if(value && this.sureResult){
-          this.sureResult=false;
-          this.onDelete();
-        }
-      },
+      // YesIamSure(value){
+      //   if(value && this.sureResult){
+      //     this.sureResult=false;
+      //     this.onDelete();
+      //   }
+      // },
 
-      CancelAlert(){
-        this.sureResult=false;
-      },
+      // CancelAlert(){
+      //   this.sureResult=false;
+      // },
 
-      onDelete(){
-          this.$refs.MyConfirmAlert.hideModel();
-          store.commit('admin/PleaseStartLoading');
-          store.dispatch('admin/deleteClient',this.client_id).then((response) => {
-            store.dispatch('admin/fetchClients').then((response) => {
-              store.commit('admin/PleaseStopLoading');
-              this.sureResult=true;
-              this.Alert.message='تم حذف العميل بنجاح';
-              this.$refs.MySuccessAlert.showModel();
-            }).catch((error) => {
-            });
-          }).catch((error) => {
-                this.Alert.message='لا يمكن حذف هذا العميل !';
-                this.$refs.MyConfirmAlert.showModel();
-          });
-        },
+      // onDelete(){
+      //     this.$refs.MyConfirmAlert.hideModel();
+      //     store.commit('admin/PleaseStartLoading');
+      //     store.dispatch('admin/deleteClient',this.client_id).then((response) => {
+      //       store.dispatch('admin/fetchClients').then((response) => {
+      //         store.commit('admin/PleaseStopLoading');
+      //         this.sureResult=true;
+      //         this.Alert.message='تم حذف العميل بنجاح';
+      //         this.$refs.MySuccessAlert.showModel();
+      //       }).catch((error) => {
+      //       });
+      //     }).catch((error) => {
+      //           this.Alert.message='لا يمكن حذف هذا العميل !';
+      //           this.$refs.MyConfirmAlert.showModel();
+      //     });
+      //   },
       }
   }
 </script>

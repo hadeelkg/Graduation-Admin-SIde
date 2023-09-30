@@ -7,6 +7,8 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use App\Http\Resources\ProductResource;
+use File;
+use Illuminate\Support\Facades\Storage;
 
 // use App\Http\Requests\StoreProductImageRequest;
 // use App\Http\Requests\UpdateProductImageRequest;
@@ -26,7 +28,7 @@ class ProductController extends Controller
         // return $product->product_images;
     }
 
-    public function store(StoreProductRequest $request) 
+    public function store(StoreProductRequest $request)
     {
         return new ProductResource(
             Product::create([
@@ -35,8 +37,8 @@ class ProductController extends Controller
             ])
         );
 
-        // $product = Product::create($request->validated());        
-        // foreach ($request->productImages AS $product_image) { 
+        // $product = Product::create($request->validated());
+        // foreach ($request->productImages AS $product_image) {
         //     $product->product_image()->create([
         //         'image_path' =>  $product_image->store('images', 'public')
         //     ]);
@@ -46,8 +48,13 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         $product->update($request->validated());
-        return ProductResource::make($product);
-    }    
+        if ($request->hasFile('image_path')) {
+            $newImagePath = $request->file('image_path')->store('product_images', 'public');
+            $product->image_path = $newImagePath;
+        }
+        $product->save();
+        return $product;
+    }
 
     public function destroy(Product $product)
     {

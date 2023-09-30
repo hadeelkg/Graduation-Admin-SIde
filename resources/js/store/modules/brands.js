@@ -91,7 +91,7 @@ const mutations = {
         state.brand.data = data;
     },
     cleanBrandErrors(state,errors){
-    state.brand.errors = {};
+        state.brand.errors = {};
     },
     setErrors(state,errors){
         state.brand.errors = errors;

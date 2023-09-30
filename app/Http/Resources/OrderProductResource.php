@@ -23,6 +23,7 @@ class OrderProductResource extends JsonResource
             'subtotal_price' => $this->subtotal_price,
             'product' => new ProductResource($this->product),
             'order_id' => $this->order_id,
+            'created_at' => $this->created_at,
         ];
     }
 }

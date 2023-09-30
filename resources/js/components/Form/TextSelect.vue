@@ -3,7 +3,7 @@
       <div class="form__group field" :class="{'top_pos':top_pos}">
           <select :class="{'invalid-border':errors[Mykey]}" class="form-control select2" style="width: 100%;" @change="MyPrettySelect($event)">
               <option v-if="title!='false'" value="">{{title}}</option>
-              <option v-for="(item,index) in Items" :key="index" :value="item.id" :selected="item.id == MyValue">{{item.name==null?item.name_en:item.name_ar}}</option>
+              <option v-for="(item,index) in Items" :key="index" :value="item.id" :selected="item.id == MyValue">{{item.name}}</option>
           </select>
           <span class="invalid-feedback" v-if="errors[Mykey]">{{errors[Mykey][0]}}</span>
       </div>

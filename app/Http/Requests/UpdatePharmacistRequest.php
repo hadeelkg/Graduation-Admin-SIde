@@ -23,7 +23,7 @@ class UpdatePharmacistRequest extends FormRequest
     {
         return [
             'name' => ['required','string','max:50'],
-            'image_path' => ['image', 'mimes:jpeg,png,jpg', 'max:4000'],
+            // 'image_path' => ['image', 'mimes:jpeg,png,jpg', 'max:4000'],
             'role' => ['required','string','max:50'],
             'bio' => ['required','string','max:200'],
             'facebook_link' => ['required','string'],

@@ -20,8 +20,8 @@ const actions = {
                     commit('setPharmacists', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
 
@@ -32,8 +32,8 @@ const actions = {
                     commit('setOldPharmacist', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },
@@ -43,25 +43,25 @@ const actions = {
                     commit('setPharmacist', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
+                .catch((error) => {
                     if (error.response && error.response.status === 422) {
                         commit('setErrors', error.response.data.errors);
                     }
-                    reject(); 
+                    reject();
                 });
         });
     },
     updatePharmacist({ commit }, data) {
         return new Promise((resolve, reject) => {
-            http.patch('/api/v1/pharmacists/'+ data.id, data).then((response) => {
+            http.post('/api/v1/pharmacists/'+ data.get('id'), data).then((response) => {
                     commit('setUpdatedPharmacist', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
+                .catch((error) => {
                     if (error.response && error.response.status === 422) {
                         commit('setErrors', error.response.data.errors);
                     }
-                    reject(); 
+                    reject();
                 });
         });
     },
@@ -70,8 +70,8 @@ const actions = {
             http.delete('/api/v1/pharmacists/'+ pharmaId).then((response) => {
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },

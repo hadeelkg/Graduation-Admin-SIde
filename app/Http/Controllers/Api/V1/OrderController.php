@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Order;
+use App\Models\order_product;
+use App\Models\Product;
 use App\Http\Resources\OrderResource;
 use App\Http\Controllers\Controller;
 
@@ -20,19 +22,50 @@ class OrderController extends Controller
         return OrderResource::make($order);
     }
 
-    public function store(StoreOrderRequest $request) 
+    public function store(StoreOrderRequest $request)
     {
-        return new OrderResource(Order::create($request->validated()));
+        $order = Order::create($request->validated());
+        foreach ($request->products as $item) {
+            $orderItem = new  order_product;
+            $orderItem->product_id=$item['product_id'];
+            $product_price = Product::find($item['product_id'])->price;
+            $orderItem->product_price = $product_price;
+            $orderItem->quantity=$item['quantity'];
+            $orderItem->subtotal_price=$item['quantity'] * intval($product_price);
+            $orderItem->order_id=$order->id;
+            $orderItem->save();
+        }
+        return new OrderResource($order);
     }
 
     public function update(UpdateOrderRequest $request, Order $order)
     {
         $order->update($request->validated());
-        return OrderResource::make($order);
-    }    
+        $records = order_product::where('order_id', $order->id)->get();
+
+        foreach ($records as $record) {
+            $record->delete();
+        }
+
+        foreach ($request->products as $item) {
+            $orderItem = new  order_product;
+            $orderItem->product_id=$item['product_id'];
+            $product_price = Product::find($item['product_id'])->price;
+            $orderItem->product_price = $product_price;
+            $orderItem->quantity=$item['quantity'];
+            $orderItem->subtotal_price=$item['quantity'] * intval($product_price);
+            $orderItem->order_id=$order->id;
+            $orderItem->save();
+        }
+        return new OrderResource($order);
+    }
 
     public function destroy(Order $order)
     {
+        $records = order_product::where('order_id', $order->id)->get();
+        foreach ($records as $record) {
+            $record->delete();
+        }
         $order->delete();
         return response()->noContent();
     }

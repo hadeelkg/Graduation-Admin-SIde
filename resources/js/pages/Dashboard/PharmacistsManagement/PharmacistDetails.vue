@@ -40,6 +40,10 @@
                             <td>رابط حساب الفيسبوك</td><td>:</td>
                             <td>{{Pharmacist.facebook_link}}</td>       
                           </tr>
+                          <tr>
+                            <td>تاريخ الادخال</td><td>:</td>
+                            <td>{{Pharmacist.created_at}}</td>       
+                          </tr>
                       </table>
                   </div>
               </div>

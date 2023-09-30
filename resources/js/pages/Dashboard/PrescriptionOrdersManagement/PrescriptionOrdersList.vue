@@ -25,10 +25,7 @@
                                 <tbody>
                                     <tr v-for="(item, index) in PrescriptionOrders.data" :key="index">
                                         <td>{{ index+1 }}</td>
-                                        <td v-if="item.image_path">
-                                            <!-- <img src="" alt=""> -->
-                                        </td>
-                                        <td v-else></td>
+                                        <td><img :src="'http://127.0.0.1:8000/storage/'+item.image_path" width="80"/></td>
                                         <td>{{ item.client.name }}</td>
                                         <td class="text-primary">
                                             <router-link :to="{name:'admin.dashboard.prescriptionOrders.details',params:{id:item.id}}" type="button" class="btn my_btn btn-sm">

@@ -270,7 +270,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         quantity: '',
         category_id: '',
         brand_id: '',
-        productImages: ''
+        image_path: ''
       },
       Alert: {
         title: 'معلومات',
@@ -323,8 +323,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         _this.form.price = _this.Product.price;
         _this.form.description = _this.Product.description;
         _this.form.quantity = _this.Product.quantity;
-        _this.form.category_id = _this.Product.category.name;
-        _this.form.brand_id = _this.Product.brand.name;
+        _this.form.category_id = _this.Product.category.id;
+        _this.form.brand_id = _this.Product.brand.id;
       });
     }
   },
@@ -352,9 +352,10 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       for (var key in this.form) {
         formData.append(key, this.form[key]);
       }
+      formData.append('_method', 'PATCH');
       _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('admin/updateProduct', formData).then(function (response) {
         _this3.cleanErrors();
-        _this3.Alert.message = 'تمّ تعديل المنتج بنجاح';
+        _this3.Alert.message = 'تمّ تعديل بيانات المنتج بنجاح';
         _this3.$refs.MySuccessAlert.showModel();
       })["catch"](function (error) {});
     }
@@ -511,7 +512,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: index,
       value: item.id,
       selected: item.id == $props.MyValue
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name == null ? item.name_en : item.name_ar), 9 /* TEXT, PROPS */, _hoisted_2);
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 9 /* TEXT, PROPS */, _hoisted_2);
   }), 128 /* KEYED_FRAGMENT */))], 34 /* CLASS, HYDRATE_EVENTS */), $props.errors[$props.Mykey] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.errors[$props.Mykey][0]), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2 /* CLASS */)], 2 /* CLASS */);
 }
 
@@ -629,12 +630,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     back: this.goBack
   }, null, 8 /* PROPS */, ["title", "message", "back"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.IsNew ? 'اضافة منتج جديد' : 'تعديل منتج'), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.IsNew ? 'سيتم اضافة منتج للنظام ' : 'سيتم التعديل على منتج في النظام'), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputFile, {
     title: "الصورة",
-    id: "media",
-    MyValue: $data.form.media,
+    id: "image_path",
+    MyValue: $data.form.image_path,
     onMyInput: _cache[0] || (_cache[0] = function ($event) {
-      return $options.HandleInput('media', $event);
+      return $options.HandleInput('image_path', $event);
     }),
-    Mykey: "media",
+    Mykey: "image_path",
     class_bs: "col-md-12",
     errors: _ctx.errors
   }, null, 8 /* PROPS */, ["MyValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {

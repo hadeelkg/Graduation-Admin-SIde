@@ -20,7 +20,7 @@ class Product extends Model
       'price',
       'quantity',
       'description',
-      'category_id',  
+      'category_id',
       'brand_id',
     ];
 
@@ -34,10 +34,16 @@ class Product extends Model
     {
         return $this->belongsTo(brand::class);
     }
-    
+
     public function order_products(): hasMany
     {
         return $this->hasMany(order_product::class);
+    }
+
+    public function orders(): BelongsToMany
+    {
+        return $this->belongsToMany(Order::class);
+
     }
 
     // public function product_image(): hasMany

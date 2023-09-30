@@ -17,7 +17,7 @@
                       <table class="table">
                           <tr>
                             <td>صورة</td><td>:</td>
-                            <!-- <td><img :src="'http://127.0.0.1:8000/storage/'+Product.image_path" width="80"/></td>                           -->
+                            <td><img :src="'http://127.0.0.1:8000/storage/'+Product.image_path" width="80"/></td>                          
                           </tr>
                           <tr>
                             <td>الاسم</td><td>:</td>
@@ -29,11 +29,11 @@
                           </tr>
                           <tr>
                             <td>سعر المنتج</td><td>:</td>
-                            <td>{{Product.price}}</td>       
+                            <td>{{Product.price}} دينار</td>       
                           </tr>
                           <tr>
                             <td>الكمية المتوفرة</td><td>:</td>
-                            <td>{{Product.quantity}}</td>       
+                            <td>{{Product.quantity}} قطعة</td>       
                           </tr>
                           <tr>
                             <td>الفئة</td><td>:</td>
@@ -42,6 +42,10 @@
                           <tr>
                             <td>العلامة التجارية</td><td>:</td>
                             <td>{{Product.brand.name}}</td>       
+                          </tr>
+                          <tr>
+                            <td>تاريخ الادخال</td><td>:</td>
+                            <td>{{Product.created_at}}</td>       
                           </tr>
                       </table>
                   </div>

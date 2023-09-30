@@ -169,6 +169,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     errors: function errors(state) {
       return state.admin.Categories.category.errors;
     }
+    // errors:state=>state.admin.Categories.category.errors,
   })), {}, {
     IsNew: function IsNew() {
       return this.form.id == '';
@@ -198,7 +199,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       var _this2 = this;
       _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('admin/NewCategory', this.form).then(function (response) {
         _this2.cleanErrors();
-        _this2.Alert.message = 'تمّت اضافة فئة جديدة بنجاح';
+        _this2.Alert.message = 'تمّت اضافة فئة جديدة بنجاح!';
         _this2.$refs.MySuccessAlert.showModel();
       })["catch"](function (error) {});
     },
@@ -386,7 +387,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onMyInput: _cache[0] || (_cache[0] = function ($event) {
       return $options.HandleInput('name', $event);
     }),
-    Mykey: "title",
+    Mykey: "name",
     errors: _ctx.errors,
     class_bs: "col-md-12"
   }, null, 8 /* PROPS */, ["MyValue", "errors"])]), $options.IsNew ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {

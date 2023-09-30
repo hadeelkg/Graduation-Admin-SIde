@@ -87,7 +87,6 @@
                   this.Alert.message='تمّت اضافة مدينة جديدة بنجاح!';
                   this.$refs.MySuccessAlert.showModel();
               }).catch((error) => {
-
               });
           },
 

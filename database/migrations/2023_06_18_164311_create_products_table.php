@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('image_path');
             $table->string('price', 3);
             $table->string('description', 200);
-            $table->string('quantity', 2);
+            $table->string('quantity', 10);
             $table->foreignId('category_id')->constrained();
             $table->foreignId('brand_id')->constrained();
             $table->timestamps();

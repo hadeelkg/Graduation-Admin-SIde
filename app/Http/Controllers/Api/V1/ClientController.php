@@ -13,14 +13,15 @@ class ClientController extends Controller
 {
     public function index()
     {
-        return ClientResource::collection(Client::with(['city'])->get());
+        // return ClientResource::collection(Client::with(['city'])->get());
+        return ClientResource::collection(Client::all());
     }
 
     public function show(Client $client){
         return ClientResource::make($client);
     }
 
-    public function store(StoreClientRequest $request) 
+    public function store(StoreClientRequest $request)
     {
         return new ClientResource(Client::create($request->validated()));
     }
@@ -29,7 +30,7 @@ class ClientController extends Controller
     {
         $client->update($request->validated());
         return ClientResource::make($client);
-    }    
+    }
 
     public function destroy(Client $client)
     {

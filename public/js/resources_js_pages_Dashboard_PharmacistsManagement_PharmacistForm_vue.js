@@ -225,7 +225,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       return state.admin.Pharmacists.pharmacists.data;
     },
     errors: function errors(state) {
-      return state.admin.Pharmacists.pharmacists.errors;
+      return state.admin.Pharmacists.pharmacist.errors;
     }
   })), {}, {
     IsNew: function IsNew() {
@@ -275,6 +275,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       for (var key in this.form) {
         formData.append(key, this.form[key]);
       }
+      formData.append('_method', 'PATCH');
       _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('admin/updatePharmacist', formData).then(function (response) {
         _this3.cleanErrors();
         _this3.Alert.message = 'تمّ تعديل بيانات الصيدلي بنجاح';
@@ -490,30 +491,30 @@ var _hoisted_9 = {
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_SuccessAlert = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SuccessAlert");
-  var _component_Input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Input");
   var _component_InputFile = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("InputFile");
+  var _component_Input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Input");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SuccessAlert, {
     ref: "MySuccessAlert",
     title: $data.Alert.title,
     message: $data.Alert.message,
     back: this.goBack
-  }, null, 8 /* PROPS */, ["title", "message", "back"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.IsNew ? 'اضافة صيدلي' : 'تعديل بيانات صيدلي'), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.IsNew ? 'اضافة صيدلي جديد للنظام' : 'التعديل على بيانات صيدلي في النظام'), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
+  }, null, 8 /* PROPS */, ["title", "message", "back"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.IsNew ? 'اضافة صيدلي' : 'تعديل بيانات صيدلي'), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.IsNew ? 'اضافة صيدلي جديد للنظام' : 'التعديل على بيانات صيدلي في النظام'), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputFile, {
+    title: "الصورة",
+    id: "image_path",
+    MyValue: $data.form.image_path,
+    onMyInput: _cache[0] || (_cache[0] = function ($event) {
+      return $options.HandleInput('image_path', $event);
+    }),
+    Mykey: "image_path",
+    errors: _ctx.errors
+  }, null, 8 /* PROPS */, ["MyValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
     MyValue: $data.form.name,
     id: "name",
     title: "الاسم",
-    onMyInput: _cache[0] || (_cache[0] = function ($event) {
+    onMyInput: _cache[1] || (_cache[1] = function ($event) {
       return $options.HandleInput('name', $event);
     }),
     Mykey: "name",
-    errors: _ctx.errors
-  }, null, 8 /* PROPS */, ["MyValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputFile, {
-    MyValue: $data.form.image_path,
-    title: "الصورة",
-    id: "image_path",
-    Mykey: "image_path",
-    onInput: _cache[1] || (_cache[1] = function ($event) {
-      return $options.HandleInput('image_path', $event);
-    }),
     errors: _ctx.errors
   }, null, 8 /* PROPS */, ["MyValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
     MyValue: $data.form.role,

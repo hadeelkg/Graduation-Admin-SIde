@@ -145,36 +145,40 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     })["catch"](function (error) {});
   },
   methods: {
-    deleteClient: function deleteClient(client_id) {
-      this.client_id = client_id;
-      this.Alert.message = 'هل تريد حذف هذا العميل؟';
-      this.$refs.MyConfirmAlert.showModel();
-    },
-    YesIamSure: function YesIamSure(value) {
-      if (value && this.sureResult) {
-        this.sureResult = false;
-        this.onDelete();
-      }
-    },
-    CancelAlert: function CancelAlert() {
-      this.sureResult = false;
-    },
-    onDelete: function onDelete() {
-      var _this = this;
-      this.$refs.MyConfirmAlert.hideModel();
-      _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].commit('admin/PleaseStartLoading');
-      _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('admin/deleteClient', this.client_id).then(function (response) {
-        _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('admin/fetchClients').then(function (response) {
-          _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].commit('admin/PleaseStopLoading');
-          _this.sureResult = true;
-          _this.Alert.message = 'تم حذف العميل بنجاح';
-          _this.$refs.MySuccessAlert.showModel();
-        })["catch"](function (error) {});
-      })["catch"](function (error) {
-        _this.Alert.message = 'لا يمكن حذف هذا العميل !';
-        _this.$refs.MyConfirmAlert.showModel();
-      });
-    }
+
+    // deleteClient(client_id){
+    //   this.client_id = client_id;
+    //   this.Alert.message='هل تريد حذف هذا العميل؟';
+    //   this.$refs.MyConfirmAlert.showModel();
+    // },
+
+    // YesIamSure(value){
+    //   if(value && this.sureResult){
+    //     this.sureResult=false;
+    //     this.onDelete();
+    //   }
+    // },
+
+    // CancelAlert(){
+    //   this.sureResult=false;
+    // },
+
+    // onDelete(){
+    //     this.$refs.MyConfirmAlert.hideModel();
+    //     store.commit('admin/PleaseStartLoading');
+    //     store.dispatch('admin/deleteClient',this.client_id).then((response) => {
+    //       store.dispatch('admin/fetchClients').then((response) => {
+    //         store.commit('admin/PleaseStopLoading');
+    //         this.sureResult=true;
+    //         this.Alert.message='تم حذف العميل بنجاح';
+    //         this.$refs.MySuccessAlert.showModel();
+    //       }).catch((error) => {
+    //       });
+    //     }).catch((error) => {
+    //           this.Alert.message='لا يمكن حذف هذا العميل !';
+    //           this.$refs.MyConfirmAlert.showModel();
+    //     });
+    //   },
   }
 });
 
@@ -379,23 +383,16 @@ var _hoisted_11 = /*#__PURE__*/_withScopeId(function () {
     "class": "material-icons details_icon"
   }, "folder_open", -1 /* HOISTED */);
 });
-var _hoisted_12 = ["onClick"];
-var _hoisted_13 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-    "class": "material-icons delete_icon"
-  }, "delete", -1 /* HOISTED */);
-});
-var _hoisted_14 = [_hoisted_13];
-var _hoisted_15 = {
+var _hoisted_12 = {
   key: 0,
   centre: ""
 };
-var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_13 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
     colspan: "9"
   }, " لاتوجد بيانات لعرضها ", -1 /* HOISTED */);
 });
-var _hoisted_17 = [_hoisted_16];
+var _hoisted_14 = [_hoisted_13];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_ConfirmAlert = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ConfirmAlert");
   var _component_SuccessAlert = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SuccessAlert");
@@ -405,7 +402,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: $data.Alert.title,
     message: $data.Alert.message,
     onSure: _cache[0] || (_cache[0] = function ($event) {
-      return $options.YesIamSure($event);
+      return _ctx.YesIamSure($event);
     }),
     sureResult: $data.sureResult
   }, null, 8 /* PROPS */, ["title", "message", "sureResult"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SuccessAlert, {
@@ -429,14 +426,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return [_hoisted_11];
       }),
       _: 2 /* DYNAMIC */
-    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <router-link :to=\"{name:'admin.dashboard.client.edit', params:{id:item.id}}\" type=\"button\" class=\"btn my_btn btn-sm\">\r\n                      <i class=\"material-icons edit_icon\">edit</i>\r\n                    </router-link> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      onClick: function onClick($event) {
-        return $options.deleteClient(item.id);
-      },
-      type: "button",
-      "class": "btn my_btn btn-sm"
-    }, _hoisted_14, 8 /* PROPS */, _hoisted_12)])]);
-  }), 128 /* KEYED_FRAGMENT */)), !_ctx.ClientsList.data.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_15, _hoisted_17)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])])]);
+    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <router-link :to=\"{name:'admin.dashboard.client.edit', params:{id:item.id}}\" type=\"button\" class=\"btn my_btn btn-sm\">\r\n                      <i class=\"material-icons edit_icon\">edit</i>\r\n                    </router-link> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button @click=\"deleteClient(item.id)\" type=\"button\" class=\"btn my_btn btn-sm\">\r\n                      <i class=\"material-icons delete_icon\">delete</i>                      \r\n                    </button> ")])]);
+  }), 128 /* KEYED_FRAGMENT */)), !_ctx.ClientsList.data.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_12, _hoisted_14)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])])]);
 }
 
 /***/ }),

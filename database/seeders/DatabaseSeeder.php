@@ -15,7 +15,6 @@ use App\Models\Order;
 use App\Models\order_product;
 use App\Models\Pharmacist;
 use App\Models\prescription_order;
-// use App\Models\product_image;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,7 +24,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-    //    Admin::factory(5)->create();
+       Admin::factory(5)->create();
        City::factory(5)->create();
        Brand::factory(3)->create();
        Category::factory(3)->create();
@@ -36,6 +35,5 @@ class DatabaseSeeder extends Seeder
        order_product::factory(13)->create();
        Pharmacist::factory(4)->create();
        prescription_order::factory(20)->create();
-    //    product_image::factory(30)->create();
     }
 }

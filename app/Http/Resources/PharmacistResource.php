@@ -14,7 +14,6 @@ class PharmacistResource extends JsonResource
      */
     public function toArray($request): array
     {
-        // return parent::toArray($request);
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -23,6 +22,7 @@ class PharmacistResource extends JsonResource
             'bio' => $this->bio,
             'facebook_link' => $this->facebook_link,
             'phone' => $this->phone,
+            'created_at' => $this->created_at,
         ];
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\BrandResource;
 use App\Http\Resources\CategoryResource;
-use App\Http\Resources\ProductImageResource;
+// use App\Http\Resources\ProductImageResource;
 
 
 class ProductResource extends JsonResource
@@ -18,8 +18,6 @@ class ProductResource extends JsonResource
      */
     public function toArray($request): array
     {
-        // return [$this->product_image];
-        // return parent::toArray($request);
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -29,7 +27,7 @@ class ProductResource extends JsonResource
             'description' => $this->description,
             'category' => new CategoryResource($this->category),
             'brand' => new BrandResource($this->brand),
-            // 'product_image' => ProductImageResource::collection($this->product_image),
+            'created_at' => $this->created_at,
         ];
     }
 }

@@ -41,8 +41,11 @@
                   <td>{{item.price}}</td>
                   <td>{{item.quantity}}</td>
                   <td class="text-primary">
+                    <!-- <router-link :to="{name:'admin.dashboard.product.details', params:{id:item.id}}" type="button" class="btn my_btn btn-sm">
+                        <i class="material-icons edit_icon">open_folder</i>
+                    </router-link> -->
                     <router-link :to="{name:'admin.dashboard.product.details', params:{id:item.id}}" type="button" class="btn my_btn btn-sm">
-                        <i class="material-icons details_icon">open_folder</i>
+                        <i class="material-icons details_icon">folder_open</i>
                     </router-link>
                     <router-link :to="{name:'admin.dashboard.product.edit', params:{id:item.id}}" type="button" class="btn my_btn btn-sm">
                         <i class="material-icons edit_icon">edit</i>

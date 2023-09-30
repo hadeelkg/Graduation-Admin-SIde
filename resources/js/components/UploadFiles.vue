@@ -227,7 +227,7 @@
         },
 
         upload(idx, file) {
-          console.log(file);
+          // console.log(file);
           this.progressInfos[idx] = { percentage: 0, fileName: file.name };
           UploadService.upload(file, (event) => {
             this.progressInfos[idx].percentage = Math.round(100 * event.loaded / event.total);

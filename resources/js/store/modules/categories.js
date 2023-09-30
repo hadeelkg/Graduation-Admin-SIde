@@ -45,7 +45,7 @@ const actions = {
                 })
                 .catch((error) => { 
                     if (error.response && error.response.status === 422) {
-                        commit('setErrors', error.response.data.errors);
+                        commit('setCategoryErrors', error.response.data.errors);
                     }
                     reject(); 
                 });
@@ -59,7 +59,7 @@ const actions = {
                 })
                 .catch((error) => { 
                     if (error.response && error.response.status === 422) {
-                        commit('setErrors', error.response.data.errors);
+                        commit('setCategoryErrors', error.response.data.errors);
                     }                    
                     reject(); 
                 });
@@ -93,7 +93,7 @@ const mutations = {
     cleanCategoriesErrors(state,errors){
         state.category.errors = {};
     },
-    setErrors(state,errors){
+    setCategoryErrors(state,errors){
         state.category.errors = errors;
     }
 };

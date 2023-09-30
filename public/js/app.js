@@ -18069,7 +18069,7 @@ var actions = {
         resolve(response);
       })["catch"](function (error) {
         if (error.response && error.response.status === 422) {
-          commit('setErrors', error.response.data.errors);
+          commit('setCategoryErrors', error.response.data.errors);
         }
         reject();
       });
@@ -18083,7 +18083,7 @@ var actions = {
         resolve(response);
       })["catch"](function (error) {
         if (error.response && error.response.status === 422) {
-          commit('setErrors', error.response.data.errors);
+          commit('setCategoryErrors', error.response.data.errors);
         }
         reject();
       });
@@ -18116,7 +18116,7 @@ var mutations = {
   cleanCategoriesErrors: function cleanCategoriesErrors(state, errors) {
     state.category.errors = {};
   },
-  setErrors: function setErrors(state, errors) {
+  setCategoryErrors: function setCategoryErrors(state, errors) {
     state.category.errors = errors;
   }
 };
@@ -18664,7 +18664,7 @@ var actions = {
   updatePharmacist: function updatePharmacist(_ref4, data) {
     var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].patch('/api/v1/pharmacists/' + data.id, data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/v1/pharmacists/' + data.get('id'), data).then(function (response) {
         commit('setUpdatedPharmacist', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18866,7 +18866,7 @@ var actions = {
         resolve(response);
       })["catch"](function (error) {
         if (error.response && error.response.status === 422) {
-          commit('setErrors', error.response.data.errors);
+          commit('setProductErrors', error.response.data.errors);
         }
         reject();
       });
@@ -18875,17 +18875,31 @@ var actions = {
   updateProduct: function updateProduct(_ref4, data) {
     var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/v1/products/' + data.id, data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/v1/products/' + data.get('id'), data).then(function (response) {
         commit('setUpdatedProduct', response.data);
         resolve(response);
       })["catch"](function (error) {
         if (error.response && error.response.status === 422) {
-          commit('setErrors', error.response.data.errors);
+          commit('setProductErrors', error.response.data.errors);
         }
-        reject();
+        reject(error);
       });
     });
   },
+  // updateBlog({commit}, data){
+  //     return new Promise((resolve, reject) => {
+  //         http.post('/api/admin/blogs/'+data.get('id'),data).then((response) => {
+  //             commit('updateBlog', response.data);
+  //             resolve(response);
+  //         })
+  //         .catch((error) => {
+  //             if (error.response && error.response.status === 422) {
+  //                 commit('setBlogErrors', error.response.data.errors);
+  //             }
+  //             reject(error);
+  //         });
+  //     });
+  // },
   deleteProduct: function deleteProduct(_ref5, productId) {
     var commit = _ref5.commit;
     return new Promise(function (resolve, reject) {
@@ -18913,8 +18927,8 @@ var mutations = {
   cleanProductErrors: function cleanProductErrors(state, errors) {
     state.product.errors = {};
   },
-  setErrors: function setErrors(state, errors) {
-    state.brand.errors = errors;
+  setProductErrors: function setProductErrors(state, errors) {
+    state.product.errors = errors;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({

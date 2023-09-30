@@ -10,7 +10,7 @@
                       <table class="table">
                           <tr>
                               <td>صورة الوصفة الطبية</td><td>:</td>
-                              <!-- <td><img src="../../../assets/img/tfyhui.png" width="80"/></td> -->
+                              <td><img :src="'http://127.0.0.1:8000/storage/'+PreOrder.image_path" width="80"/></td>
                           </tr>
                         <tr>
                             <td>اسم الزبون</td><td>:</td>

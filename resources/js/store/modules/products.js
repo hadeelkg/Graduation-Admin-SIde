@@ -19,8 +19,8 @@ const actions = {
                     commit('setProducts', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },
@@ -30,8 +30,8 @@ const actions = {
                     commit('setOldProduct', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },
@@ -41,35 +41,49 @@ const actions = {
                     commit('setProduct', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    if (error.response && error.response.status === 422) {
-                        commit('setErrors', error.response.data.errors);
-                    }
-                    reject(); 
-                });
-        });
-    },
-    updateProduct({ commit }, data) {
-        return new Promise((resolve, reject) => {
-            http.post('/api/v1/products/'+data.id, data).then((response) => {
-                    commit('setUpdatedProduct', response.data);
-                    resolve(response);
-                })
                 .catch((error) => {
                     if (error.response && error.response.status === 422) {
-                        commit('setErrors', error.response.data.errors);
+                        commit('setProductErrors', error.response.data.errors);
                     }
-                    reject(); 
+                    reject();
                 });
         });
     },
+    updateProduct({commit}, data){
+        return new Promise((resolve, reject) => {
+            http.post('/api/v1/products/'+data.get('id'), data).then((response) => {
+                commit('setUpdatedProduct', response.data);
+                resolve(response);
+            })
+            .catch((error) => {
+                if (error.response && error.response.status === 422) {
+                    commit('setProductErrors', error.response.data.errors);
+                }
+                reject(error);
+            });
+        });
+    },
+    // updateBlog({commit}, data){
+    //     return new Promise((resolve, reject) => {
+    //         http.post('/api/admin/blogs/'+data.get('id'),data).then((response) => {
+    //             commit('updateBlog', response.data);
+    //             resolve(response);
+    //         })
+    //         .catch((error) => {
+    //             if (error.response && error.response.status === 422) {
+    //                 commit('setBlogErrors', error.response.data.errors);
+    //             }
+    //             reject(error);
+    //         });
+    //     });
+    // },
     deleteProduct({ commit }, productId) {
         return new Promise((resolve, reject) => {
             http.delete('/api/v1/products/'+ productId).then((response) => {
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },
@@ -91,8 +105,8 @@ const mutations = {
     cleanProductErrors(state,errors){
         state.product.errors = {};
     },
-    setErrors(state,errors){
-        state.brand.errors = errors;
+    setProductErrors(state,errors){
+        state.product.errors = errors;
     }
 };
 

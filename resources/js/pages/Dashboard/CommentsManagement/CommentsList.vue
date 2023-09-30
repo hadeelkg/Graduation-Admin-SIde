@@ -41,9 +41,9 @@
                     <td>{{item.rate}}</td>
                     <!-- <td>{{(item.is_approved)?'مقبول':'غير مقبول'}}</td> -->
                     <td class="text-primary">
-                    <!-- <router-link :to="{name:'admin.dashboard.comment.details',params:{id:item.id}}" type="button" class="btn my_btn btn-sm">
+                    <router-link :to="{name:'admin.dashboard.comment.details',params:{id:item.id}}" type="button" class="btn my_btn btn-sm">
                       <i class="material-icons details_icon">folder_open</i>
-                    </router-link> -->
+                    </router-link>
                     <!-- <router-link :to="{name:'admin.dashboard.comment.edit', params:{id:item.id}}" type="button" class="btn my_btn btn-sm">
                       <i class="material-icons edit_icon">edit</i>
                     </router-link> -->

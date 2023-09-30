@@ -1,31 +1,21 @@
 <?php
 
-// use App\Http\Controllers\Website\AboutUsController;
-// use App\Http\Controllers\Website\BlogController;
-// use App\Http\Controllers\Website\ClientController;
-// use App\Http\Controllers\Website\CommentController;
-// use App\Http\Controllers\Website\ContactUsController;
-// use App\Http\Controllers\Website\PartnerController;
-// use App\Http\Controllers\Website\ProjectController;
-// use App\Http\Controllers\Website\ServiceController;
-// use App\Http\Controllers\Website\TeamMemberController;
-// use Illuminate\Support\Facades\Route;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\CityController;
-use App\Http\Controllers\Api\V1\BrandController; 
-use App\Http\Controllers\Api\V1\CategoryController; 
-use App\Http\Controllers\Api\V1\ClientController; 
-use App\Http\Controllers\Api\V1\CommentController; 
-use App\Http\Controllers\Api\V1\OrderController; 
-use App\Http\Controllers\Api\V1\OrderProductController; 
-use App\Http\Controllers\Api\V1\PharmacistController; 
-use App\Http\Controllers\Api\V1\PrescriptionOrderController; 
-use App\Http\Controllers\Api\V1\ProductController; 
-use App\Http\Controllers\Api\V1\ProductImageController; 
+use App\Http\Controllers\Api\V1\BrandController;
+use App\Http\Controllers\Api\V1\CategoryController;
+use App\Http\Controllers\Api\V1\ClientController;
+use App\Http\Controllers\Api\V1\CommentController;
+use App\Http\Controllers\Api\V1\OrderController;
+use App\Http\Controllers\Api\V1\OrderProductController;
+use App\Http\Controllers\Api\V1\PharmacistController;
+use App\Http\Controllers\Api\V1\PrescriptionOrderController;
+use App\Http\Controllers\Api\V1\ProductController;
+use App\Http\Controllers\Api\V1\ProductImageController;
 use App\Http\Controllers\StatisticsController;
-use App\Http\Controllers\Api\V1\AdminController; 
+use App\Http\Controllers\Api\V1\AdminController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,3 +89,6 @@ Route::prefix('v1')->group(function() {
 
 
 Route::get('statistics',[StatisticsController::class, 'index']);
+Route::post('login',[LoginController::class, 'Login']);
+
+

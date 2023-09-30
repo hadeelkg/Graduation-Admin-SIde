@@ -10,17 +10,17 @@
                     </div>
                     <div class="card-body">
                         <div class="row mb-3">
-                            <InputFile title="الصورة" id="media" :MyValue="form.media" @myInput="HandleInput('media',$event)" Mykey="media" class_bs="col-md-12" :errors='errors'/>
-                            <Input :MyValue="form.name" id="name" title="اسم المنتج" @myInput="HandleInput('name',$event)" Mykey="name" :errors='errors'/>
+                            <InputFile title="الصورة" id="image_path" :MyValue="form.image_path" @myInput="HandleInput('image_path',$event)" Mykey="image_path" class_bs="col-md-12" :errors='errors' />
+                            <Input :MyValue="form.name" id="name" title="اسم المنتج" @myInput="HandleInput('name',$event)" Mykey="name" :errors='errors' />
                             <Input :MyValue="form.price" id="price" title="سعر المنتج" @myInput="HandleInput('price',$event)" Mykey="price" :errors= 'errors'/>
-                            <Input :MyValue="form.description" id="description" title="الوصف" @myInput="HandleInput('description',$event)" Mykey="description" :errors='errors'/>
-                            <Input :MyValue="form.quantity" id="quantity" title="الكمية" @myInput="HandleInput('quantity',$event)" Mykey="quantity" :errors='errors'/>
-                            <TextSelect title="الفئة" id="category_id" :Items=Categories @Select="HandleInput('category_id',$event)" Mykey="category_id" :MyValue="form.category_id" :errors='errors'/>
-                            <TextSelect title="العلامة التجارية" id="brand_id" :Items=Brands @Select="HandleInput('brand_id',$event)" Mykey="brand_id" :MyValue="form.brand_id" :errors='errors'/>
+                            <Input :MyValue="form.description" id="description" title="الوصف" @myInput="HandleInput('description',$event)" Mykey="description" :errors='errors' />
+                            <Input :MyValue="form.quantity" id="quantity" title="الكمية" @myInput="HandleInput('quantity',$event)" Mykey="quantity" :errors='errors' />
+                            <TextSelect title="الفئة" id="category_id" :Items=Categories @Select="HandleInput('category_id',$event)" Mykey="category_id" :MyValue="form.category_id" :errors='errors' />
+                            <TextSelect title="العلامة التجارية" id="brand_id" :Items=Brands @Select="HandleInput('brand_id',$event)" Mykey="brand_id" :MyValue="form.brand_id" :errors='errors' />
                         </div>
                         <button type="button" class="btn btn-primary pull-right" v-if="IsNew" @click="onSubmit()">اضافة</button>
                         <button type="button" class="btn btn-primary pull-right" v-if="!IsNew" @click="onUpdate()">تعديل</button>
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                     quantity:'',
                     category_id:'',
                     brand_id:'',
-                    productImages:'',
+                    image_path:'',
                 },
 
                 Alert:{
@@ -70,7 +70,7 @@
                 Brands:state=>state.admin.Brands.brands.data,
                 Product:state=>state.admin.Products.products.data,
                 errors:state=>state.admin.Products.product.errors,
-            }), 
+            }),
 
             IsNew(){
                 return this.form.id == '';
@@ -96,14 +96,14 @@
                     this.form.price = this.Product.price;
                     this.form.description = this.Product.description;
                     this.form.quantity = this.Product.quantity;
-                    this.form.category_id = this.Product.category.name;
-                    this.form.brand_id = this.Product.brand.name;
+                    this.form.category_id = this.Product.category.id;
+                    this.form.brand_id = this.Product.brand.id;
                 });
             }
         },
-      
+
         methods:{
- 
+
             ...mapMutations({
                 cleanErrors:"admin/cleanProductErrors"
             }),
@@ -113,7 +113,7 @@
             },
 
             onSubmit(){
-                let formData=new FormData(); 
+                let formData=new FormData();
                 for(let key in this.form){
                     formData.append(key, this.form[key]);
                 }
@@ -126,18 +126,19 @@
             },
 
             onUpdate(){
-                let formData=new FormData(); 
+                let formData=new FormData();
                 for(let key in this.form){
                     formData.append(key, this.form[key]);
                 }
+                formData.append('_method', 'PATCH');
                 store.dispatch('admin/updateProduct',formData).then((response) => {
                     this.cleanErrors();
-                    this.Alert.message='تمّ تعديل المنتج بنجاح';
+                    this.Alert.message='تمّ تعديل بيانات المنتج بنجاح';
                     this.$refs.MySuccessAlert.showModel();
                 }).catch((error) => {
 
                 });
-            }
+            },
         },
     }
 </script>

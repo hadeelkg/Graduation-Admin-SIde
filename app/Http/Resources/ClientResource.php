@@ -23,8 +23,9 @@ class ClientResource extends JsonResource
             'gender' => $this->gender,
             'phone' => $this->phone,
             'address' => $this->address,
-            // 'city_id' => $this->city_id,
-            'city' => new CityResource($this->whenLoaded('city'))
+            // 'city' => new CityResource($this->whenLoaded('city')),
+            'city' => new CityResource($this->city),
+            'created_at' => $this->created_at,
         ];
     }
 }

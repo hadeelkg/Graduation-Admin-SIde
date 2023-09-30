@@ -5,8 +5,8 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h4 class="card-title">{{(!IsNew)?'اضافة مسؤول جديد':'تعديل المسؤول'}}</h4>
-            <p class="card-category">{{(!IsNew)?'سيتم اضافة مسؤول جديد للنظام ':'سيتم التعديل على مسؤول في النظام'}}</p>
+            <h4 class="card-title">{{(IsNew)?'اضافة مسؤول جديد':'تعديل المسؤول'}}</h4>
+            <p class="card-category">{{(IsNew)?'سيتم اضافة مسؤول جديد للنظام ':'سيتم التعديل على مسؤول في النظام'}}</p>
           </div>
           <div class="card-body">
               <div class="row mb-3">
@@ -89,13 +89,12 @@
         },
 
         onSubmit(){
-          store.commit('admin/PleaseStartLoading');
           store.dispatch('admin/addNewAdmin', this.form).then((response) => {
-            store.commit('admin/PleaseStopLoading');
             this.cleanErrors();
             this.Alert.message='تمّت اضافة مسؤول جديد بنجاح';
             this.$refs.MySuccessAlert.showModel();
           }).catch((error)=>{
+            console.log(error);
             });
         },
 

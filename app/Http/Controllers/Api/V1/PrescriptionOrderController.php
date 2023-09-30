@@ -21,11 +21,11 @@ class PrescriptionOrderController extends Controller
         return PrescriptionOrderResource::make($prescription_order);
     }
 
-    public function store(StorePrescriptionOrderRequest $request) 
+    public function store(StorePrescriptionOrderRequest $request)
     {
         return new PrescriptionOrderResource(
             prescription_order::create([
-                $request->validated(),
+                ...$request->validated(),
                 'image_path' => $request->file('image_path')->store('prescription', 'public')
             ])
         );
@@ -34,8 +34,13 @@ class PrescriptionOrderController extends Controller
     public function update(UpdatePrescriptionOrderRequest $request, prescription_order $prescriptionOrder)
     {
         $prescriptionOrder->update($request->validated());
-        return PrescriptionOrderResource::make($prescriptionOrder);
-    }    
+        if ($request->hasFile('image_path')) {
+            $newImagePath = $request->file('image_path')->store('prescription', 'public');
+            $prescriptionOrder->image_path = $newImagePath;
+        }
+        $prescriptionOrder->save();
+        return $prescriptionOrder;
+    }
 
     public function destroy(prescription_order $prescription_order)
     {

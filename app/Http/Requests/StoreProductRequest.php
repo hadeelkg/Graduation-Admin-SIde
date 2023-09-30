@@ -26,7 +26,7 @@ class StoreProductRequest extends FormRequest
             'image_path' => ['image', 'mimes:jpeg,png,jpg', 'max:4000'],
             'price' => ['required','string','max:3'],
             'description' => ['required','string','max:200'],
-            'quantity' => ['required','string','max:2'],
+            'quantity' => ['required','string','max:10'],
             'category_id' => ['required','integer'],
             'brand_id' => ['required','integer'],
         ];

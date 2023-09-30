@@ -202,13 +202,13 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     },
     onSubmit: function onSubmit() {
       var _this2 = this;
-      _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].commit('admin/PleaseStartLoading');
       _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('admin/addNewAdmin', this.form).then(function (response) {
-        _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].commit('admin/PleaseStopLoading');
         _this2.cleanErrors();
         _this2.Alert.message = 'تمّت اضافة مسؤول جديد بنجاح';
         _this2.$refs.MySuccessAlert.showModel();
-      })["catch"](function (error) {});
+      })["catch"](function (error) {
+        console.log(error);
+      });
     },
     onUpdate: function onUpdate() {
       var _this3 = this;
@@ -389,7 +389,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: $data.Alert.title,
     message: $data.Alert.message,
     back: this.goBack
-  }, null, 8 /* PROPS */, ["title", "message", "back"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(!$options.IsNew ? 'اضافة مسؤول جديد' : 'تعديل المسؤول'), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(!$options.IsNew ? 'سيتم اضافة مسؤول جديد للنظام ' : 'سيتم التعديل على مسؤول في النظام'), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Input id=\"name\" title=\"الاسم\" @myInput=\"HandleInput('name',$event)\" Mykey=\"name\" :MyValue=\"form.name\"/> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
+  }, null, 8 /* PROPS */, ["title", "message", "back"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.IsNew ? 'اضافة مسؤول جديد' : 'تعديل المسؤول'), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.IsNew ? 'سيتم اضافة مسؤول جديد للنظام ' : 'سيتم التعديل على مسؤول في النظام'), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Input id=\"name\" title=\"الاسم\" @myInput=\"HandleInput('name',$event)\" Mykey=\"name\" :MyValue=\"form.name\"/> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
     id: "email",
     title: "البريد الالكتروني",
     MyType: "email",

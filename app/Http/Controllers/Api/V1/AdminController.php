@@ -20,7 +20,7 @@ class AdminController extends Controller
         return AdminResource::make($admin);
     }
 
-    public function store(StoreAdminRequest $request) 
+    public function store(StoreAdminRequest $request)
     {
         return new AdminResource(Admin::create($request->validated()));
     }
@@ -30,7 +30,7 @@ class AdminController extends Controller
         $admin->update($request->validated());
         return AdminResource::make($admin);
         // return $request;
-    }    
+    }
 
     public function destroy(Admin $admin)
     {

@@ -21,7 +21,7 @@ class PharmacistController extends Controller
         return PharmacistResource::make($pharmacist);
     }
 
-    public function store(StorePharmacistRequest $request) 
+    public function store(StorePharmacistRequest $request)
     {
         return new PharmacistResource(
             // Pharmacist::create($request->validated())
@@ -34,26 +34,14 @@ class PharmacistController extends Controller
 
     public function update(UpdatePharmacistRequest $request, Pharmacist $pharmacist)
     {
-        $image=$request->file('image_path');
-        // if($image){
-        //     $fileName=$this->saveImage($image,'pharmacist');
-        //     Pharmacist['image'] = $fileName;
-        // }
         $pharmacist->update($request->validated());
-        return PharmacistResource::make($pharmacist);
-        // $pharmacist->update([
-        //     ...$request->validated(),
-        //     'image_path' => $request->file('image_path')->store('pharmacist', 'public')
-        // ]);
-
-
-        // if ($request->hasFile('image_path')) {
-        // $productImage = $request->image_path;
-        // $fileName = date('Y') . $logo->getClientOriginalName();
-        // $request->company_logo->storeAs('company_logo', $fileName, 'public');
-        // $found['company_logo'] = $fileName;
-
-    }    
+        if ($request->hasFile('image_path')) {
+            $newImagePath = $request->file('image_path')->store('pharmacist', 'public');
+            $pharmacist->image_path = $newImagePath;
+        }
+        $pharmacist->save();
+        return $pharmacist;
+    }
 
     public function destroy(Pharmacist $pharmacist)
     {

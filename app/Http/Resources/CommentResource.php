@@ -21,6 +21,7 @@ class CommentResource extends JsonResource
             'content' => $this->content,
             'rate' => $this->rate,
             'client' => new ClientResource($this->client),
+            'created_at' => $this->created_at,
         ];
     }
 }

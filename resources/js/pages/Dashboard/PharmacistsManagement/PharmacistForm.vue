@@ -10,8 +10,8 @@
                   </div>
                   <div class="card-body">
                     <div class="row">
+                      <InputFile title="الصورة" id="image_path" :MyValue="form.image_path" @myInput="HandleInput('image_path',$event)" Mykey="image_path" :errors='errors'/>
                       <Input :MyValue="form.name" id="name" title="الاسم" @myInput="HandleInput('name',$event)" Mykey="name" :errors= 'errors'/>
-                      <InputFile :MyValue="form.image_path" title="الصورة" id="image_path" Mykey="image_path" @Input="HandleInput('image_path',$event)" :errors= 'errors'/>
                       <Input :MyValue="form.role" id="role" title="الدور الوظيفي" @myInput="HandleInput('role',$event)" Mykey="role" :errors= 'errors'/>
                       <Input :MyValue="form.bio" id="bio" title="نبذة عن الصيدلي" @myInput="HandleInput('bio',$event)" Mykey="bio" :errors= 'errors'/>
                       <Input :MyValue="form.facebook_link" id="facebook_link" title="رابط حساب الفيسبوك" @myInput="HandleInput('facebook_link',$event)" Mykey="facebook_link" :errors= 'errors'/>
@@ -62,7 +62,7 @@
       computed:{
       ...mapState({
           Pharmacist:state=>state.admin.Pharmacists.pharmacists.data,
-          errors:state=>state.admin.Pharmacists.pharmacists.errors,
+          errors:state=>state.admin.Pharmacists.pharmacist.errors,
           }),
 
           IsNew(){
@@ -85,7 +85,7 @@
                   this.form.bio=this.Pharmacist.bio;
                   this.form.facebook_link=this.Pharmacist.facebook_link;
                   this.form.phone=this.Pharmacist.phone;
-                  
+
               });
           }
       },
@@ -117,6 +117,7 @@
               for(let key in this.form){
                 formData.append(key, this.form[key]);
               }
+              formData.append('_method', 'PATCH');
               store.dispatch('admin/updatePharmacist',formData).then((response) => {
                   this.cleanErrors();
                   this.Alert.message='تمّ تعديل بيانات الصيدلي بنجاح';

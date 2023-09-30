@@ -29,6 +29,10 @@
                             <td>العنوان</td><td>:</td>
                             <td>{{Client.address}}</td>
                         </tr>
+                        <tr>
+                            <td>تاريخ التسجيل</td><td>:</td>
+                            <td>{{Client.created_at}}</td>       
+                        </tr>
                     </table>
                 </div>
             </div>
