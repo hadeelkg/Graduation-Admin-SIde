@@ -17,61 +17,61 @@ let state = {
 const actions = {
     fetchBrands({ commit }) {
         return new Promise((resolve, reject) => {
-            http.get('/api/v1/brands').then((response) => {
+            http.get('/api/admin/v1/brands').then((response) => {
                     commit('setBrands', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },
     fetchBrand({ commit }, brandId) {
         return new Promise((resolve, reject) => {
-            http.get('/api/v1/brands/'+ brandId).then((response) => {
+            http.get('/api/admin/v1/brands/'+ brandId).then((response) => {
                     commit('setOldBrand', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },
     NewBrand({ commit }, data) {
         return new Promise((resolve, reject) => {
-            http.post('/api/v1/brands', data).then((response) => {
+            http.post('/api/admin/v1/brands', data).then((response) => {
                     commit('setNewBrand', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
+                .catch((error) => {
                     if (error.response && error.response.status === 422) {
                         commit('setErrors', error.response.data.errors);
                     }
-                    reject(); 
+                    reject();
                 });
         });
     },
     updateBrand({ commit }, data) {
         return new Promise((resolve, reject) => {
-            http.patch('/api/v1/brands/'+ data.id, data).then((response) => {
+            http.patch('/api/admin/v1/brands/'+ data.id, data).then((response) => {
                     commit('setUpdatedBrand', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
+                .catch((error) => {
                     if (error.response && error.response.status === 422) {
                         commit('setErrors', error.response.data.errors);
                     }
-                    reject(); 
+                    reject();
                 });
         });
     },
     deleteBrand({ commit }, brandId) {
         return new Promise((resolve, reject) => {
-            http.delete('/api/v1/brands/'+ brandId).then((response) => {
+            http.delete('/api/admin/v1/brands/'+ brandId).then((response) => {
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },

@@ -23,8 +23,9 @@ class StoreCommentRequest extends FormRequest
     {
         return [
             'content' => ['required','string','max:200', 'regex:/^[\pL\s]+$/u'],
-            'rate' => ['required','numeric','max:1'],
-            'client_id' => ['required','integer'],
+            'title' => ['required','string','max:70', 'regex:/^[\pL\s]+$/u'],
+            // 'rate' => ['required','numeric','max:1'],
+            'client_name' => ['required','string','max:70'],
         ];
     }
 }

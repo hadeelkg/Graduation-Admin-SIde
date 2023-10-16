@@ -31,25 +31,31 @@
   import store from '../store/index.js';
   export default {
 
-    computed:{
-      ...mapState({
-        }),
+    data(){
+        return{
+            id:""
+        }
+    },
+
+    created(){
+        this.id = localStorage.getItem("admin/user-id");
     },
 
     methods:{
 
       logout(){
         store.commit('admin/PleaseStartLoading');
-        this.$store.dispatch("admin/authLogout").then(() => {
+        this.$store.dispatch("admin/authLogout", this.id).then((response) => {
           this.$router.push({ name: "admin.login" });
           store.commit('admin/PleaseStopLoading');
-        });
+        }).catch((error) => {
+        })
       },
 
       back(){
         this.$router.go(-1);
       },
-      
+
     }
   }
 

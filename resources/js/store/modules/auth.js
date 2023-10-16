@@ -2,7 +2,6 @@ import http from '../../utils/axios/admin';
 
 let state = {
     token: localStorage.getItem('admin/user-token') || '',
-    // loggedUserPermissions: localStorage.getItem('forma-permissions'),
     errors: {},
     Loading: false,
 };
@@ -11,20 +10,17 @@ const getters = {
     authToken(state) {
         return state.token;
     },
-    // loggedUserPermissions: (state) => {
-    //     return localStorage.getItem('forma-permissions')
-    // },
 };
 
 const actions = {
     authRequest({ commit }, { email, password}) {
         return new Promise((resolve, reject) => {
-            http.post('/api/dashboard/login', {
+            http.post('/api/admin/login', {
                     email,
                     password,
                 })
                 .then(response => {
-                    commit('authSuccess', response.data.token);
+                    commit('authSuccess', response.data);
                     resolve(response);
                 })
                 .catch((error) => {
@@ -36,14 +32,13 @@ const actions = {
         });
     },
 
-    authLogout({ commit }) {
+    authLogout({ commit }, id) {
         return new Promise((resolve, reject) => {
-            http.post('/api/dashboard/logout').then((response) => {
+            http.post('/api/admin/logout', {id}).then((response) => {
                     commit('authLogout');
                     resolve(response);
                 })
                 .catch((error) => {
-                    // commit('authLogout');
                     console.log(error);
                     reject(error);
                 });
@@ -52,9 +47,10 @@ const actions = {
 };
 
 const mutations = {
-    authSuccess(state, token) {
-        localStorage.setItem('admin/user-token', token);
-        state.token = token;
+    authSuccess(state, data) {
+        localStorage.setItem('admin/user-token', data.token);
+        localStorage.setItem('admin/user-id', data.id);
+        state.token = data.token;
         state.errors = {};
     },
     authError(state, errors) {
@@ -64,7 +60,7 @@ const mutations = {
     },
     authLogout(state) {
         localStorage.removeItem('admin/user-token');
-        localStorage.removeItem('forma-permissions');
+        localStorage.removeItem('admin/user-id');
         state.token = '';
     },
     PleaseStopLoading(state) {

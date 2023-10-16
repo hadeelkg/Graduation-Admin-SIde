@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateClientRequest;
 use App\Models\Client;
 use App\Http\Resources\ClientResource;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+
 
 class ClientController extends Controller
 {
@@ -23,12 +25,22 @@ class ClientController extends Controller
 
     public function store(StoreClientRequest $request)
     {
-        return new ClientResource(Client::create($request->validated()));
+        $validatedData = $request->validated();
+        $encryptedPassword = Hash::make($validatedData['password']);
+        $validatedData['password'] = $encryptedPassword;
+        $client = Client::create($validatedData);
+        return new ClientResource($client);
     }
 
     public function update(UpdateClientRequest $request, Client $client)
     {
-        $client->update($request->validated());
+        // $client->update($request->validated());
+        // return ClientResource::make($client);
+        $validatedData = $request->validated();
+        $encryptedPassword = Hash::make($validatedData['password']);
+        $validatedData['password'] = $encryptedPassword;
+
+        $client->update($validatedData);
         return ClientResource::make($client);
     }
 

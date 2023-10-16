@@ -58,19 +58,17 @@
      },
 
     async login(){
-      //  await this.$store.dispatch('admin/authRequest', {
-      //    email: this.form.email,
-      //    password: this.form.password,
-      //  }).then(() => {
-      //   this.warningMessage = "";
-      //      this.$router.push({name: 'admin.dashboard.home'});
-      //    }).catch((error) => {
-      //     this.warningMessage = error.response.data.message;
-      //        console.log(error.response.data.message);
-      //      });
-        this.$router.push({name: 'admin.dashboard.home'});
+       await this.$store.dispatch('admin/authRequest', {
+         email: this.form.email,
+         password: this.form.password,
+       }).then((response) => {
+        this.warningMessage = "";
+           this.$router.push({name: 'admin.dashboard.home'});
+         }).catch((error) => {
+          this.warningMessage = error.response.data.message;
+             console.log(error.response.data.message);
+           });
        },
-
    },
  }
 </script>

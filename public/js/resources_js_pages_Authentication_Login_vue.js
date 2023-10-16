@@ -119,20 +119,20 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              //  await this.$store.dispatch('admin/authRequest', {
-              //    email: this.form.email,
-              //    password: this.form.password,
-              //  }).then(() => {
-              //   this.warningMessage = "";
-              //      this.$router.push({name: 'admin.dashboard.home'});
-              //    }).catch((error) => {
-              //     this.warningMessage = error.response.data.message;
-              //        console.log(error.response.data.message);
-              //      });
-              _this.$router.push({
-                name: 'admin.dashboard.home'
+              _context.next = 2;
+              return _this.$store.dispatch('admin/authRequest', {
+                email: _this.form.email,
+                password: _this.form.password
+              }).then(function (response) {
+                _this.warningMessage = "";
+                _this.$router.push({
+                  name: 'admin.dashboard.home'
+                });
+              })["catch"](function (error) {
+                _this.warningMessage = error.response.data.message;
+                console.log(error.response.data.message);
               });
-            case 1:
+            case 2:
             case "end":
               return _context.stop();
           }

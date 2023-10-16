@@ -5,37 +5,25 @@
             <div class="card-header">
                 تفاصيل التعليق
             </div>
-           
+
             <div class="card-body">
                 <div class="row">
                     <table class="table">
                         <tr>
                             <td>اسم العميل</td><td>:</td>
-                            <td>{{Comment.client.name}}</td>
+                            <td>{{Comment.client_name}}</td>
                         </tr>
                         <tr>
-                            <td>الايميل</td><td>:</td>
-                            <td>{{(Comment.client.email)}}</td>
-                        </tr>
-                        <tr>
-                            <td>رقم الهاتف</td><td>:</td>
-                            <td>{{(Comment.client.phone)}}</td>
+                            <td>عنوان التعليق</td><td>:</td>
+                            <td>{{Comment.title}}</td>
                         </tr>
                         <tr>
                             <td>محتوى التعليق</td><td>:</td>
                             <td>{{Comment.content}}</td>
                         </tr>
                         <tr>
-                            <td>التقييم</td><td>:</td>
-                            <td>{{Comment.rate}}/5</td>
-                        </tr>
-                        <!-- <tr>
-                            <td>الحالة</td><td>:</td>
-                            <td>{{(Comment.is_approved)?'مقبول':'مرفوض'}}</td>
-                        </tr> -->
-                        <tr>
                             <td>تاريخ الادخال</td><td>:</td>
-                            <td>{{Comment.created_at}}</td>       
+                            <td>{{Comment.created_at}}</td>
                         </tr>
                     </table>
                 </div>

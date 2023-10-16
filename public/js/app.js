@@ -17720,7 +17720,7 @@ var actions = {
   fetchAdmins: function fetchAdmins(_ref) {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/admins').then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/admins').then(function (response) {
         commit('setAdmins', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -17731,7 +17731,7 @@ var actions = {
   fetchAdmin: function fetchAdmin(_ref2, adminId) {
     var commit = _ref2.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/admins/' + adminId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/admins/' + adminId).then(function (response) {
         commit('setOldAdmin', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -17742,7 +17742,7 @@ var actions = {
   addNewAdmin: function addNewAdmin(_ref3, data) {
     var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/v1/admins', data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/admins', data).then(function (response) {
         commit('setNewAdmin', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -17756,7 +17756,7 @@ var actions = {
   updateAdmin: function updateAdmin(_ref4, data) {
     var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].patch('/api/v1/admins/' + data.id, data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].patch('/api/admin/v1/admins/' + data.id, data).then(function (response) {
         commit('setUpdatedAdmin', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -17770,7 +17770,7 @@ var actions = {
   deleteAdmin: function deleteAdmin(_ref5, adminId) {
     var commit = _ref5.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/v1/admins/' + adminId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/admin/v1/admins/' + adminId).then(function (response) {
         resolve(response);
       })["catch"](function (error) {
         reject();
@@ -17821,16 +17821,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var state = {
   token: localStorage.getItem('admin/user-token') || '',
-  // loggedUserPermissions: localStorage.getItem('forma-permissions'),
   errors: {},
   Loading: false
 };
 var getters = {
   authToken: function authToken(state) {
     return state.token;
-  } // loggedUserPermissions: (state) => {
-  //     return localStorage.getItem('forma-permissions')
-  // },
+  }
 };
 var actions = {
   authRequest: function authRequest(_ref, _ref2) {
@@ -17838,11 +17835,11 @@ var actions = {
     var email = _ref2.email,
       password = _ref2.password;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/dashboard/login', {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/login', {
         email: email,
         password: password
       }).then(function (response) {
-        commit('authSuccess', response.data.token);
+        commit('authSuccess', response.data);
         resolve(response);
       })["catch"](function (error) {
         if (error.response && error.response.status === 422) {
@@ -17852,14 +17849,15 @@ var actions = {
       });
     });
   },
-  authLogout: function authLogout(_ref3) {
+  authLogout: function authLogout(_ref3, id) {
     var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/dashboard/logout').then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/logout', {
+        id: id
+      }).then(function (response) {
         commit('authLogout');
         resolve(response);
       })["catch"](function (error) {
-        // commit('authLogout');
         console.log(error);
         reject(error);
       });
@@ -17867,9 +17865,10 @@ var actions = {
   }
 };
 var mutations = {
-  authSuccess: function authSuccess(state, token) {
-    localStorage.setItem('admin/user-token', token);
-    state.token = token;
+  authSuccess: function authSuccess(state, data) {
+    localStorage.setItem('admin/user-token', data.token);
+    localStorage.setItem('admin/user-id', data.id);
+    state.token = data.token;
     state.errors = {};
   },
   authError: function authError(state, errors) {
@@ -17879,7 +17878,7 @@ var mutations = {
   },
   authLogout: function authLogout(state) {
     localStorage.removeItem('admin/user-token');
-    localStorage.removeItem('forma-permissions');
+    localStorage.removeItem('admin/user-id');
     state.token = '';
   },
   PleaseStopLoading: function PleaseStopLoading(state) {
@@ -17927,7 +17926,7 @@ var actions = {
   fetchBrands: function fetchBrands(_ref) {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/brands').then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/brands').then(function (response) {
         commit('setBrands', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -17938,7 +17937,7 @@ var actions = {
   fetchBrand: function fetchBrand(_ref2, brandId) {
     var commit = _ref2.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/brands/' + brandId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/brands/' + brandId).then(function (response) {
         commit('setOldBrand', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -17949,7 +17948,7 @@ var actions = {
   NewBrand: function NewBrand(_ref3, data) {
     var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/v1/brands', data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/brands', data).then(function (response) {
         commit('setNewBrand', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -17963,7 +17962,7 @@ var actions = {
   updateBrand: function updateBrand(_ref4, data) {
     var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].patch('/api/v1/brands/' + data.id, data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].patch('/api/admin/v1/brands/' + data.id, data).then(function (response) {
         commit('setUpdatedBrand', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -17977,7 +17976,7 @@ var actions = {
   deleteBrand: function deleteBrand(_ref5, brandId) {
     var commit = _ref5.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/v1/brands/' + brandId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/admin/v1/brands/' + brandId).then(function (response) {
         resolve(response);
       })["catch"](function (error) {
         reject();
@@ -18042,7 +18041,7 @@ var actions = {
   fetchCategories: function fetchCategories(_ref) {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/categories').then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/categories').then(function (response) {
         commit('setCategories', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18053,7 +18052,7 @@ var actions = {
   fetchCategory: function fetchCategory(_ref2, categoryId) {
     var commit = _ref2.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/categories/' + categoryId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/categories/' + categoryId).then(function (response) {
         commit('setOldCategory', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18064,7 +18063,7 @@ var actions = {
   NewCategory: function NewCategory(_ref3, data) {
     var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/v1/categories', data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/categories', data).then(function (response) {
         commit('setNewCategory', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18078,7 +18077,7 @@ var actions = {
   updateCategory: function updateCategory(_ref4, data) {
     var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].patch('/api/v1/categories/' + data.id, data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].patch('/api/admin/v1/categories/' + data.id, data).then(function (response) {
         commit('setUpdatedCategory', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18092,7 +18091,7 @@ var actions = {
   deleteCategory: function deleteCategory(_ref5, categoryId) {
     var commit = _ref5.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/v1/categories/' + categoryId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/admin/v1/categories/' + categoryId).then(function (response) {
         resolve(response);
       })["catch"](function (error) {
         reject();
@@ -18156,7 +18155,7 @@ var actions = {
   fetchCities: function fetchCities(_ref) {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/cities').then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/cities').then(function (response) {
         commit('setCities', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18167,7 +18166,7 @@ var actions = {
   fetchCity: function fetchCity(_ref2, cityId) {
     var commit = _ref2.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/cities/' + cityId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/cities/' + cityId).then(function (response) {
         commit('setOldCity', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18178,7 +18177,7 @@ var actions = {
   NewCity: function NewCity(_ref3, data) {
     var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/v1/cities', data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/cities', data).then(function (response) {
         commit('setNewCity', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18192,7 +18191,7 @@ var actions = {
   updateCity: function updateCity(_ref4, data) {
     var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].patch('/api/v1/cities/' + data.id, data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].patch('/api/admin/v1/cities/' + data.id, data).then(function (response) {
         commit('setUpdatedCity', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18206,7 +18205,7 @@ var actions = {
   deleteCity: function deleteCity(_ref5, cityId) {
     var commit = _ref5.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/v1/cities/' + cityId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/admin/v1/cities/' + cityId).then(function (response) {
         resolve(response);
       })["catch"](function (error) {
         reject();
@@ -18270,7 +18269,7 @@ var actions = {
   fetchClients: function fetchClients(_ref) {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/clients').then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/clients').then(function (response) {
         commit('getClients', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18281,7 +18280,7 @@ var actions = {
   fetchClient: function fetchClient(_ref2, clientId) {
     var commit = _ref2.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/clients/' + clientId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/clients/' + clientId).then(function (response) {
         commit('setOldClient', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18292,7 +18291,7 @@ var actions = {
   NewClient: function NewClient(_ref3, data) {
     var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/v1/clients', data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/clients', data).then(function (response) {
         commit('setClient', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18306,7 +18305,7 @@ var actions = {
   updateClient: function updateClient(_ref4, data) {
     var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/v1/clients/' + data.id, data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/clients/' + data.id, data).then(function (response) {
         commit('setUpdatedClient', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18320,7 +18319,7 @@ var actions = {
   deleteClient: function deleteClient(_ref5, clientId) {
     var commit = _ref5.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/v1/clients/' + clientId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/admin/v1/clients/' + clientId).then(function (response) {
         resolve(response);
       })["catch"](function (error) {
         reject();
@@ -18384,7 +18383,7 @@ var actions = {
   fetchComments: function fetchComments(_ref) {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/comments').then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/comments').then(function (response) {
         commit('setComments', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18395,7 +18394,7 @@ var actions = {
   fetchComment: function fetchComment(_ref2, commentId) {
     var commit = _ref2.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/comments/' + commentId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/comments/' + commentId).then(function (response) {
         commit('setOldComment', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18406,32 +18405,35 @@ var actions = {
   NewComment: function NewComment(_ref3, data) {
     var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/v1/comments', data).then(function (response) {
-        commit('setCategory', response.data);
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/comments', data).then(function (response) {
+        commit('setNewComment', response.data);
         resolve(response);
       })["catch"](function (error) {
         if (error.response && error.response.status === 422) {
-          commit('setErrors', error.response.data.errors);
+          commit('setCommentErrors', error.response.data.errors);
         }
         reject();
       });
     });
   },
-  // updateCategory({ commit }, data) {
-  //     return new Promise((resolve, reject) => {
-  //         http.post('/api/v1/comments/'+ data.get('id')).then((response) => {
-  //                 commit('updateCategory', response.data);
-  //                 resolve(response);
-  //             })
-  //             .catch((error) => { 
-  //                 reject(); 
-  //             });
-  //     });
-  // },
-  deleteComment: function deleteComment(_ref4, commentId) {
+  updateComment: function updateComment(_ref4, data) {
     var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/v1/comments/' + commentId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/comments/' + data.get('id'), data).then(function (response) {
+        commit('setUpdatedComment', response.data);
+        resolve(response);
+      })["catch"](function (error) {
+        if (error.response && error.response.status === 422) {
+          commit('setCommentErrors', error.response.data.errors);
+        }
+        reject();
+      });
+    });
+  },
+  deleteComment: function deleteComment(_ref5, commentId) {
+    var commit = _ref5.commit;
+    return new Promise(function (resolve, reject) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/admin/v1/comments/' + commentId).then(function (response) {
         resolve(response);
       })["catch"](function (error) {
         reject();
@@ -18446,16 +18448,16 @@ var mutations = {
   setOldComment: function setOldComment(state, data) {
     state.comments = data;
   },
-  setCategory: function setCategory(state, data) {
-    state.category.data = data;
+  setNewComment: function setNewComment(state, data) {
+    state.comment.data = data;
   },
-  // updateCategory(state,data){
-  //     state.category.data = data;
-  // },
-  cleanErrors: function cleanErrors(state, errors) {
+  setUpdatedComment: function setUpdatedComment(state, data) {
+    state.comment.data = data;
+  },
+  cleanCommentErrors: function cleanCommentErrors(state, errors) {
     state.comment.errors = {};
   },
-  setErrors: function setErrors(state, errors) {
+  setCommentErrors: function setCommentErrors(state, errors) {
     state.comment.errors = errors;
   }
 };
@@ -18500,7 +18502,7 @@ var actions = {
   fetchOrders: function fetchOrders(_ref) {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/orders').then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/orders').then(function (response) {
         commit('setOrders', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18511,7 +18513,7 @@ var actions = {
   fetchOrderProducts: function fetchOrderProducts(_ref2) {
     var commit = _ref2.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/order_products').then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/order_products').then(function (response) {
         commit('getOrderProducts', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18522,7 +18524,7 @@ var actions = {
   fetchOrder: function fetchOrder(_ref3, orderId) {
     var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/orders/' + orderId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/orders/' + orderId).then(function (response) {
         commit('getOldOrder', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18533,7 +18535,7 @@ var actions = {
   NewOrder: function NewOrder(_ref4, data) {
     var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/v1/orders', data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/orders', data).then(function (response) {
         commit('setNewOrder', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18547,7 +18549,7 @@ var actions = {
   updateOrder: function updateOrder(_ref5, data) {
     var commit = _ref5.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/v1/orders/' + data.id, data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/orders/' + data.id, data).then(function (response) {
         commit('setUpdatedOrder', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18561,7 +18563,7 @@ var actions = {
   deleteOrder: function deleteOrder(_ref6, orderId) {
     var commit = _ref6.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/v1/orders/' + orderId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/admin/v1/orders/' + orderId).then(function (response) {
         resolve(response);
       })["catch"](function (error) {
         reject();
@@ -18628,7 +18630,7 @@ var actions = {
   fetchPharmacists: function fetchPharmacists(_ref) {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/pharmacists').then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/pharmacists').then(function (response) {
         commit('setPharmacists', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18639,7 +18641,7 @@ var actions = {
   fetchPharmacist: function fetchPharmacist(_ref2, pharmacistId) {
     var commit = _ref2.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/pharmacists/' + pharmacistId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/pharmacists/' + pharmacistId).then(function (response) {
         commit('setOldPharmacist', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18650,7 +18652,7 @@ var actions = {
   NewPharmacist: function NewPharmacist(_ref3, data) {
     var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/v1/pharmacists', data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/pharmacists', data).then(function (response) {
         commit('setPharmacist', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18664,7 +18666,7 @@ var actions = {
   updatePharmacist: function updatePharmacist(_ref4, data) {
     var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/v1/pharmacists/' + data.get('id'), data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/pharmacists/' + data.get('id'), data).then(function (response) {
         commit('setUpdatedPharmacist', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18678,7 +18680,7 @@ var actions = {
   deletePharmacist: function deletePharmacist(_ref5, pharmaId) {
     var commit = _ref5.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/v1/pharmacists/' + pharmaId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/admin/v1/pharmacists/' + pharmaId).then(function (response) {
         resolve(response);
       })["catch"](function (error) {
         reject();
@@ -18738,7 +18740,7 @@ var actions = {
   fetchPrescriptionOrders: function fetchPrescriptionOrders(_ref) {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/prescription_order').then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/prescription_order').then(function (response) {
         commit('setPrescriptionOrders', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18749,7 +18751,7 @@ var actions = {
   fetchPreOrder: function fetchPreOrder(_ref2, preOrderId) {
     var commit = _ref2.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/prescription_order/' + preOrderId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/prescription_order/' + preOrderId).then(function (response) {
         commit('getOldPreOrder', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18763,8 +18765,8 @@ var actions = {
   //                 commit('setCategory', response.data);
   //                 resolve(response);
   //             })
-  //             .catch((error) => { 
-  //                 reject(); 
+  //             .catch((error) => {
+  //                 reject();
   //             });
   //     });
   // },
@@ -18774,15 +18776,15 @@ var actions = {
   //                 commit('updateCategory', response.data);
   //                 resolve(response);
   //             })
-  //             .catch((error) => { 
-  //                 reject(); 
+  //             .catch((error) => {
+  //                 reject();
   //             });
   //     });
   // },
   deletePreOrder: function deletePreOrder(_ref3, preOrderId) {
     var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/v1/prescription_order/' + preOrderId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/admin/v1/prescription_order/' + preOrderId).then(function (response) {
         resolve(response);
       })["catch"](function (error) {
         reject();
@@ -18839,7 +18841,7 @@ var actions = {
   fetchProducts: function fetchProducts(_ref) {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/products').then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/products').then(function (response) {
         commit('setProducts', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18850,7 +18852,7 @@ var actions = {
   fetchProduct: function fetchProduct(_ref2, productId) {
     var commit = _ref2.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/v1/products/' + productId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/products/' + productId).then(function (response) {
         commit('setOldProduct', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18861,7 +18863,7 @@ var actions = {
   NewProduct: function NewProduct(_ref3, data) {
     var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/v1/products', data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/products', data).then(function (response) {
         commit('setProduct', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18875,7 +18877,7 @@ var actions = {
   updateProduct: function updateProduct(_ref4, data) {
     var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/v1/products/' + data.get('id'), data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/products/' + data.get('id'), data).then(function (response) {
         commit('setUpdatedProduct', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18886,24 +18888,10 @@ var actions = {
       });
     });
   },
-  // updateBlog({commit}, data){
-  //     return new Promise((resolve, reject) => {
-  //         http.post('/api/admin/blogs/'+data.get('id'),data).then((response) => {
-  //             commit('updateBlog', response.data);
-  //             resolve(response);
-  //         })
-  //         .catch((error) => {
-  //             if (error.response && error.response.status === 422) {
-  //                 commit('setBlogErrors', error.response.data.errors);
-  //             }
-  //             reject(error);
-  //         });
-  //     });
-  // },
   deleteProduct: function deleteProduct(_ref5, productId) {
     var commit = _ref5.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/v1/products/' + productId).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/admin/v1/products/' + productId).then(function (response) {
         resolve(response);
       })["catch"](function (error) {
         reject();
@@ -18963,7 +18951,7 @@ var actions = {
   fetchStatistics: function fetchStatistics(_ref) {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/statistics').then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/statistics').then(function (response) {
         commit('setStatistics', response.data);
         resolve(response);
       })["catch"](function (error) {

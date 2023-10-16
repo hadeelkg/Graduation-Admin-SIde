@@ -21,73 +21,73 @@ let state = {
 const actions = {
     fetchOrders({ commit }) {
         return new Promise((resolve, reject) => {
-            http.get('/api/v1/orders').then((response) => {
+            http.get('/api/admin/v1/orders').then((response) => {
                     commit('setOrders', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
 
     },
     fetchOrderProducts({ commit }) {
         return new Promise((resolve, reject) => {
-            http.get('/api/v1/order_products').then((response) => {
+            http.get('/api/admin/v1/order_products').then((response) => {
                     commit('getOrderProducts', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },
     fetchOrder({ commit }, orderId) {
         return new Promise((resolve, reject) => {
-            http.get('/api/v1/orders/'+ orderId).then((response) => {
+            http.get('/api/admin/v1/orders/'+ orderId).then((response) => {
                     commit('getOldOrder', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },
     NewOrder({ commit }, data) {
         return new Promise((resolve, reject) => {
-            http.post('/api/v1/orders', data).then((response) => {
+            http.post('/api/admin/v1/orders', data).then((response) => {
                     commit('setNewOrder', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
+                .catch((error) => {
                     if (error.response && error.response.status === 422) {
                         commit('setOrdersErrors', error.response.data.errors);
                     }
-                    reject(); 
+                    reject();
                 });
         });
     },
     updateOrder({ commit }, data) {
         return new Promise((resolve, reject) => {
-            http.post('/api/v1/orders/'+ data.id, data).then((response) => {
+            http.post('/api/admin/v1/orders/'+ data.id, data).then((response) => {
                     commit('setUpdatedOrder', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
+                .catch((error) => {
                     if (error.response && error.response.status === 422) {
                         commit('setOrdersErrors', error.response.data.errors);
                     }
-                    reject(); 
+                    reject();
                 });
         });
     },
     deleteOrder({ commit }, orderId) {
         return new Promise((resolve, reject) => {
-            http.delete('/api/v1/orders/'+ orderId).then((response) => {
+            http.delete('/api/admin/v1/orders/'+ orderId).then((response) => {
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },

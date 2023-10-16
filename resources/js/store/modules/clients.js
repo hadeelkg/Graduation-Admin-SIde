@@ -16,61 +16,61 @@ let state = {
 const actions = {
     fetchClients({ commit }) {
         return new Promise((resolve, reject) => {
-            http.get('/api/v1/clients').then((response) => {
+            http.get('/api/admin/v1/clients').then((response) => {
                     commit('getClients', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },
     fetchClient({ commit }, clientId) {
         return new Promise((resolve, reject) => {
-            http.get('/api/v1/clients/'+ clientId).then((response) => {
+            http.get('/api/admin/v1/clients/'+ clientId).then((response) => {
                     commit('setOldClient', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },
     NewClient({ commit }, data) {
         return new Promise((resolve, reject) => {
-            http.post('/api/v1/clients', data).then((response) => {
+            http.post('/api/admin/v1/clients', data).then((response) => {
                     commit('setClient', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
+                .catch((error) => {
                     if (error.response && error.response.status === 422) {
                         commit('setErrors', error.response.data.errors);
                     }
-                    reject(); 
+                    reject();
                 });
         });
     },
     updateClient({ commit }, data) {
         return new Promise((resolve, reject) => {
-            http.post('/api/v1/clients/'+ data.id, data).then((response) => {
+            http.post('/api/admin/v1/clients/'+ data.id, data).then((response) => {
                     commit('setUpdatedClient', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
+                .catch((error) => {
                     if (error.response && error.response.status === 422) {
                         commit('setErrors', error.response.data.errors);
                     }
-                    reject(); 
+                    reject();
                 });
         });
     },
     deleteClient({ commit }, clientId) {
         return new Promise((resolve, reject) => {
-            http.delete('/api/v1/clients/'+ clientId).then((response) => {
+            http.delete('/api/admin/v1/clients/'+ clientId).then((response) => {
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },

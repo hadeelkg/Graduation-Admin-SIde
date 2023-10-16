@@ -15,61 +15,61 @@ let state = {
 const actions = {
     fetchAdmins({ commit }) {
         return new Promise((resolve, reject) => {
-            http.get('/api/v1/admins').then((response) => {
+            http.get('/api/admin/v1/admins').then((response) => {
                     commit('setAdmins', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },
     fetchAdmin({ commit }, adminId) {
         return new Promise((resolve, reject) => {
-            http.get('/api/v1/admins/'+ adminId).then((response) => {
+            http.get('/api/admin/v1/admins/'+ adminId).then((response) => {
                     commit('setOldAdmin', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },
     addNewAdmin({ commit }, data) {
         return new Promise((resolve, reject) => {
-            http.post('/api/v1/admins', data).then((response) => {
+            http.post('/api/admin/v1/admins', data).then((response) => {
                     commit('setNewAdmin', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
+                .catch((error) => {
                     if (error.response && error.response.status === 422) {
                         commit('setAdminsErrors', error.response.data.errors);
                     }
-                    reject(); 
+                    reject();
                 });
         });
     },
     updateAdmin({ commit }, data) {
         return new Promise((resolve, reject) => {
-            http.patch('/api/v1/admins/'+ data.id, data).then((response) => {
+            http.patch('/api/admin/v1/admins/'+ data.id, data).then((response) => {
                     commit('setUpdatedAdmin', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
+                .catch((error) => {
                     if (error.response && error.response.status === 422) {
                         commit('setAdminsErrors', error.response.data.errors);
                     }
-                    reject(); 
+                    reject();
                 });
         });
     },
     deleteAdmin({ commit }, adminId) {
         return new Promise((resolve, reject) => {
-            http.delete('/api/v1/admins/'+ adminId).then((response) => {
+            http.delete('/api/admin/v1/admins/'+ adminId).then((response) => {
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },

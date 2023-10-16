@@ -22,7 +22,7 @@ class StorePrescriptionOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image_path' => ['required','image', 'mimes:jpeg,png,jpg', 'max:4000'],
+            'image_path' => ['image', 'mimes:jpeg,png,jpg', 'max:4000'],
             'client_id' => ['required','integer'],
         ];
     }

@@ -16,7 +16,7 @@ let state = {
 const actions = {
     fetchPharmacists({ commit }) {
         return new Promise((resolve, reject) => {
-            http.get('/api/v1/pharmacists').then((response) => {
+            http.get('/api/admin/v1/pharmacists').then((response) => {
                     commit('setPharmacists', response.data);
                     resolve(response);
                 })
@@ -28,7 +28,7 @@ const actions = {
     },
     fetchPharmacist({ commit }, pharmacistId) {
         return new Promise((resolve, reject) => {
-            http.get('/api/v1/pharmacists/'+ pharmacistId).then((response) => {
+            http.get('/api/admin/v1/pharmacists/'+ pharmacistId).then((response) => {
                     commit('setOldPharmacist', response.data);
                     resolve(response);
                 })
@@ -39,7 +39,7 @@ const actions = {
     },
     NewPharmacist({ commit }, data) {
         return new Promise((resolve, reject) => {
-            http.post('/api/v1/pharmacists', data).then((response) => {
+            http.post('/api/admin/v1/pharmacists', data).then((response) => {
                     commit('setPharmacist', response.data);
                     resolve(response);
                 })
@@ -53,7 +53,7 @@ const actions = {
     },
     updatePharmacist({ commit }, data) {
         return new Promise((resolve, reject) => {
-            http.post('/api/v1/pharmacists/'+ data.get('id'), data).then((response) => {
+            http.post('/api/admin/v1/pharmacists/'+ data.get('id'), data).then((response) => {
                     commit('setUpdatedPharmacist', response.data);
                     resolve(response);
                 })
@@ -67,7 +67,7 @@ const actions = {
     },
     deletePharmacist({ commit }, pharmaId) {
         return new Promise((resolve, reject) => {
-            http.delete('/api/v1/pharmacists/'+ pharmaId).then((response) => {
+            http.delete('/api/admin/v1/pharmacists/'+ pharmaId).then((response) => {
                     resolve(response);
                 })
                 .catch((error) => {

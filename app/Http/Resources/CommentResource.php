@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\ClientResource;
+// use App\Http\Resources\ClientResource;
 
 class CommentResource extends JsonResource
 {
@@ -19,8 +19,10 @@ class CommentResource extends JsonResource
         return [
             'id' => $this->id,
             'content' => $this->content,
-            'rate' => $this->rate,
-            'client' => new ClientResource($this->client),
+            'title' => $this->title,
+            'client_name' => $this->client_name,
+            // 'rate' => $this->rate,
+            // 'client' => new ClientResource($this->client),
             'created_at' => $this->created_at,
         ];
     }

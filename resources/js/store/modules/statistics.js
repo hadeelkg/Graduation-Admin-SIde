@@ -11,12 +11,12 @@ let state = {
 const actions = {
     fetchStatistics({ commit }) {
         return new Promise((resolve, reject) => {
-            http.get('/api/statistics').then((response) => {
+            http.get('/api/admin/statistics').then((response) => {
                     commit('setStatistics', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },

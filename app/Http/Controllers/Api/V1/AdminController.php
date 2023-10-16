@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateAdminRequest;
 use App\Models\Admin;
 use App\Http\Resources\AdminResource;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+
 
 class AdminController extends Controller
 {
@@ -22,12 +24,28 @@ class AdminController extends Controller
 
     public function store(StoreAdminRequest $request)
     {
-        return new AdminResource(Admin::create($request->validated()));
+        $validatedData = $request->validated();
+
+        // Encrypt the password
+        $encryptedPassword = Hash::make($validatedData['password']);
+
+        // Update the validated data with the encrypted password
+        $validatedData['password'] = $encryptedPassword;
+
+        // Create the Admin model instance with the encrypted password
+        $admin = Admin::create($validatedData);
+
+        return new AdminResource($admin);
+        // return new AdminResource(Admin::create($request->validated()));
     }
 
     public function update(UpdateAdminRequest $request, Admin $admin)
     {
-        $admin->update($request->validated());
+        $validatedData = $request->validated();
+        $encryptedPassword = Hash::make($validatedData['password']);
+        $validatedData['password'] = $encryptedPassword;
+
+        $admin->update($validatedData);
         return AdminResource::make($admin);
         // return $request;
     }

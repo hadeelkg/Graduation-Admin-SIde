@@ -11,23 +11,23 @@ let state = {
 const actions = {
     fetchPrescriptionOrders({ commit }) {
         return new Promise((resolve, reject) => {
-            http.get('/api/v1/prescription_order').then((response) => {
+            http.get('/api/admin/v1/prescription_order').then((response) => {
                     commit('setPrescriptionOrders', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },
     fetchPreOrder({ commit }, preOrderId) {
         return new Promise((resolve, reject) => {
-            http.get('/api/v1/prescription_order/'+ preOrderId).then((response) => {
+            http.get('/api/admin/v1/prescription_order/'+ preOrderId).then((response) => {
                     commit('getOldPreOrder', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },
@@ -37,8 +37,8 @@ const actions = {
     //                 commit('setCategory', response.data);
     //                 resolve(response);
     //             })
-    //             .catch((error) => { 
-    //                 reject(); 
+    //             .catch((error) => {
+    //                 reject();
     //             });
     //     });
     // },
@@ -48,18 +48,18 @@ const actions = {
     //                 commit('updateCategory', response.data);
     //                 resolve(response);
     //             })
-    //             .catch((error) => { 
-    //                 reject(); 
+    //             .catch((error) => {
+    //                 reject();
     //             });
     //     });
     // },
     deletePreOrder({ commit }, preOrderId) {
         return new Promise((resolve, reject) => {
-            http.delete('/api/v1/prescription_order/'+ preOrderId).then((response) => {
+            http.delete('/api/admin/v1/prescription_order/'+ preOrderId).then((response) => {
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },

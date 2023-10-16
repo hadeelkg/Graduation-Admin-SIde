@@ -17,61 +17,61 @@ let state = {
 const actions = {
     fetchCategories({ commit }) {
         return new Promise((resolve, reject) => {
-            http.get('/api/v1/categories').then((response) => {
+            http.get('/api/admin/v1/categories').then((response) => {
                     commit('setCategories', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },
     fetchCategory({ commit }, categoryId) {
         return new Promise((resolve, reject) => {
-            http.get('/api/v1/categories/'+ categoryId).then((response) => {
+            http.get('/api/admin/v1/categories/'+ categoryId).then((response) => {
                     commit('setOldCategory', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },
     NewCategory({ commit }, data) {
         return new Promise((resolve, reject) => {
-            http.post('/api/v1/categories', data).then((response) => {
+            http.post('/api/admin/v1/categories', data).then((response) => {
                     commit('setNewCategory', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
+                .catch((error) => {
                     if (error.response && error.response.status === 422) {
                         commit('setCategoryErrors', error.response.data.errors);
                     }
-                    reject(); 
+                    reject();
                 });
         });
     },
     updateCategory({ commit }, data) {
         return new Promise((resolve, reject) => {
-            http.patch('/api/v1/categories/'+data.id, data).then((response) => {
+            http.patch('/api/admin/v1/categories/'+data.id, data).then((response) => {
                     commit('setUpdatedCategory', response.data);
                     resolve(response);
                 })
-                .catch((error) => { 
+                .catch((error) => {
                     if (error.response && error.response.status === 422) {
                         commit('setCategoryErrors', error.response.data.errors);
-                    }                    
-                    reject(); 
+                    }
+                    reject();
                 });
         });
     },
     deleteCategory({ commit }, categoryId) {
         return new Promise((resolve, reject) => {
-            http.delete('/api/v1/categories/'+ categoryId).then((response) => {
+            http.delete('/api/admin/v1/categories/'+ categoryId).then((response) => {
                     resolve(response);
                 })
-                .catch((error) => { 
-                    reject(); 
+                .catch((error) => {
+                    reject();
                 });
         });
     },

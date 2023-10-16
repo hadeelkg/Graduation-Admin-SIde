@@ -4,21 +4,21 @@
     <SuccessAlert ref="MySuccessAlert" :title="Alert.title" :message="Alert.message" />
     <div class="col-md-12">
       <div class="col-lg-12 col-md-12 ">
-        <!-- <div class="row">
+        <div class="row">
           <div class="col-md-8"></div>
           <div class="col-md-4">
               <router-link :to="{name: 'admin.dashboard.comment.create'}" class="btn btn-primary btn-md add_btn" >
                   اضافة تعليق
               </router-link>
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
     <div class="col-md-12">
       <div class="card">
         <div class="card-header card-header-primary" style="text-align: center;">
-          <h4 class="card-title">قائمة تعليقات وتقييمات الزبائن</h4>
-          <p class="card-category">التعليقات والتقييمات الموجودة في النظام</p>
+          <h4 class="card-title">قائمة تعليقات العملاء</h4>
+          <p class="card-category">التعليقات والآراء الخاصة بالعملاء الموجودين في النظام</p>
         </div>
 
         <div class="card-body" style="text-align:center;">
@@ -28,27 +28,26 @@
                   <tr>
                     <th>#</th>
                     <th >اسم العميل</th>
-                    <th style="width: 45%;">محتوى التعليق</th>
-                    <th>التقييم</th>
+                    <th>عنوان التعليق</th>
+                    <th>محتوى التعليق</th>
                     <th>اجراءات</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="(item, index) in CommentsList.data" :key="index">
                     <td>{{index+1}}</td>
-                    <td>{{item.client.name}}</td>
+                    <td>{{item.client_name}}</td>
+                    <td>{{item.title}}</td>
                     <td>{{item.content}}</td>
-                    <td>{{item.rate}}</td>
-                    <!-- <td>{{(item.is_approved)?'مقبول':'غير مقبول'}}</td> -->
                     <td class="text-primary">
                     <router-link :to="{name:'admin.dashboard.comment.details',params:{id:item.id}}" type="button" class="btn my_btn btn-sm">
                       <i class="material-icons details_icon">folder_open</i>
                     </router-link>
-                    <!-- <router-link :to="{name:'admin.dashboard.comment.edit', params:{id:item.id}}" type="button" class="btn my_btn btn-sm">
+                    <router-link :to="{name:'admin.dashboard.comment.edit', params:{id:item.id}}" type="button" class="btn my_btn btn-sm">
                       <i class="material-icons edit_icon">edit</i>
-                    </router-link> -->
+                    </router-link>
                     <button  @click="deleteComment(item.id)" type="button" class="btn my_btn btn-sm">
-                      <i class="material-icons delete_icon">delete</i>                      
+                      <i class="material-icons delete_icon">delete</i>
                     </button>
                     </td>
                   </tr>
