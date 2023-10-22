@@ -172,18 +172,27 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      id: ""
+    };
+  },
   components: {
     NavSingle: _NavSingle__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  created: function created() {},
+  created: function created() {
+    this.id = localStorage.getItem("admin/user-id");
+  },
   methods: {
     logout: function logout() {
       var _this = this;
-      this.$store.dispatch("admin/authLogout").then(function (response) {
+      _store_index__WEBPACK_IMPORTED_MODULE_1__["default"].commit('admin/PleaseStartLoading');
+      this.$store.dispatch("admin/authLogout", this.id).then(function (response) {
         _this.$router.push({
           name: "admin.login"
         });
-      });
+        _store_index__WEBPACK_IMPORTED_MODULE_1__["default"].commit('admin/PleaseStopLoading');
+      })["catch"](function (error) {});
     }
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({}))
@@ -721,7 +730,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.center-logo{\r\n      width: 125px;\r\n      height: 40px;\r\n      display: block;\r\n      margin-left: auto;\r\n      margin-right: auto;\n}\n@media (max-width: 991px){\n.off-canvas-sidebar nav .navbar-collapse:before, .sidebar:before {\r\n      top: 0;\r\n      left: 0;\r\n      height: 100%;\r\n      width: 100%;\r\n      position: absolute;\r\n      background-color: #fafafa;\r\n      display: block;\r\n      content: \"\";\r\n      z-index: 1;\n}\n}\n.myColor{\r\n    color:red !important;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.center-logo{\n      width: 125px;\n      height: 40px;\n      display: block;\n      margin-left: auto;\n      margin-right: auto;\n}\n@media (max-width: 991px){\n.off-canvas-sidebar nav .navbar-collapse:before, .sidebar:before {\n      top: 0;\n      left: 0;\n      height: 100%;\n      width: 100%;\n      position: absolute;\n      background-color: #fafafa;\n      display: block;\n      content: \"\";\n      z-index: 1;\n}\n}\n.myColor{\n    color:red !important;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

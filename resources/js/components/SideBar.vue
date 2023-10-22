@@ -29,26 +29,38 @@
 
   export default {
 
+    data(){
+        return{
+            id:""
+        }
+    },
+
     components:{
         NavSingle
     },
 
     created(){
+        this.id = localStorage.getItem("admin/user-id");
     },
 
     methods:{
+
       logout(){
-          this.$store.dispatch("admin/authLogout").then((response) => {
-            this.$router.push({name: "admin.login"});
-          })
+        store.commit('admin/PleaseStartLoading');
+        this.$store.dispatch("admin/authLogout", this.id).then((response) => {
+          this.$router.push({ name: "admin.login" });
+          store.commit('admin/PleaseStopLoading');
+        }).catch((error) => {
+        })
       },
+
     },
 
 
     computed:{
       ...mapState({
       }),
-      
+
       // manageService: (state) => (service) => {
       //   return store.getters['admin/canManageService'](service);
       // },

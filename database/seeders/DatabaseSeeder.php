@@ -24,7 +24,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-       Admin::factory(5)->create();
+    //     \App\Models\Admin::factory()->create([
+    //         'email' => 'test@example.com',
+    //     ])->givePermissionTo(Permission::all());
+       Admin::factory()->create([
+        'email' => 'hadeelgobbar@gmail.com',
+       ]);
        City::factory(5)->create();
        Brand::factory(3)->create();
        Category::factory(3)->create();

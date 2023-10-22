@@ -18840,8 +18840,11 @@ var state = {
 var actions = {
   fetchProducts: function fetchProducts(_ref) {
     var commit = _ref.commit;
+    var filter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/products').then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/v1/products', {
+        params: filter
+      }).then(function (response) {
         commit('setProducts', response.data);
         resolve(response);
       })["catch"](function (error) {

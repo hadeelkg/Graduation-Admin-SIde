@@ -10,6 +10,8 @@ use App\Models\order_product;
 use App\Models\Product;
 use App\Http\Resources\OrderResource;
 use App\Http\Controllers\Controller;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class OrderController extends Controller
 {
@@ -35,7 +37,12 @@ class OrderController extends Controller
             $orderItem->order_id=$order->id;
             $orderItem->save();
         }
-        return new OrderResource($order);
+        // return new OrderResource($order);
+        return response()->json([
+            'status' => true,
+            'message' => 'order sent successfully',
+            'data' => new OrderResource($order),
+        ], Response::HTTP_CREATED);
     }
 
     public function update(UpdateOrderRequest $request, Order $order)

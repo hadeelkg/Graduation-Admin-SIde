@@ -17,35 +17,39 @@
                       <table class="table">
                           <tr>
                             <td>صورة</td><td>:</td>
-                            <td><img :src="'http://127.0.0.1:8000/storage/'+Product.image_path" width="80"/></td>                          
+                            <td><img :src="'http://127.0.0.1:8000/storage/'+Product.image_path" width="80"/></td>
                           </tr>
                           <tr>
                             <td>الاسم</td><td>:</td>
-                            <td>{{Product.name}}</td>       
+                            <td>{{Product.name}}</td>
                           </tr>
                           <tr>
                             <td>نبذة عن المنتج</td><td>:</td>
-                            <td>{{Product.description}}</td>       
+                            <td>{{Product.description}}</td>
                           </tr>
                           <tr>
                             <td>سعر المنتج</td><td>:</td>
-                            <td>{{Product.price}} دينار</td>       
+                            <td>{{Product.price}} دينار</td>
                           </tr>
                           <tr>
                             <td>الكمية المتوفرة</td><td>:</td>
-                            <td>{{Product.quantity}} قطعة</td>       
+                            <td>{{Product.quantity}} قطعة</td>
                           </tr>
-                          <tr>
+                          <tr v-if="Product.category && Product.category.name">
                             <td>الفئة</td><td>:</td>
-                            <td>{{Product.category.name}}</td>       
+                            <td>{{Product.category.name}}</td>
+                          </tr>
+                          <tr v-if="Product.brand && Product.brand.name">
+                            <td>العلامة التجارية</td><td>:</td>
+                            <td>{{Product.brand.name}}</td>
                           </tr>
                           <tr>
                             <td>العلامة التجارية</td><td>:</td>
-                            <td>{{Product.brand.name}}</td>       
+                            <td>{{Product.target_sex}}</td>
                           </tr>
                           <tr>
                             <td>تاريخ الادخال</td><td>:</td>
-                            <td>{{Product.created_at}}</td>       
+                            <td>{{Product.created_at}}</td>
                           </tr>
                       </table>
                   </div>
@@ -72,9 +76,9 @@
         Product:state=>state.admin.Products.products.data,
       }),
     },
-  
+
     created(){
-      let product_id=this.$route.params.id; 
+      let product_id=this.$route.params.id;
       store.commit('admin/PleaseStartLoading');
       store.dispatch('admin/fetchProduct',product_id).then((response) => {
         store.commit('admin/PleaseStopLoading')
@@ -93,12 +97,12 @@
     }
   }
 </script>
-  
+
 <style scoped>
   .row-custom{
       justify-content: center;
   }
-  
+
   .card .card-header {
       background: #37517e;
       color: white;

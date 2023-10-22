@@ -270,8 +270,16 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         quantity: '',
         category_id: '',
         brand_id: '',
-        image_path: ''
+        image_path: '',
+        target_sex: ''
       },
+      Gender: [{
+        id: 'male',
+        name: 'ذكر'
+      }, {
+        id: 'female',
+        name: 'انثى'
+      }],
       Alert: {
         title: 'معلومات',
         message: ''
@@ -325,6 +333,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         _this.form.quantity = _this.Product.quantity;
         _this.form.category_id = _this.Product.category.id;
         _this.form.brand_id = _this.Product.brand.id;
+        _this.form.target_sex = _this.Product.target_sex;
       });
     }
   },
@@ -636,7 +645,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.HandleInput('image_path', $event);
     }),
     Mykey: "image_path",
-    class_bs: "col-md-12",
     errors: _ctx.errors
   }, null, 8 /* PROPS */, ["MyValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
     MyValue: $data.form.name,
@@ -694,18 +702,28 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     Mykey: "brand_id",
     MyValue: $data.form.brand_id,
     errors: _ctx.errors
+  }, null, 8 /* PROPS */, ["Items", "MyValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TextSelect, {
+    title: "الجنس المُستهدف",
+    id: "target_sex",
+    Items: $data.Gender,
+    onSelect: _cache[7] || (_cache[7] = function ($event) {
+      return $options.HandleInput('target_sex', $event);
+    }),
+    Mykey: "target_sex",
+    MyValue: $data.form.target_sex,
+    errors: _ctx.errors
   }, null, 8 /* PROPS */, ["Items", "MyValue", "errors"])]), $options.IsNew ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 0,
     type: "button",
     "class": "btn btn-primary pull-right",
-    onClick: _cache[7] || (_cache[7] = function ($event) {
+    onClick: _cache[8] || (_cache[8] = function ($event) {
       return $options.onSubmit();
     })
   }, "اضافة")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$options.IsNew ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 1,
     type: "button",
     "class": "btn btn-primary pull-right",
-    onClick: _cache[8] || (_cache[8] = function ($event) {
+    onClick: _cache[9] || (_cache[9] = function ($event) {
       return $options.onUpdate();
     })
   }, "تعديل")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])]);

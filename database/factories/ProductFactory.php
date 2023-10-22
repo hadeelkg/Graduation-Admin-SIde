@@ -24,6 +24,11 @@ class ProductFactory extends Factory
             'price' => $this->faker->numberBetween(1,999),
             'quantity' => $this->faker->numberBetween(1,99),
             'description' => $this->faker->text(200),
+            // 'target_sex' => $this->faker->text(6),
+            'target_sex' => $this->faker->randomElement([
+                "male",
+                "female",
+            ]),
             'category_id' => Category::factory(),
             'brand_id' => Brand::factory(),
         ];

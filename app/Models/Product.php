@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\hasMany;
 // use Illuminate\Database\Eloquent\softDeletes;
 
 
-
 class Product extends Model
 {
     use HasFactory;
@@ -20,6 +19,7 @@ class Product extends Model
       'price',
       'quantity',
       'description',
+      'target_sex',
       'category_id',
       'brand_id',
     ];

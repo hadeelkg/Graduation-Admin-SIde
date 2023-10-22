@@ -10,13 +10,14 @@
                     </div>
                     <div class="card-body">
                         <div class="row mb-3">
-                            <InputFile title="الصورة" id="image_path" :MyValue="form.image_path" @myInput="HandleInput('image_path',$event)" Mykey="image_path" class_bs="col-md-12" :errors='errors' />
+                            <InputFile title="الصورة" id="image_path" :MyValue="form.image_path" @myInput="HandleInput('image_path',$event)" Mykey="image_path" :errors='errors' />
                             <Input :MyValue="form.name" id="name" title="اسم المنتج" @myInput="HandleInput('name',$event)" Mykey="name" :errors='errors' />
                             <Input :MyValue="form.price" id="price" title="سعر المنتج" @myInput="HandleInput('price',$event)" Mykey="price" :errors= 'errors'/>
                             <Input :MyValue="form.description" id="description" title="الوصف" @myInput="HandleInput('description',$event)" Mykey="description" :errors='errors' />
                             <Input :MyValue="form.quantity" id="quantity" title="الكمية" @myInput="HandleInput('quantity',$event)" Mykey="quantity" :errors='errors' />
                             <TextSelect title="الفئة" id="category_id" :Items=Categories @Select="HandleInput('category_id',$event)" Mykey="category_id" :MyValue="form.category_id" :errors='errors' />
                             <TextSelect title="العلامة التجارية" id="brand_id" :Items=Brands @Select="HandleInput('brand_id',$event)" Mykey="brand_id" :MyValue="form.brand_id" :errors='errors' />
+                            <TextSelect title="الجنس المُستهدف" id="target_sex" :Items=Gender @Select="HandleInput('target_sex',$event)" Mykey="target_sex" :MyValue="form.target_sex" :errors='errors' />
                         </div>
                         <button type="button" class="btn btn-primary pull-right" v-if="IsNew" @click="onSubmit()">اضافة</button>
                         <button type="button" class="btn btn-primary pull-right" v-if="!IsNew" @click="onUpdate()">تعديل</button>
@@ -47,7 +48,13 @@
                     category_id:'',
                     brand_id:'',
                     image_path:'',
+                    target_sex:''
                 },
+
+                Gender:[
+                    {id:'male', name:'ذكر'},
+                    {id:'female', name:'انثى'}
+                ],
 
                 Alert:{
                     title:'معلومات',
@@ -98,6 +105,7 @@
                     this.form.quantity = this.Product.quantity;
                     this.form.category_id = this.Product.category.id;
                     this.form.brand_id = this.Product.brand.id;
+                    this.form.target_sex = this.Product.target_sex;
                 });
             }
         },

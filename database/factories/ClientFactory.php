@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-// use Faker\Factory as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Client;
 use App\Models\City;
 
 /**
@@ -16,12 +17,16 @@ class ClientFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    protected $model = Client::class;
+
+
     public function definition(): array
     {
         return [
             'name' => $this->faker->name(),
-            'email' => $this->faker->email(),
-            'password' => $this->faker->password(),
+            'email' => $this->faker->unique()->email(),
+            'password' => Hash::make('password'),
             'gender' => $this->faker->randomElement([
                 "male",
                 "female",

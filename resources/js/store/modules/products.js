@@ -13,9 +13,9 @@ let state = {
 };
 
 const actions = {
-    fetchProducts({ commit }) {
+    fetchProducts({ commit }, filter = {}) {
         return new Promise((resolve, reject) => {
-            http.get('/api/admin/v1/products').then((response) => {
+            http.get('/api/admin/v1/products', { params: filter }).then((response) => {
                     commit('setProducts', response.data);
                     resolve(response);
                 })

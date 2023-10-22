@@ -10,17 +10,41 @@ use App\Http\Resources\ProductResource;
 use File;
 use Illuminate\Support\Facades\Storage;
 
-// use App\Http\Requests\StoreProductImageRequest;
-// use App\Http\Requests\UpdateProductImageRequest;
-// use App\Models\product_image;
-// use App\Http\Resources\ProductImageResource;
-
 use App\Http\Controllers\Controller;
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return ProductResource::collection(Product::all());
+        // return ProductResource::collection(Product::all());
+
+            // Check if filtering criteria are provided in the request
+        if ($request->hasAny(['brand', 'category', 'target_sex'])) {
+            // Apply filtering
+            $brandId = $request->input('brand');
+            $categoryId = $request->input('category');
+            $target_sex = $request->input('target_sex');
+
+            $query = Product::query();
+
+            if ($brandId) {
+                $query->where('brand_id', $brandId);
+            }
+            if ($categoryId) {
+                $query->where('category_id', $categoryId);
+            }
+            if ($target_sex) {
+                $query->where('target_sex', $target_sex);
+            }
+
+            $filteredProducts = $query->get();
+
+            return ProductResource::collection($filteredProducts);
+        } else {
+            // Retrieve all products
+            $products = Product::all();
+
+            return ProductResource::collection($products);
+        }
     }
 
     public function show(Product $product){
