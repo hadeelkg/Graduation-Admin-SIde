@@ -41,7 +41,7 @@
                         <i class="material-icons edit_icon">edit</i>
                       </router-link>
                       <button @click="deleteItem(item.id)" type="button" class="btn my_btn btn-sm">
-                        <i class="material-icons delete_icon">delete</i>                      
+                        <i class="material-icons delete_icon">delete</i>
                       </button>
                     </td>
                   </tr>
@@ -128,6 +128,7 @@
 
           });
         }).catch((error) => {
+              store.commit('admin/PleaseStopLoading');
               this.Alert.message='لا يمكن حذف هذه المدينة !';
               this.$refs.MyConfirmAlert.showModel();
         });

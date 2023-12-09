@@ -37,34 +37,53 @@ class OrderController extends Controller
             $orderItem->order_id=$order->id;
             $orderItem->save();
         }
-        // return new OrderResource($order);
+
         return response()->json([
             'status' => true,
             'message' => 'order sent successfully',
             'data' => new OrderResource($order),
         ], Response::HTTP_CREATED);
+        return $request;
     }
 
-    public function update(UpdateOrderRequest $request, Order $order)
+    public function update(UpdateOrderRequest $request)
     {
-        $order->update($request->validated());
-        $records = order_product::where('order_id', $order->id)->get();
+        // $order->update($request->validated());
+        // $records = order_product::where('order_id', $order->id)->get();
 
-        foreach ($records as $record) {
-            $record->delete();
-        }
+        // foreach ($records as $record) {
+        //     $record->delete();
+        // }
 
-        foreach ($request->products as $item) {
-            $orderItem = new  order_product;
-            $orderItem->product_id=$item['product_id'];
-            $product_price = Product::find($item['product_id'])->price;
-            $orderItem->product_price = $product_price;
-            $orderItem->quantity=$item['quantity'];
-            $orderItem->subtotal_price=$item['quantity'] * intval($product_price);
-            $orderItem->order_id=$order->id;
-            $orderItem->save();
-        }
-        return new OrderResource($order);
+        // foreach ($request->products as $item) {
+        //     $orderItem = new  order_product;
+        //     $orderItem->product_id=$item['product_id'];
+        //     $product_price = Product::find($item['product_id'])->price;
+        //     $orderItem->product_price = $product_price;
+        //     $orderItem->quantity=$item['quantity'];
+        //     $orderItem->subtotal_price=$item['quantity'] * intval($product_price);
+        //     $orderItem->order_id=$order->id;
+        //     $orderItem->save();
+        // }
+        // return new OrderResource($order);
+        $orderId = $request->input('order_id');
+        $newStatus = $request->input('status');
+
+        // Find the order by ID
+        $order = Order::findOrFail($orderId);
+
+        // Update the status
+        $order->status = $newStatus;
+        $order->save();
+
+        // return new OrderResource($order);
+        return response()->json([
+            'status' => true,
+            'message' => 'order status updated successfully',
+            'data' => new OrderResource($order),
+        ], Response::HTTP_CREATED);
+        return $request;
+
     }
 
     public function destroy(Order $order)

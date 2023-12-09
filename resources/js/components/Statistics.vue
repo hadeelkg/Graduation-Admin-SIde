@@ -9,7 +9,7 @@
                                 apartment
                             </span>
                         </div>
-                        <h3 class="card-title num" :data-val="Statistics.city_count" 
+                        <h3 class="card-title num" :data-val="Statistics.city_count"
                         name="cities_count">{{ Statistics.city_count }}</h3>
                         <p class="card-category">عدد المدن</p>
                     </div>
@@ -37,7 +37,7 @@
                                 article
                             </span>
                         </div>
-                        <h3 class="card-title num" :data-val="Statistics.order_count" 
+                        <h3 class="card-title num" :data-val="Statistics.order_count"
                         name="orders_count">{{Statistics.order_count}}</h3>
                         <p class="card-category">عدد الطلبيات</p>
                     </div>
@@ -51,15 +51,15 @@
                                 medical_services
                             </span>
                         </div>
-                        <h3 class="card-title num"  :data-val="Statistics.product_count" 
+                        <h3 class="card-title num"  :data-val="Statistics.product_count"
                         name="products_count">{{ Statistics.product_count }}</h3>
                         <p class="card-category">عدد المنتجات</p>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12">
+        <div class="row">
+            <!-- <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card">
                     <BarChart v-if="load" :type="bar" :data="barData"/>
                     <h4 style="color:#999;">وظائف أعضاء الفريق</h4>
@@ -71,8 +71,10 @@
                     <line-chart v-if="load" :type="line" :data="lineData" />
                     <h4 style="color:#999;">عدد المشاريع المسجلة كل عام</h4>
                 </div>
-            </div>
-        </div> -->
+            </div> -->
+            <DonutChart :chartData="chartData" :options="chartOptions" />
+
+        </div>
     </div>
 </template>
 
@@ -81,6 +83,9 @@
     import store from '../store/index';
     import BarChart from '../components/BarChart.vue';
     import LineChart from '../components/LineChart.vue';
+
+    // import { defineComponent } from "vue";
+    import DonutChart from "../components/DonutChart.vue";
     export default {
         data(){
             return{
@@ -112,12 +117,26 @@
                 //         hoverOffset: 8
                 //     }]
                 // },
+
+                chartData: {
+                    labels: ["Label 1", "Label 2", "Label 3"],
+                    datasets: [
+                    {
+                        data: [10, 20, 30],
+                        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+                    },
+                    ],
+                },
+                chartOptions: {
+                    // Add any additional chart options here
+                },
             };
         },
 
         components:{
             BarChart,
             LineChart,
+            DonutChart,
         },
 
         computed:{
@@ -130,7 +149,7 @@
             store.commit('admin/PleaseStartLoading');
             store.dispatch('admin/fetchStatistics').then((response) =>{
                 store.commit('admin/PleaseStopLoading');
-                
+
                 // fill charts with data from backend
                 // this.Statistics.position_members.forEach(element => {
                 //     this.barData.labels.push(element.position);
@@ -138,7 +157,7 @@
                 // this.Statistics.position_members.forEach(element => {
                 //     this.barData.datasets[0].data.push(element.members_count);
                 //     });
-            
+
                 // this.Statistics.projects_by_year.forEach(element => {
                 //         this.lineData.labels.push(element.year);
                 //     });
@@ -180,9 +199,9 @@
         font-size:21px !important;
         margin: 15px 0 0 0 !important;
     }
-    
+
     h3{
         font-size:30px;
     }
-    
+
 </style>

@@ -19,6 +19,7 @@ class PrescriptionOrderResource extends JsonResource
         return [
             'id' => $this->id,
             'image_path' => $this->image_path,
+            'status' => $this->status,
             'client' => new ClientResource($this->client),
             'created_at' => $this->created_at,
         ];

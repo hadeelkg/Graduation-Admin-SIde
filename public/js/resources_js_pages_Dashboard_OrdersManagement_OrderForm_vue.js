@@ -8,7 +8,7 @@
 
 
 // import {mapState,mapMutations} from 'vuex';
-// import store from '../../../store/index'; 
+// import store from '../../../store/index';
 // import Input from '../../../components/Form/TextInput'
 // import SuccessAlert from '../../../components/SuccessAlert'
 // import InputFile from '../../../components/Form/InputFile'
@@ -36,7 +36,7 @@
 //     SuccessAlert,
 //     Input,
 //     InputFile,
-//   }, 
+//   },
 
 //   computed:{
 //     ...mapState({
@@ -45,7 +45,7 @@
 //     }),
 
 //     IsNew(){
-//       return this.form.uuid == '';  
+//       return this.form.uuid == '';
 //     },
 //   },
 
@@ -78,7 +78,7 @@
 //     },
 
 //     onSubmit(){
-//       let formData=new FormData(); 
+//       let formData=new FormData();
 
 //       formData.append("media", this.form.media);
 //       formData.append("name[ar]", this.form.name_ar);
@@ -96,7 +96,7 @@
 //     },
 
 //     onUpdate(){
-//       let formData=new FormData(); 
+//       let formData=new FormData();
 //       formData.append("uuid", this.form.uuid);
 //       formData.append("media", this.form.media);
 //       formData.append("name[ar]", this.form.name_ar);
@@ -137,8 +137,100 @@ var _withScopeId = function _withScopeId(n) {
 var _hoisted_1 = {
   "class": "container-fluid"
 };
+var _hoisted_2 = {
+  "class": "row row-custom"
+};
+var _hoisted_3 = {
+  "class": "col-md-8"
+};
+var _hoisted_4 = {
+  "class": "card"
+};
+var _hoisted_5 = {
+  "class": "card-header card-header-primary"
+};
+var _hoisted_6 = {
+  "class": "card-title"
+};
+var _hoisted_7 = {
+  "class": "card-category"
+};
+var _hoisted_8 = {
+  "class": "card-body"
+};
+var _hoisted_9 = {
+  "class": "row mb-3"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <SuccessAlert ref=\"MySuccessAlert\" :title=\"Alert.title\" :message=\"Alert.message\" :back=\"this.goBack\"/>\r\n    <div class=\"row row-custom\">\r\n      <div class=\"col-md-8\">\r\n        <div class=\"card\">\r\n          <div class=\"card-header card-header-primary\">\r\n              <h4 class=\"card-title\">{{(IsNew)?'اضافة طلبية جديدة':'تعديل بيانات الطلبية'}}</h4>\r\n              <p class=\"card-category\">{{(IsNew)?'سيتم اضافة طلبية جديدة للنظام ':'سيتم التعديل على بيانات طلبية في النظام'}}</p>\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row mb-3\">\r\n                <InputFile title=\"الصورة\" id=\"media\" :MyValue=\"form.media\" @myInput=\"HandleInput('media',$event)\" Mykey=\"media\" class_bs=\"col-md-12\" :errors= 'errors'/>\r\n                <Input :MyValue=\"form.name_ar\" id=\"name_ar\" title=\"اسم الشريك بالعربي\" @myInput=\"HandleInput('name_ar',$event)\" Mykey=\"name.ar\" :errors= 'errors'/>\r\n                <Input title=\"نبذة عن الشريك بالعربي\" id=\"description_ar\" :MyValue=\"form.description_ar\" @myInput=\"HandleInput('description_ar',$event)\" Mykey=\"description.ar\" :errors= 'errors'/>\r\n                <Input title=\"اسم الشريك بالانجليزية\" id=\"name_en\" :MyValue=\"form.name_en\" @myInput=\"HandleInput('name_en',$event)\" Mykey=\"name.en\" :errors= 'errors'/>\r\n                <Input title=\"نبذة عن الشريك بالانجليزية\" id=\"description_en\" :MyValue=\"form.description_en\" @myInput=\"HandleInput('description_en',$event)\" Mykey=\"description.en\" :errors= 'errors'/>\r\n            </div>\r\n            <button type=\"button\" class=\"btn btn-primary pull-right\" v-if=\"IsNew\" @click=\"onSubmit()\">اضافة</button>\r\n            <button type=\"button\" class=\"btn btn-primary pull-right\" v-if=\"!IsNew\" @click=\"onUpdate()\">تعديل</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div> ")]);
+  var _component_SuccessAlert = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SuccessAlert");
+  var _component_InputFile = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("InputFile");
+  var _component_Input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Input");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SuccessAlert, {
+    ref: "MySuccessAlert",
+    title: _ctx.Alert.title,
+    message: _ctx.Alert.message,
+    back: this.goBack
+  }, null, 8 /* PROPS */, ["title", "message", "back"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.IsNew ? 'اضافة طلبية جديدة' : 'تعديل بيانات الطلبية'), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.IsNew ? 'سيتم اضافة طلبية جديدة للنظام ' : 'سيتم التعديل على بيانات طلبية في النظام'), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputFile, {
+    title: "الصورة",
+    id: "media",
+    MyValue: _ctx.form.media,
+    onMyInput: _cache[0] || (_cache[0] = function ($event) {
+      return _ctx.HandleInput('media', $event);
+    }),
+    Mykey: "media",
+    class_bs: "col-md-12",
+    errors: _ctx.errors
+  }, null, 8 /* PROPS */, ["MyValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
+    MyValue: _ctx.form.name_ar,
+    id: "name_ar",
+    title: "اسم الشريك بالعربي",
+    onMyInput: _cache[1] || (_cache[1] = function ($event) {
+      return _ctx.HandleInput('name_ar', $event);
+    }),
+    Mykey: "name.ar",
+    errors: _ctx.errors
+  }, null, 8 /* PROPS */, ["MyValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
+    title: "نبذة عن الشريك بالعربي",
+    id: "description_ar",
+    MyValue: _ctx.form.description_ar,
+    onMyInput: _cache[2] || (_cache[2] = function ($event) {
+      return _ctx.HandleInput('description_ar', $event);
+    }),
+    Mykey: "description.ar",
+    errors: _ctx.errors
+  }, null, 8 /* PROPS */, ["MyValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
+    title: "اسم الشريك بالانجليزية",
+    id: "name_en",
+    MyValue: _ctx.form.name_en,
+    onMyInput: _cache[3] || (_cache[3] = function ($event) {
+      return _ctx.HandleInput('name_en', $event);
+    }),
+    Mykey: "name.en",
+    errors: _ctx.errors
+  }, null, 8 /* PROPS */, ["MyValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
+    title: "نبذة عن الشريك بالانجليزية",
+    id: "description_en",
+    MyValue: _ctx.form.description_en,
+    onMyInput: _cache[4] || (_cache[4] = function ($event) {
+      return _ctx.HandleInput('description_en', $event);
+    }),
+    Mykey: "description.en",
+    errors: _ctx.errors
+  }, null, 8 /* PROPS */, ["MyValue", "errors"])]), _ctx.IsNew ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    key: 0,
+    type: "button",
+    "class": "btn btn-primary pull-right",
+    onClick: _cache[5] || (_cache[5] = function ($event) {
+      return _ctx.onSubmit();
+    })
+  }, "اضافة")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.IsNew ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    key: 1,
+    type: "button",
+    "class": "btn btn-primary pull-right",
+    onClick: _cache[6] || (_cache[6] = function ($event) {
+      return _ctx.onUpdate();
+    })
+  }, "تعديل")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])]);
 }
 
 /***/ }),

@@ -20,11 +20,10 @@ class OrderFactory extends Factory
         return [
             'total_price' => $this->faker->numberBetween(1,9999999999),
             'status' => $this->faker->randomElement([
-                "onCart",
                 "pendingOrder",
                 "done",
                 "canceled"
-            ]), 
+            ]),
             'client_id' => Client::factory(),
         ];
     }

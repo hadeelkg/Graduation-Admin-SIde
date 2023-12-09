@@ -22,7 +22,7 @@ class UpdatePrescriptionOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image_path' => ['required','image', 'mimes:jpeg,png,jpg', 'max:4000'],
+            'status' => ['required','string', 'max:50'],
             'client_id' => ['required','integer'],
         ];
     }

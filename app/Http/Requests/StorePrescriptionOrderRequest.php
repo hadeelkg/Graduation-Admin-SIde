@@ -23,6 +23,7 @@ class StorePrescriptionOrderRequest extends FormRequest
     {
         return [
             'image_path' => ['image', 'mimes:jpeg,png,jpg', 'max:4000'],
+            'status' => ['required','string', 'max:50'],
             'client_id' => ['required','integer'],
         ];
     }

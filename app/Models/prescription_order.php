@@ -15,11 +15,12 @@ class prescription_order extends Model
 
     protected $fillable = [
         'image_path',
+        'status',
         'client_id'
     ];
 
     public function client(): BelongsTo
     {
-        return $this->belongsTo(client::class); 
+        return $this->belongsTo(client::class);
     }
 }

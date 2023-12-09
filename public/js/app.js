@@ -17434,7 +17434,7 @@ var routes = [{
   }, {
     path: '/create/order',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_pages_Dashboard_OrdersManagement_OrderForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../pages/Dashboard/OrdersManagement/OrderForm.vue */ "./resources/js/pages/Dashboard/OrdersManagement/OrderForm.vue"));
+      return Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module '../pages/Dashboard/OrdersManagement/OrderForm.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
     },
     name: 'admin.dashboard.order.create',
     meta: {
@@ -17443,7 +17443,7 @@ var routes = [{
   }, {
     path: '/edit/order/:id',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_pages_Dashboard_OrdersManagement_OrderForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../pages/Dashboard/OrdersManagement/OrderForm.vue */ "./resources/js/pages/Dashboard/OrdersManagement/OrderForm.vue"));
+      return Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module '../pages/Dashboard/OrdersManagement/OrderForm.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
     },
     name: 'admin.dashboard.order.edit',
     meta: {
@@ -18549,7 +18549,7 @@ var actions = {
   updateOrder: function updateOrder(_ref5, data) {
     var commit = _ref5.commit;
     return new Promise(function (resolve, reject) {
-      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/orders/' + data.id, data).then(function (response) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/orders/' + data.get('id'), data).then(function (response) {
         commit('setUpdatedOrder', response.data);
         resolve(response);
       })["catch"](function (error) {
@@ -18734,6 +18734,10 @@ var state = {
     data: [],
     meta: {},
     links: {}
+  },
+  preOrder: {
+    data: '',
+    errors: ''
   }
 };
 var actions = {
@@ -18759,30 +18763,22 @@ var actions = {
       });
     });
   },
-  // NewCategory({ commit }, data) {
-  //     return new Promise((resolve, reject) => {
-  //         http.post('/api/v1/categories', data).then((response) => {
-  //                 commit('setCategory', response.data);
-  //                 resolve(response);
-  //             })
-  //             .catch((error) => {
-  //                 reject();
-  //             });
-  //     });
-  // },
-  // updateCategory({ commit }, data) {
-  //     return new Promise((resolve, reject) => {
-  //         http.post('/api/v1/categories/'+ data.get('id')).then((response) => {
-  //                 commit('updateCategory', response.data);
-  //                 resolve(response);
-  //             })
-  //             .catch((error) => {
-  //                 reject();
-  //             });
-  //     });
-  // },
-  deletePreOrder: function deletePreOrder(_ref3, preOrderId) {
+  updatePreOrder: function updatePreOrder(_ref3, data) {
     var commit = _ref3.commit;
+    return new Promise(function (resolve, reject) {
+      _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/admin/v1/prescription_order/' + data.get('id'), data).then(function (response) {
+        commit('setUpdatedPreOrder', response.data);
+        resolve(response);
+      })["catch"](function (error) {
+        if (error.response && error.response.status === 422) {
+          commit('setOrdersErrors', error.response.data.errors);
+        }
+        reject();
+      });
+    });
+  },
+  deletePreOrder: function deletePreOrder(_ref4, preOrderId) {
+    var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
       _utils_axios_admin__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/api/admin/v1/prescription_order/' + preOrderId).then(function (response) {
         resolve(response);
@@ -18798,12 +18794,10 @@ var mutations = {
   },
   getOldPreOrder: function getOldPreOrder(state, data) {
     state.prescriptionOrders = data;
-  } // setCategory(state,data){
-  //     state.category.data = data;
-  // },
-  // updateCategory(state,data){
-  //     state.category.data = data;
-  // },
+  },
+  setUpdatedPreOrder: function setUpdatedPreOrder(state, data) {
+    state.preOrder.data = data;
+  }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   state: state,
@@ -51418,7 +51412,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_pages_Authentication_Login_vue":1,"resources_js_pages_Home_vue":1,"resources_js_pages_Dashboard_Dashboard_vue":1,"resources_js_pages_Dashboard_AdminsManagement_AdminsList_vue":1,"resources_js_pages_Dashboard_AdminsManagement_AdminForm_vue":1,"resources_js_pages_Dashboard_AdminsManagement_AdminDetails_vue":1,"resources_js_pages_Dashboard_BrandsManagement_BrandsList_vue":1,"resources_js_pages_Dashboard_BrandsManagement_BrandForm_vue":1,"resources_js_pages_Dashboard_BrandsManagement_BrandDetails_vue":1,"resources_js_pages_Dashboard_CategoriesManagement_CategoriesList_vue":1,"resources_js_pages_Dashboard_CategoriesManagement_CategoryForm_vue":1,"resources_js_pages_Dashboard_CategoriesManagement_CategoryDetails_vue":1,"resources_js_pages_Dashboard_CitiesManagement_CitiesList_vue":1,"resources_js_pages_Dashboard_CitiesManagement_CityForm_vue":1,"resources_js_pages_Dashboard_CitiesManagement_CityDetails_vue":1,"resources_js_pages_Dashboard_ClientsManagement_ClientsList_vue":1,"resources_js_pages_Dashboard_ClientsManagement_ClientForm_vue":1,"resources_js_pages_Dashboard_ClientsManagement_ClientDetails_vue":1,"resources_js_pages_Dashboard_CommentsManagement_CommentsList_vue":1,"resources_js_pages_Dashboard_CommentsManagement_CommentForm_vue":1,"resources_js_pages_Dashboard_CommentsManagement_CommentDetails_vue":1,"resources_js_pages_Dashboard_OrdersManagement_OrdersList_vue":1,"resources_js_pages_Dashboard_OrdersManagement_OrderForm_vue":1,"resources_js_pages_Dashboard_OrdersManagement_OrderDetails_vue":1,"resources_js_pages_Dashboard_PharmacistsManagement_PharmacistsList_vue":1,"resources_js_pages_Dashboard_PharmacistsManagement_PharmacistForm_vue":1,"resources_js_pages_Dashboard_PharmacistsManagement_PharmacistDetails_vue":1,"resources_js_pages_Dashboard_PrescriptionOrdersManagement_PrescriptionOrdersList_vue":1,"resources_js_pages_Dashboard_PrescriptionOrdersManagement_PrescriptionForm_vue":1,"resources_js_pages_Dashboard_PrescriptionOrdersManagement_PrescriptionDetails_vue":1,"resources_js_pages_Dashboard_ProductsManagement_ProductsList_vue":1,"resources_js_pages_Dashboard_ProductsManagement_ProductForm_vue":1,"resources_js_pages_Dashboard_ProductsManagement_ProductDetails_vue":1,"resources_js_pages_Helpers_Page404_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_pages_Authentication_Login_vue":1,"resources_js_pages_Home_vue":1,"resources_js_pages_Dashboard_Dashboard_vue":1,"resources_js_pages_Dashboard_AdminsManagement_AdminsList_vue":1,"resources_js_pages_Dashboard_AdminsManagement_AdminForm_vue":1,"resources_js_pages_Dashboard_AdminsManagement_AdminDetails_vue":1,"resources_js_pages_Dashboard_BrandsManagement_BrandsList_vue":1,"resources_js_pages_Dashboard_BrandsManagement_BrandForm_vue":1,"resources_js_pages_Dashboard_BrandsManagement_BrandDetails_vue":1,"resources_js_pages_Dashboard_CategoriesManagement_CategoriesList_vue":1,"resources_js_pages_Dashboard_CategoriesManagement_CategoryForm_vue":1,"resources_js_pages_Dashboard_CategoriesManagement_CategoryDetails_vue":1,"resources_js_pages_Dashboard_CitiesManagement_CitiesList_vue":1,"resources_js_pages_Dashboard_CitiesManagement_CityForm_vue":1,"resources_js_pages_Dashboard_CitiesManagement_CityDetails_vue":1,"resources_js_pages_Dashboard_ClientsManagement_ClientsList_vue":1,"resources_js_pages_Dashboard_ClientsManagement_ClientForm_vue":1,"resources_js_pages_Dashboard_ClientsManagement_ClientDetails_vue":1,"resources_js_pages_Dashboard_CommentsManagement_CommentsList_vue":1,"resources_js_pages_Dashboard_CommentsManagement_CommentForm_vue":1,"resources_js_pages_Dashboard_CommentsManagement_CommentDetails_vue":1,"resources_js_pages_Dashboard_OrdersManagement_OrdersList_vue":1,"resources_js_pages_Dashboard_OrdersManagement_OrderDetails_vue":1,"resources_js_pages_Dashboard_PharmacistsManagement_PharmacistsList_vue":1,"resources_js_pages_Dashboard_PharmacistsManagement_PharmacistForm_vue":1,"resources_js_pages_Dashboard_PharmacistsManagement_PharmacistDetails_vue":1,"resources_js_pages_Dashboard_PrescriptionOrdersManagement_PrescriptionOrdersList_vue":1,"resources_js_pages_Dashboard_PrescriptionOrdersManagement_PrescriptionForm_vue":1,"resources_js_pages_Dashboard_PrescriptionOrdersManagement_PrescriptionDetails_vue":1,"resources_js_pages_Dashboard_ProductsManagement_ProductsList_vue":1,"resources_js_pages_Dashboard_ProductsManagement_ProductForm_vue":1,"resources_js_pages_Dashboard_ProductsManagement_ProductDetails_vue":1,"resources_js_pages_Helpers_Page404_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

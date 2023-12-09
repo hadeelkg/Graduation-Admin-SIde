@@ -22,7 +22,7 @@ class UpdateOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'total_price' => ['required','numeric'],
+            // 'total_price' => ['required','numeric'],
             'status' => ['required','string', 'max:50'],
             'client_id' => ['required','integer'],
         ];

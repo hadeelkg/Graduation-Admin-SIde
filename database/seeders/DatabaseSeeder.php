@@ -30,15 +30,15 @@ class DatabaseSeeder extends Seeder
        Admin::factory()->create([
         'email' => 'hadeelgobbar@gmail.com',
        ]);
-       City::factory(5)->create();
-       Brand::factory(3)->create();
-       Category::factory(3)->create();
-       Client::factory(5)->create();
-       Comment::factory(5)->create();
-       Product::factory(13)->create();
-       Order::factory(13)->create();
-       order_product::factory(13)->create();
-       Pharmacist::factory(4)->create();
-       prescription_order::factory(20)->create();
+    //    City::factory(5)->create();
+    //    Brand::factory(3)->create();
+    //    Category::factory(3)->create();
+    //    Client::factory(5)->create();
+    //    Comment::factory(5)->create();
+    //    Product::factory(13)->create();
+    //    Order::factory(13)->create();
+    //    order_product::factory(13)->create();
+    //    Pharmacist::factory(4)->create();
+    //    prescription_order::factory(20)->create();
     }
 }

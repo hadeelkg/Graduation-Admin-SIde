@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <ConfirmAlert ref="MyConfirmAlert" :title="Alert.title" :message="Alert.message" @Sure="YesIamSure($event)" :sureResult="sureResult" />
         <SuccessAlert ref="MySuccessAlert" :title="Alert.title" :message="Alert.message" />
-    
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -19,6 +19,7 @@
                                 <thead class="text-primary">
                                     <th>#</th>
                                     <th>صورة الوصفة</th>
+                                    <th>حالة الطلبية</th>
                                     <th>اسم العميل</th>
                                     <th>اجراءات</th>
                                 </thead>
@@ -26,17 +27,21 @@
                                     <tr v-for="(item, index) in PrescriptionOrders.data" :key="index">
                                         <td>{{ index+1 }}</td>
                                         <td><img :src="'http://127.0.0.1:8000/storage/'+item.image_path" width="80"/></td>
+                                        <td v-if="item.status=='pendingOrder'">انتظار</td>
+                                        <td v-else-if="item.status=='done'">تم التوصيل</td>
+                                        <td v-else-if="item.status=='canceled'">ملغية</td>
+                                        <td v-else></td>
                                         <td>{{ item.client.name }}</td>
                                         <td class="text-primary">
                                             <router-link :to="{name:'admin.dashboard.prescriptionOrders.details',params:{id:item.id}}" type="button" class="btn my_btn btn-sm">
-                                                <i class="material-icons details_icon">folder_open</i>                      
+                                                <i class="material-icons details_icon">folder_open</i>
                                             </router-link>
                                             <!-- <router-link :to="{name:'admin.dashboard.prescriptionOrders.edit', params:{id:item.id}}" type="button" class="btn my_btn btn-sm">
                                                 <i class="material-icons my_icon">edit</i>
                                             </router-link> -->
-                                            <button @click="deleteItem(item.id)" type="button" class="btn my_btn btn-sm">
-                                                <i class="material-icons delete_icon">delete</i>                      
-                                            </button>
+                                            <!-- <button @click="deleteItem(item.id)" type="button" class="btn my_btn btn-sm">
+                                                <i class="material-icons delete_icon">delete</i>
+                                            </button> -->
                                         </td>
                                     </tr>
                                     <tr v-if="!PrescriptionOrders.data.length" centre>
@@ -88,7 +93,7 @@
                 store.commit('admin/PleaseStopLoading');
             })
         },
-        
+
         components:{
             ConfirmAlert,
             SuccessAlert,
@@ -96,39 +101,6 @@
         },
 
         methods:{
-
-            deleteItem(item_id){
-                this.item_id = item_id;
-                this.Alert.message='هل تريد حذف هذه الطلبية؟';
-                this.$refs.MyConfirmAlert.showModel();
-            },
-
-            YesIamSure(value){
-                if(value && this.sureResult){
-                    this.sureResult=false;
-                    this.onDelete();
-                }
-            },
-
-            CancelAlert(){
-                this.sureResult=false;
-            },
-
-            onDelete(){
-                this.$refs.MyConfirmAlert.hideModel();
-                store.commit('admin/PleaseStartLoading');
-                store.dispatch('admin/deletePreOrder', this.item_id).then((response) => {
-                    store.dispatch('admin/fetchPrescriptionOrders');
-                    store.commit('admin/PleaseStopLoading');
-                    this.sureResult=true;
-                    this.Alert.message='تم حذف الطلبية بنجاح';
-                    this.$refs.MySuccessAlert.showModel();
-                })
-                .catch((error) => {
-                    this.Alert.message='لا يمكن حذف هذا الطلبية !';
-                    this.$refs.MyConfirmAlert.showModel();
-                })
-            },
 
             showImage(img) {
                 this.selectedImage = img.url;

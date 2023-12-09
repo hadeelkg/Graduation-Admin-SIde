@@ -143,37 +143,6 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('admin/fetchOrders').then(function () {
       _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].commit('admin/PleaseStopLoading');
     })["catch"](function (error) {});
-  },
-  methods: {
-    deleteOrder: function deleteOrder(order_id) {
-      this.order_id = order_id;
-      this.Alert.message = 'هل تريد حذف هذه الطلبية؟';
-      this.$refs.MyConfirmAlert.showModel();
-    },
-    YesIamSure: function YesIamSure(value) {
-      if (value && this.sureResult) {
-        this.sureResult = false;
-        this.onDelete();
-      }
-    },
-    CancelAlert: function CancelAlert() {
-      this.sureResult = false;
-    },
-    onDelete: function onDelete() {
-      var _this = this;
-      this.$refs.MyConfirmAlert.hideModel();
-      _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].commit('admin/PleaseStartLoading');
-      _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('admin/deleteOrder', this.order_id).then(function (response) {
-        _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('admin/fetchOrders');
-        _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].commit('admin/PleaseStopLoading');
-        _this.sureResult = true;
-        _this.Alert.message = 'تم حذف الطلبية بنجاح';
-        _this.$refs.MySuccessAlert.showModel();
-      })["catch"](function (error) {
-        _this.Alert.message = 'لا يمكن حذف هذه الطلبية!';
-        _this.$refs.MyConfirmAlert.showModel();
-      });
-    }
   }
 });
 
@@ -327,7 +296,7 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "class": "col-md-12"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-lg-12 col-md-12"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\">\r\n            <div class=\"col-md-8\"></div>\r\n            <div class=\"col-md-4\">\r\n                <router-link :to=\"{name: 'admin.dashboard.order.create'}\" class=\"btn btn-primary btn-md add_btn\" >\r\n                    اضافة طلبية \r\n                </router-link>\r\n            </div>\r\n          </div> ")])], -1 /* HOISTED */);
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\">\n            <div class=\"col-md-8\"></div>\n            <div class=\"col-md-4\">\n                <router-link :to=\"{name: 'admin.dashboard.order.create'}\" class=\"btn btn-primary btn-md add_btn\" >\n                    اضافة طلبية\n                </router-link>\n            </div>\n          </div> ")])], -1 /* HOISTED */);
 var _hoisted_3 = {
   "class": "col-md-12"
 };
@@ -392,19 +361,14 @@ var _hoisted_14 = {
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "material-icons details_icon"
 }, "folder_open", -1 /* HOISTED */);
-var _hoisted_16 = ["onClick"];
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "material-icons delete_icon"
-}, "delete", -1 /* HOISTED */);
-var _hoisted_18 = [_hoisted_17];
-var _hoisted_19 = {
+var _hoisted_16 = {
   key: 0,
   centre: ""
 };
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
   colspan: "9"
 }, " لاتوجد بيانات لعرضها ", -1 /* HOISTED */);
-var _hoisted_21 = [_hoisted_20];
+var _hoisted_18 = [_hoisted_17];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_ConfirmAlert = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ConfirmAlert");
   var _component_SuccessAlert = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SuccessAlert");
@@ -414,7 +378,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: $data.Alert.title,
     message: $data.Alert.message,
     onSure: _cache[0] || (_cache[0] = function ($event) {
-      return $options.YesIamSure($event);
+      return _ctx.YesIamSure($event);
     }),
     sureResult: $data.sureResult
   }, null, 8 /* PROPS */, ["title", "message", "sureResult"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SuccessAlert, {
@@ -438,14 +402,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return [_hoisted_15];
       }),
       _: 2 /* DYNAMIC */
-    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <router-link :to=\"{name:'admin.dashboard.order.edit',  params:{id:item.id}}\" type=\"button\" class=\"btn my_btn btn-sm\">\r\n                        <i class=\"material-icons edit_icon\">edit</i>\r\n                      </router-link> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      onClick: function onClick($event) {
-        return $options.deleteOrder(item.id);
-      },
-      type: "button",
-      "class": "btn my_btn btn-sm"
-    }, _hoisted_18, 8 /* PROPS */, _hoisted_16)])]);
-  }), 128 /* KEYED_FRAGMENT */)), !_ctx.Orders.data.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_19, _hoisted_21)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])])]);
+    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <router-link :to=\"{name:'admin.dashboard.order.edit',  params:{id:item.id}}\" type=\"button\" class=\"btn my_btn btn-sm\">\n                        <i class=\"material-icons edit_icon\">edit</i>\n                      </router-link> ")])]);
+  }), 128 /* KEYED_FRAGMENT */)), !_ctx.Orders.data.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_16, _hoisted_18)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])])]);
 }
 
 /***/ }),
@@ -512,7 +470,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.add_btn{\r\n    background: linear-gradient(60deg, #343a40, #37517e);\n}\n.my_btn{\r\n    box-shadow: 6px 8px 5px #dcd5d9;\r\n    background: linear-gradient(white, white) padding-box,\r\n              linear-gradient(to right,  #ffe3ed, #e9e3e7) border-box;\r\n    border-radius: 50em;\r\n    border: 2px solid transparent;\r\n    margin:3px;\n}\n.my_btn:hover{\r\n    box-shadow: 0 2px 2px 0 #37517e, 0 3px 1px -2px #37517e, 0 1px 5px 0 rgb(170 71 186 / 12%);\r\n    background: linear-gradient(white, white) padding-box,\r\n              linear-gradient(to right,  #ffe3ed, #e9e3e7) border-box;\n}\n.details_icon{\r\n    color: #37517e;\n}\n.edit_icon{\r\n    color: #39ae00c7;\n}\n.delete_icon{\r\n      color: #ff1e1ec7;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.add_btn{\n    background: linear-gradient(60deg, #343a40, #37517e);\n}\n.my_btn{\n    box-shadow: 6px 8px 5px #dcd5d9;\n    background: linear-gradient(white, white) padding-box,\n              linear-gradient(to right,  #ffe3ed, #e9e3e7) border-box;\n    border-radius: 50em;\n    border: 2px solid transparent;\n    margin:3px;\n}\n.my_btn:hover{\n    box-shadow: 0 2px 2px 0 #37517e, 0 3px 1px -2px #37517e, 0 1px 5px 0 rgb(170 71 186 / 12%);\n    background: linear-gradient(white, white) padding-box,\n              linear-gradient(to right,  #ffe3ed, #e9e3e7) border-box;\n}\n.details_icon{\n    color: #37517e;\n}\n.edit_icon{\n    color: #39ae00c7;\n}\n.delete_icon{\n      color: #ff1e1ec7;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

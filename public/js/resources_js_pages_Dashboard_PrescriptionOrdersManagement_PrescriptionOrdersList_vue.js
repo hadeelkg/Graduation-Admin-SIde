@@ -176,35 +176,6 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     ImageViewer: _components_imageViewer_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   methods: {
-    deleteItem: function deleteItem(item_id) {
-      this.item_id = item_id;
-      this.Alert.message = 'هل تريد حذف هذه الطلبية؟';
-      this.$refs.MyConfirmAlert.showModel();
-    },
-    YesIamSure: function YesIamSure(value) {
-      if (value && this.sureResult) {
-        this.sureResult = false;
-        this.onDelete();
-      }
-    },
-    CancelAlert: function CancelAlert() {
-      this.sureResult = false;
-    },
-    onDelete: function onDelete() {
-      var _this = this;
-      this.$refs.MyConfirmAlert.hideModel();
-      _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].commit('admin/PleaseStartLoading');
-      _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('admin/deletePreOrder', this.item_id).then(function (response) {
-        _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('admin/fetchPrescriptionOrders');
-        _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].commit('admin/PleaseStopLoading');
-        _this.sureResult = true;
-        _this.Alert.message = 'تم حذف الطلبية بنجاح';
-        _this.$refs.MySuccessAlert.showModel();
-      })["catch"](function (error) {
-        _this.Alert.message = 'لا يمكن حذف هذا الطلبية !';
-        _this.$refs.MyConfirmAlert.showModel();
-      });
-    },
     showImage: function showImage(img) {
       this.selectedImage = img.url;
       this.showModal = true;
@@ -438,27 +409,34 @@ var _hoisted_8 = {
 };
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
   "class": "text-primary"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "#"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "صورة الوصفة"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "اسم العميل"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "اجراءات")], -1 /* HOISTED */);
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "#"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "صورة الوصفة"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "حالة الطلبية"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "اسم العميل"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "اجراءات")], -1 /* HOISTED */);
 var _hoisted_10 = ["src"];
 var _hoisted_11 = {
+  key: 0
+};
+var _hoisted_12 = {
+  key: 1
+};
+var _hoisted_13 = {
+  key: 2
+};
+var _hoisted_14 = {
+  key: 3
+};
+var _hoisted_15 = {
   "class": "text-primary"
 };
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "material-icons details_icon"
 }, "folder_open", -1 /* HOISTED */);
-var _hoisted_13 = ["onClick"];
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "material-icons delete_icon"
-}, "delete", -1 /* HOISTED */);
-var _hoisted_15 = [_hoisted_14];
-var _hoisted_16 = {
+var _hoisted_17 = {
   key: 0,
   centre: ""
 };
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
   colspan: "9"
 }, " لاتوجد بيانات لعرضها ", -1 /* HOISTED */);
-var _hoisted_18 = [_hoisted_17];
+var _hoisted_19 = [_hoisted_18];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_ConfirmAlert = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ConfirmAlert");
   var _component_SuccessAlert = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SuccessAlert");
@@ -469,7 +447,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: $data.Alert.title,
     message: $data.Alert.message,
     onSure: _cache[0] || (_cache[0] = function ($event) {
-      return $options.YesIamSure($event);
+      return _ctx.YesIamSure($event);
     }),
     sureResult: $data.sureResult
   }, null, 8 /* PROPS */, ["title", "message", "sureResult"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SuccessAlert, {
@@ -487,7 +465,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(index + 1), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: 'http://127.0.0.1:8000/storage/' + item.image_path,
       width: "80"
-    }, null, 8 /* PROPS */, _hoisted_10)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.client.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    }, null, 8 /* PROPS */, _hoisted_10)]), item.status == 'pendingOrder' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_11, "انتظار")) : item.status == 'done' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_12, "تم التوصيل")) : item.status == 'canceled' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_13, "ملغية")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_14)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.client.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
       to: {
         name: 'admin.dashboard.prescriptionOrders.details',
         params: {
@@ -498,17 +476,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "btn my_btn btn-sm"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [_hoisted_12];
+        return [_hoisted_16];
       }),
       _: 2 /* DYNAMIC */
-    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <router-link :to=\"{name:'admin.dashboard.prescriptionOrders.edit', params:{id:item.id}}\" type=\"button\" class=\"btn my_btn btn-sm\">\r\n                                                <i class=\"material-icons my_icon\">edit</i>\r\n                                            </router-link> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      onClick: function onClick($event) {
-        return $options.deleteItem(item.id);
-      },
-      type: "button",
-      "class": "btn my_btn btn-sm"
-    }, _hoisted_15, 8 /* PROPS */, _hoisted_13)])]);
-  }), 128 /* KEYED_FRAGMENT */)), !_ctx.PrescriptionOrders.data.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_16, _hoisted_18)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])])])]);
+    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <router-link :to=\"{name:'admin.dashboard.prescriptionOrders.edit', params:{id:item.id}}\" type=\"button\" class=\"btn my_btn btn-sm\">\n                                                <i class=\"material-icons my_icon\">edit</i>\n                                            </router-link> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button @click=\"deleteItem(item.id)\" type=\"button\" class=\"btn my_btn btn-sm\">\n                                                <i class=\"material-icons delete_icon\">delete</i>\n                                            </button> ")])]);
+  }), 128 /* KEYED_FRAGMENT */)), !_ctx.PrescriptionOrders.data.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_17, _hoisted_19)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])])])]);
 }
 
 /***/ }),
@@ -598,7 +570,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.table_img{\r\n    width: 100px;\r\n    height: 100px;\r\n    padding: 5px;\r\n    border-radius: 5px;\r\n    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 4px 0 rgba(0, 0, 0, 0.19);\r\n    margin: 8px;\r\n    border: 1px solid #ddd;\r\n    cursor: pointer;\n}\n.table_img:hover{\r\n    transform: scale(1.1);\r\n    transition: all .2s ease-in-out;\n}\n.add_btn{\r\n    background: linear-gradient(60deg, #343a40, #37517e);\n}\n.my_btn{\r\n    box-shadow: 6px 8px 5px #dcd5d9;\r\n    background: linear-gradient(white, white) padding-box,\r\n              linear-gradient(to right,  #ffe3ed, #e9e3e7) border-box;\r\n    border-radius: 50em;\r\n    border: 2px solid transparent;\r\n    margin:3px;\n}\n.my_btn:hover{\r\n    box-shadow: 0 2px 2px 0 #37517e, 0 3px 1px -2px #37517e, 0 1px 5px 0 rgb(170 71 186 / 12%);\r\n    background: linear-gradient(white, white) padding-box,\r\n              linear-gradient(to right,  #ffe3ed, #e9e3e7) border-box;\n}\n.details_icon{\r\n    color: #37517e;\n}\n.edit_icon{\r\n    color: #39ae00c7;\n}\n.delete_icon{\r\n      color: #ff1e1ec7;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.table_img{\n    width: 100px;\n    height: 100px;\n    padding: 5px;\n    border-radius: 5px;\n    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 4px 0 rgba(0, 0, 0, 0.19);\n    margin: 8px;\n    border: 1px solid #ddd;\n    cursor: pointer;\n}\n.table_img:hover{\n    transform: scale(1.1);\n    transition: all .2s ease-in-out;\n}\n.add_btn{\n    background: linear-gradient(60deg, #343a40, #37517e);\n}\n.my_btn{\n    box-shadow: 6px 8px 5px #dcd5d9;\n    background: linear-gradient(white, white) padding-box,\n              linear-gradient(to right,  #ffe3ed, #e9e3e7) border-box;\n    border-radius: 50em;\n    border: 2px solid transparent;\n    margin:3px;\n}\n.my_btn:hover{\n    box-shadow: 0 2px 2px 0 #37517e, 0 3px 1px -2px #37517e, 0 1px 5px 0 rgb(170 71 186 / 12%);\n    background: linear-gradient(white, white) padding-box,\n              linear-gradient(to right,  #ffe3ed, #e9e3e7) border-box;\n}\n.details_icon{\n    color: #37517e;\n}\n.edit_icon{\n    color: #39ae00c7;\n}\n.delete_icon{\n      color: #ff1e1ec7;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -1,6 +1,5 @@
 import http from '../../utils/axios/admin';
 
-
 let state = {
     orders:{
         data:[],
@@ -69,7 +68,7 @@ const actions = {
     },
     updateOrder({ commit }, data) {
         return new Promise((resolve, reject) => {
-            http.post('/api/admin/v1/orders/'+ data.id, data).then((response) => {
+            http.post('/api/admin/v1/orders/'+ data.get('id'), data).then((response) => {
                     commit('setUpdatedOrder', response.data);
                     resolve(response);
                 })

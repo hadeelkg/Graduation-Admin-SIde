@@ -9,6 +9,7 @@ use App\Models\prescription_order;
 use App\Http\Resources\PrescriptionOrderResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Response;
 
 class PrescriptionOrderController extends Controller
 {
@@ -31,15 +32,31 @@ class PrescriptionOrderController extends Controller
         );
     }
 
-    public function update(UpdatePrescriptionOrderRequest $request, prescription_order $prescriptionOrder)
+    public function update(UpdatePrescriptionOrderRequest $request)
     {
-        $prescriptionOrder->update($request->validated());
-        if ($request->hasFile('image_path')) {
-            $newImagePath = $request->file('image_path')->store('prescription', 'public');
-            $prescriptionOrder->image_path = $newImagePath;
-        }
-        $prescriptionOrder->save();
-        return $prescriptionOrder;
+        // $prescriptionOrder->update($request->validated());
+        // if ($request->hasFile('image_path')) {
+        //     $newImagePath = $request->file('image_path')->store('prescription', 'public');
+        //     $prescriptionOrder->image_path = $newImagePath;
+        // }
+        // $prescriptionOrder->save();
+        // return $prescriptionOrder;
+
+        $orderId = $request->input('order_id');
+        $newStatus = $request->input('status');
+
+        // Find the order by ID
+        $preOrder = prescription_order::findOrFail($orderId);
+
+        // Update the status
+        $preOrder->status = $newStatus;
+        $preOrder->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'prescription order status updated successfully',
+            'data' => new PrescriptionOrderResource($preOrder),
+        ], Response::HTTP_CREATED);
     }
 
     public function destroy(prescription_order $prescription_order)

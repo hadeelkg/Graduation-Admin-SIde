@@ -20,6 +20,11 @@ class prescription_orderFactory extends Factory
         return [
             'client_id' => Client::factory(),
             'image_path' => $this->faker->text(),
+            'status' => $this->faker->randomElement([
+                "pendingOrder",
+                "done",
+                "canceled"
+            ]),
         ];
     }
 }

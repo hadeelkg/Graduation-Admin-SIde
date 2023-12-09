@@ -44,8 +44,9 @@
                             <td>{{Product.brand.name}}</td>
                           </tr>
                           <tr>
-                            <td>العلامة التجارية</td><td>:</td>
-                            <td>{{Product.target_sex}}</td>
+                            <td>الجنس المُستهدف</td><td>:</td>
+                            <td v-if="Product.target_sex='male'">ذكر</td>
+                            <td v-else>انثى</td>
                           </tr>
                           <tr>
                             <td>تاريخ الادخال</td><td>:</td>

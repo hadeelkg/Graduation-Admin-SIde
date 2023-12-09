@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('client_id')->constrained();
             $table->string('image_path');
+            $table->enum('status', ['pendingOrder', 'done', 'canceled']);
             $table->timestamps();
             // $table->softDeletes();
         });

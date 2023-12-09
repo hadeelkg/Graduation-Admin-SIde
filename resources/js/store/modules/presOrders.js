@@ -6,6 +6,10 @@ let state = {
         meta:{},
         links:{}
     },
+    preOrder:{
+        data:'',
+        errors:''
+    },
 };
 
 const actions = {
@@ -31,28 +35,20 @@ const actions = {
                 });
         });
     },
-    // NewCategory({ commit }, data) {
-    //     return new Promise((resolve, reject) => {
-    //         http.post('/api/v1/categories', data).then((response) => {
-    //                 commit('setCategory', response.data);
-    //                 resolve(response);
-    //             })
-    //             .catch((error) => {
-    //                 reject();
-    //             });
-    //     });
-    // },
-    // updateCategory({ commit }, data) {
-    //     return new Promise((resolve, reject) => {
-    //         http.post('/api/v1/categories/'+ data.get('id')).then((response) => {
-    //                 commit('updateCategory', response.data);
-    //                 resolve(response);
-    //             })
-    //             .catch((error) => {
-    //                 reject();
-    //             });
-    //     });
-    // },
+    updatePreOrder({ commit }, data) {
+        return new Promise((resolve, reject) => {
+            http.post('/api/admin/v1/prescription_order/'+ data.get('id'), data).then((response) => {
+                    commit('setUpdatedPreOrder', response.data);
+                    resolve(response);
+                })
+                .catch((error) => {
+                    if (error.response && error.response.status === 422) {
+                        commit('setOrdersErrors', error.response.data.errors);
+                    }
+                    reject();
+                });
+        });
+    },
     deletePreOrder({ commit }, preOrderId) {
         return new Promise((resolve, reject) => {
             http.delete('/api/admin/v1/prescription_order/'+ preOrderId).then((response) => {
@@ -72,12 +68,9 @@ const mutations = {
     getOldPreOrder(state,data){
         state.prescriptionOrders = data;
     },
-    // setCategory(state,data){
-    //     state.category.data = data;
-    // },
-    // updateCategory(state,data){
-    //     state.category.data = data;
-    // },
+    setUpdatedPreOrder(state,data){
+        state.preOrder.data = data;
+    },
 };
 
 export default {

@@ -8,7 +8,7 @@
             <div class="col-md-8"></div>
             <div class="col-md-4">
                 <router-link :to="{name: 'admin.dashboard.order.create'}" class="btn btn-primary btn-md add_btn" >
-                    اضافة طلبية 
+                    اضافة طلبية
                 </router-link>
             </div>
           </div> -->
@@ -35,8 +35,8 @@
                   <tr v-for="(item, index) in Orders.data" :key="index">
                     <td>{{index+1}}</td>
                     <td>{{item.client.name}}</td>
-                    <td v-if="item.status=='pendingOrder'">انتظار</td> 
-                    <td v-else-if="item.status=='done'">تم التوصيل</td> 
+                    <td v-if="item.status=='pendingOrder'">انتظار</td>
+                    <td v-else-if="item.status=='done'">تم التوصيل</td>
                     <td v-else-if="item.status=='canceled'">ملغية</td>
                     <td v-else></td>
                     <td>{{item.total_price}}</td>
@@ -47,9 +47,6 @@
                       <!-- <router-link :to="{name:'admin.dashboard.order.edit',  params:{id:item.id}}" type="button" class="btn my_btn btn-sm">
                         <i class="material-icons edit_icon">edit</i>
                       </router-link> -->
-                      <button @click="deleteOrder(item.id)" type="button" class="btn my_btn btn-sm">
-                        <i class="material-icons delete_icon">delete</i>                      
-                      </button>
                     </td>
                   </tr>
                   <tr v-if="!Orders.data.length" centre>
@@ -102,45 +99,9 @@
           store.commit('admin/PleaseStopLoading');
           }).catch((error)=>{
 
-          });      
+          });
       },
 
-      methods:{
-
-          deleteOrder(order_id){
-            this.order_id = order_id;
-            this.Alert.message='هل تريد حذف هذه الطلبية؟';
-            this.$refs.MyConfirmAlert.showModel();
-          },
-
-          YesIamSure(value){
-            if(value && this.sureResult){
-              this.sureResult=false;
-              this.onDelete();
-            }
-          },
-
-          CancelAlert(){
-            this.sureResult=false;
-          },
-
-          onDelete(){
-            this.$refs.MyConfirmAlert.hideModel();
-            store.commit('admin/PleaseStartLoading');
-            store.dispatch('admin/deleteOrder', this.order_id).then((response) => {
-              store.dispatch('admin/fetchOrders');
-              store.commit('admin/PleaseStopLoading');
-              this.sureResult=true;
-              this.Alert.message='تم حذف الطلبية بنجاح';
-              this.$refs.MySuccessAlert.showModel();
-            })
-            .catch((error) => {
-              this.Alert.message='لا يمكن حذف هذه الطلبية!';
-              this.$refs.MyConfirmAlert.showModel();
-            })
-          }, 
-
-      },
   }
 </script>
 
