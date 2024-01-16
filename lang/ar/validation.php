@@ -215,6 +215,8 @@ return [
         'gender' => 'الجنس',
         'city_id' => 'المدينة',
         'address' => 'العنوان',
+        'discount' => 'قيمة التخفيض',
+        'target_sex' => 'الجنس المُستهدف'
     ],
 
     'values' => [],

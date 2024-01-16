@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 // use App\Http\Resources\ClientResource;
+use Carbon\Carbon;
 
 class CommentResource extends JsonResource
 {
@@ -23,7 +24,8 @@ class CommentResource extends JsonResource
             'client_name' => $this->client_name,
             // 'rate' => $this->rate,
             // 'client' => new ClientResource($this->client),
-            'created_at' => $this->created_at,
+            // 'created_at' => $this->created_at,
+            'created_at' => Carbon::parse($this->created_at)->format('Y-m-d H:i:s'),
         ];
     }
 }

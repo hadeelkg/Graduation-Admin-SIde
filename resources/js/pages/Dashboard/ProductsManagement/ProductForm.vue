@@ -13,6 +13,7 @@
                             <InputFile title="الصورة" id="image_path" :MyValue="form.image_path" @myInput="HandleInput('image_path',$event)" Mykey="image_path" :errors='errors' />
                             <Input :MyValue="form.name" id="name" title="اسم المنتج" @myInput="HandleInput('name',$event)" Mykey="name" :errors='errors' />
                             <Input :MyValue="form.price" id="price" title="سعر المنتج" @myInput="HandleInput('price',$event)" Mykey="price" :errors= 'errors'/>
+                            <Input :MyValue="form.discount" id="discount" title="قيمة التخفيض" @myInput="HandleInput('discount',$event)" Mykey="discount" :errors= 'errors'/>
                             <Input :MyValue="form.description" id="description" title="الوصف" @myInput="HandleInput('description',$event)" Mykey="description" :errors='errors' />
                             <Input :MyValue="form.quantity" id="quantity" title="الكمية" @myInput="HandleInput('quantity',$event)" Mykey="quantity" :errors='errors' />
                             <TextSelect title="الفئة" id="category_id" :Items=Categories @Select="HandleInput('category_id',$event)" Mykey="category_id" :MyValue="form.category_id" :errors='errors' />
@@ -43,6 +44,7 @@
                     id:'',
                     name:'',
                     price:'',
+                    discount:'',
                     description:'',
                     quantity:'',
                     category_id:'',
@@ -53,7 +55,8 @@
 
                 Gender:[
                     {id:'male', name:'ذكر'},
-                    {id:'female', name:'انثى'}
+                    {id:'female', name:'انثى'},
+                    {id:'both', name:'كلاهما'}
                 ],
 
                 Alert:{
@@ -101,6 +104,7 @@
                     this.form.id = this.Product.id;
                     this.form.name = this.Product.name;
                     this.form.price = this.Product.price;
+                    this.form.discount = this.Product.discount;
                     this.form.description = this.Product.description;
                     this.form.quantity = this.Product.quantity;
                     this.form.category_id = this.Product.category.id;

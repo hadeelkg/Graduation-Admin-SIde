@@ -8,7 +8,7 @@
           <div class="col-md-8"></div>
           <div class="col-md-4">
               <router-link :to="{name: 'admin.dashboard.pharmacist.create'}" class="btn btn-primary btn-md add_btn" >
-                  اضافة صيدلي
+                  اضافة عضو
               </router-link>
           </div>
         </div>
@@ -17,8 +17,8 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header card-header-primary" style="text-align: center;">
-          <h4 class="card-title">قائمة صيادلة الصيدلية</h4>
-          <p class="card-category">الصيادلة الموجودين في النظام</p>
+          <h4 class="card-title">قائمة فريق الصيدلية</h4>
+          <p class="card-category">فريق الصيدلية الموجود في النظام</p>
         </div>
 
         <ImageViewer v-if="selectedImage" :selectedImage="selectedImage" :showModal="showModal" @click="closeModal"/>
@@ -114,7 +114,7 @@
 
         deleteItem(pharmacist_id){
           this.pharmacist_id = pharmacist_id;
-          this.Alert.message='هل تريد حذف هذا الصيدلي؟';
+          this.Alert.message='هل تريد حذف هذا العضو؟';
           this.$refs.MyConfirmAlert.showModel();
         },
 
@@ -136,13 +136,13 @@
             store.dispatch('admin/fetchPharmacists').then((response) => {
               store.commit('admin/PleaseStopLoading');
                 this.sureResult=true;
-                this.Alert.message='تم حذف الصيدلاني بنجاح';
+                this.Alert.message='تم حذف العضو بنجاح';
                 this.$refs.MySuccessAlert.showModel();
             }).catch((error) => {
 
             });
           }).catch((error) => {
-                this.Alert.message='لا يمكن حذف هذا الصيدلاني !';
+                this.Alert.message='لا يمكن حذف هذا العضو !';
                 this.$refs.MyConfirmAlert.showModel();
           });
         },

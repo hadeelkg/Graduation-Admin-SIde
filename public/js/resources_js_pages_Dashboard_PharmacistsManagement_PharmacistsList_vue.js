@@ -178,7 +178,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   methods: {
     deleteItem: function deleteItem(pharmacist_id) {
       this.pharmacist_id = pharmacist_id;
-      this.Alert.message = 'هل تريد حذف هذا الصيدلي؟';
+      this.Alert.message = 'هل تريد حذف هذا العضو؟';
       this.$refs.MyConfirmAlert.showModel();
     },
     YesIamSure: function YesIamSure(value) {
@@ -198,11 +198,11 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('admin/fetchPharmacists').then(function (response) {
           _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].commit('admin/PleaseStopLoading');
           _this.sureResult = true;
-          _this.Alert.message = 'تم حذف الصيدلاني بنجاح';
+          _this.Alert.message = 'تم حذف العضو بنجاح';
           _this.$refs.MySuccessAlert.showModel();
         })["catch"](function (error) {});
       })["catch"](function (error) {
-        _this.Alert.message = 'لا يمكن حذف هذا الصيدلاني !';
+        _this.Alert.message = 'لا يمكن حذف هذا العضو !';
         _this.$refs.MyConfirmAlert.showModel();
       });
     },
@@ -431,9 +431,9 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   }
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
   "class": "card-title"
-}, "قائمة صيادلة الصيدلية"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+}, "قائمة فريق الصيدلية"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "card-category"
-}, "الصيادلة الموجودين في النظام")], -1 /* HOISTED */);
+}, "فريق الصيدلية الموجود في النظام")], -1 /* HOISTED */);
 var _hoisted_10 = {
   "class": "card-body",
   style: {
@@ -502,7 +502,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "btn btn-primary btn-md add_btn"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" اضافة صيدلي ")];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" اضافة عضو ")];
     }),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["to"])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, $data.selectedImage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ImageViewer, {

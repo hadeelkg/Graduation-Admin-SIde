@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name',50);
             $table->string('image_path');
             $table->string('price', 3);
+            $table->decimal('discount', 5, 2)->nullable();
             $table->string('description', 200);
             $table->string('quantity', 10);
-            // $table->string('target_sex', 6);
-            $table->enum('target_sex', ['male', 'female']);
+            $table->enum('target_sex', ['male', 'female', 'both']);
             $table->foreignId('category_id')->constrained();
             $table->foreignId('brand_id')->constrained();
             $table->timestamps();

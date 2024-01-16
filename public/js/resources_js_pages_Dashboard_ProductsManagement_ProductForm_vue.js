@@ -266,6 +266,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         id: '',
         name: '',
         price: '',
+        discount: '',
         description: '',
         quantity: '',
         category_id: '',
@@ -279,6 +280,9 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }, {
         id: 'female',
         name: 'انثى'
+      }, {
+        id: 'both',
+        name: 'كلاهما'
       }],
       Alert: {
         title: 'معلومات',
@@ -329,6 +333,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         _this.form.id = _this.Product.id;
         _this.form.name = _this.Product.name;
         _this.form.price = _this.Product.price;
+        _this.form.discount = _this.Product.discount;
         _this.form.description = _this.Product.description;
         _this.form.quantity = _this.Product.quantity;
         _this.form.category_id = _this.Product.category.id;
@@ -665,10 +670,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     Mykey: "price",
     errors: _ctx.errors
   }, null, 8 /* PROPS */, ["MyValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
+    MyValue: $data.form.discount,
+    id: "discount",
+    title: "قيمة التخفيض",
+    onMyInput: _cache[3] || (_cache[3] = function ($event) {
+      return $options.HandleInput('discount', $event);
+    }),
+    Mykey: "discount",
+    errors: _ctx.errors
+  }, null, 8 /* PROPS */, ["MyValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
     MyValue: $data.form.description,
     id: "description",
     title: "الوصف",
-    onMyInput: _cache[3] || (_cache[3] = function ($event) {
+    onMyInput: _cache[4] || (_cache[4] = function ($event) {
       return $options.HandleInput('description', $event);
     }),
     Mykey: "description",
@@ -677,7 +691,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     MyValue: $data.form.quantity,
     id: "quantity",
     title: "الكمية",
-    onMyInput: _cache[4] || (_cache[4] = function ($event) {
+    onMyInput: _cache[5] || (_cache[5] = function ($event) {
       return $options.HandleInput('quantity', $event);
     }),
     Mykey: "quantity",
@@ -686,7 +700,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: "الفئة",
     id: "category_id",
     Items: _ctx.Categories,
-    onSelect: _cache[5] || (_cache[5] = function ($event) {
+    onSelect: _cache[6] || (_cache[6] = function ($event) {
       return $options.HandleInput('category_id', $event);
     }),
     Mykey: "category_id",
@@ -696,7 +710,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: "العلامة التجارية",
     id: "brand_id",
     Items: _ctx.Brands,
-    onSelect: _cache[6] || (_cache[6] = function ($event) {
+    onSelect: _cache[7] || (_cache[7] = function ($event) {
       return $options.HandleInput('brand_id', $event);
     }),
     Mykey: "brand_id",
@@ -706,7 +720,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: "الجنس المُستهدف",
     id: "target_sex",
     Items: $data.Gender,
-    onSelect: _cache[7] || (_cache[7] = function ($event) {
+    onSelect: _cache[8] || (_cache[8] = function ($event) {
       return $options.HandleInput('target_sex', $event);
     }),
     Mykey: "target_sex",
@@ -716,14 +730,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 0,
     type: "button",
     "class": "btn btn-primary pull-right",
-    onClick: _cache[8] || (_cache[8] = function ($event) {
+    onClick: _cache[9] || (_cache[9] = function ($event) {
       return $options.onSubmit();
     })
   }, "اضافة")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$options.IsNew ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 1,
     type: "button",
     "class": "btn btn-primary pull-right",
-    onClick: _cache[9] || (_cache[9] = function ($event) {
+    onClick: _cache[10] || (_cache[10] = function ($event) {
       return $options.onUpdate();
     })
   }, "تعديل")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])]);

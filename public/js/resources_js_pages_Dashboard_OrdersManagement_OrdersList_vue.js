@@ -296,7 +296,7 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "class": "col-md-12"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-lg-12 col-md-12"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\">\n            <div class=\"col-md-8\"></div>\n            <div class=\"col-md-4\">\n                <router-link :to=\"{name: 'admin.dashboard.order.create'}\" class=\"btn btn-primary btn-md add_btn\" >\n                    اضافة طلبية\n                </router-link>\n            </div>\n          </div> ")])], -1 /* HOISTED */);
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\">\r\n            <div class=\"col-md-8\"></div>\r\n            <div class=\"col-md-4\">\r\n                <router-link :to=\"{name: 'admin.dashboard.order.create'}\" class=\"btn btn-primary btn-md add_btn\" >\r\n                    اضافة طلبية\r\n                </router-link>\r\n            </div>\r\n          </div> ")])], -1 /* HOISTED */);
 var _hoisted_3 = {
   "class": "col-md-12"
 };
@@ -402,7 +402,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return [_hoisted_15];
       }),
       _: 2 /* DYNAMIC */
-    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <router-link :to=\"{name:'admin.dashboard.order.edit',  params:{id:item.id}}\" type=\"button\" class=\"btn my_btn btn-sm\">\n                        <i class=\"material-icons edit_icon\">edit</i>\n                      </router-link> ")])]);
+    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <router-link :to=\"{name:'admin.dashboard.order.edit',  params:{id:item.id}}\" type=\"button\" class=\"btn my_btn btn-sm\">\r\n                        <i class=\"material-icons edit_icon\">edit</i>\r\n                      </router-link> ")])]);
   }), 128 /* KEYED_FRAGMENT */)), !_ctx.Orders.data.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_16, _hoisted_18)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])])]);
 }
 
@@ -470,7 +470,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.add_btn{\n    background: linear-gradient(60deg, #343a40, #37517e);\n}\n.my_btn{\n    box-shadow: 6px 8px 5px #dcd5d9;\n    background: linear-gradient(white, white) padding-box,\n              linear-gradient(to right,  #ffe3ed, #e9e3e7) border-box;\n    border-radius: 50em;\n    border: 2px solid transparent;\n    margin:3px;\n}\n.my_btn:hover{\n    box-shadow: 0 2px 2px 0 #37517e, 0 3px 1px -2px #37517e, 0 1px 5px 0 rgb(170 71 186 / 12%);\n    background: linear-gradient(white, white) padding-box,\n              linear-gradient(to right,  #ffe3ed, #e9e3e7) border-box;\n}\n.details_icon{\n    color: #37517e;\n}\n.edit_icon{\n    color: #39ae00c7;\n}\n.delete_icon{\n      color: #ff1e1ec7;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.add_btn{\r\n    background: linear-gradient(60deg, #343a40, #37517e);\n}\n.my_btn{\r\n    box-shadow: 6px 8px 5px #dcd5d9;\r\n    background: linear-gradient(white, white) padding-box,\r\n              linear-gradient(to right,  #ffe3ed, #e9e3e7) border-box;\r\n    border-radius: 50em;\r\n    border: 2px solid transparent;\r\n    margin:3px;\n}\n.my_btn:hover{\r\n    box-shadow: 0 2px 2px 0 #37517e, 0 3px 1px -2px #37517e, 0 1px 5px 0 rgb(170 71 186 / 12%);\r\n    background: linear-gradient(white, white) padding-box,\r\n              linear-gradient(to right,  #ffe3ed, #e9e3e7) border-box;\n}\n.details_icon{\r\n    color: #37517e;\n}\n.edit_icon{\r\n    color: #39ae00c7;\n}\n.delete_icon{\r\n      color: #ff1e1ec7;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

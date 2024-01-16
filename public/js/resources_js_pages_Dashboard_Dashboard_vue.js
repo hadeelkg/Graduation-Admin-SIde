@@ -470,11 +470,8 @@ var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
     "class": "card-category"
   }, "عدد المنتجات", -1 /* HOISTED */);
 });
-var _hoisted_27 = {
-  "class": "row"
-};
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_DonutChart = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DonutChart");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
     "class": "card-title num",
     "data-val": _ctx.Statistics.city_count,
@@ -491,10 +488,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "card-title num",
     "data-val": _ctx.Statistics.product_count,
     name: "products_count"
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.Statistics.product_count), 9 /* TEXT, PROPS */, _hoisted_25), _hoisted_26])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"col-lg-6 col-md-12 col-sm-12\">\n                <div class=\"card\">\n                    <BarChart v-if=\"load\" :type=\"bar\" :data=\"barData\"/>\n                    <h4 style=\"color:#999;\">وظائف أعضاء الفريق</h4>\n                </div>\n            </div>\n\n            <div class=\"col-lg-6 col-md-12 col-sm-12\">\n                <div class=\"card\">\n                    <line-chart v-if=\"load\" :type=\"line\" :data=\"lineData\" />\n                    <h4 style=\"color:#999;\">عدد المشاريع المسجلة كل عام</h4>\n                </div>\n            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DonutChart, {
-    chartData: $data.chartData,
-    options: $data.chartOptions
-  }, null, 8 /* PROPS */, ["chartData", "options"])])]);
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.Statistics.product_count), 9 /* TEXT, PROPS */, _hoisted_25), _hoisted_26])])])])]);
 }
 
 /***/ }),

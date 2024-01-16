@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\BrandResource;
 use App\Http\Resources\CategoryResource;
 // use App\Http\Resources\ProductImageResource;
-
+use Carbon\Carbon;
 
 class ProductResource extends JsonResource
 {
@@ -23,12 +23,14 @@ class ProductResource extends JsonResource
             'name' => $this->name,
             'image_path' => $this->image_path,
             'price' => $this->price,
+            'discount' => $this->discount,
             'quantity' => $this->quantity,
             'description' => $this->description,
             'target_sex' => $this->target_sex,
             'category' => new CategoryResource($this->category),
             'brand' => new BrandResource($this->brand),
-            'created_at' => $this->created_at,
+            // 'created_at' => $this->created_at,
+            'created_at' => Carbon::parse($this->created_at)->format('Y-m-d H:i:s'),
         ];
     }
 }

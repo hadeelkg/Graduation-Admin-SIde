@@ -227,6 +227,9 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }, {
         id: 'female',
         name: 'انثى'
+      }, {
+        id: 'both',
+        name: 'كلاهما'
       }],
       sureResult: true,
       product_id: '',
@@ -652,9 +655,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     Mykey: "brand",
     class_bs: "col-md-3 col-sm-6",
-    MyValue: $data.filter.brand,
-    errors: _ctx.errors
-  }, null, 8 /* PROPS */, ["Items", "MyValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TextSelect, {
+    MyValue: $data.filter.brand
+  }, null, 8 /* PROPS */, ["Items", "MyValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TextSelect, {
     title: "بحث بالفئة",
     Items: _ctx.Categories,
     id: "category",
@@ -663,9 +665,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     Mykey: "category",
     class_bs: "col-md-2 col-sm-6",
-    MyValue: $data.filter.category,
-    errors: _ctx.errors
-  }, null, 8 /* PROPS */, ["Items", "MyValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TextSelect, {
+    MyValue: $data.filter.category
+  }, null, 8 /* PROPS */, ["Items", "MyValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TextSelect, {
     title: "الجنس المُستهدف",
     id: "target_sex",
     Items: $data.Gender,
@@ -674,9 +675,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     Mykey: "target_sex",
     class_bs: "col-md-3 col-sm-6",
-    MyValue: $data.filter.target_sex,
-    errors: _ctx.errors
-  }, null, 8 /* PROPS */, ["Items", "MyValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    MyValue: $data.filter.target_sex
+  }, null, 8 /* PROPS */, ["Items", "MyValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[4] || (_cache[4] = function ($event) {
       return $options.onSearch();
     }),
@@ -703,7 +703,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(index + 1), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: 'http://127.0.0.1:8000/storage/' + item.image_path,
       width: "80"
-    }, null, 8 /* PROPS */, _hoisted_16)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.price), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.quantity), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <router-link :to=\"{name:'admin.dashboard.product.details', params:{id:item.id}}\" type=\"button\" class=\"btn my_btn btn-sm\">\n                        <i class=\"material-icons edit_icon\">open_folder</i>\n                    </router-link> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    }, null, 8 /* PROPS */, _hoisted_16)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.price), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.quantity), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <router-link :to=\"{name:'admin.dashboard.product.details', params:{id:item.id}}\" type=\"button\" class=\"btn my_btn btn-sm\">\r\n                        <i class=\"material-icons edit_icon\">open_folder</i>\r\n                    </router-link> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
       to: {
         name: 'admin.dashboard.product.details',
         params: {
@@ -851,7 +851,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.table_img{\n    width: 100px;\n    height: 100px;\n    padding: 5px;\n    border-radius: 5px;\n    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 4px 0 rgba(0, 0, 0, 0.19);\n    margin: 8px;\n    border: 1px solid #ddd;\n    cursor: pointer;\n}\n.table_img:hover{\n    transform: scale(1.1);\n    transition: all .2s ease-in-out;\n}\n.add_btn{\n      background: linear-gradient(60deg, #343a40, #37517e);\n}\n.my_btn{\n      box-shadow: 6px 8px 5px #dcd5d9;\n      background: linear-gradient(white, white) padding-box,\n                linear-gradient(to right,  #ffe3ed, #e9e3e7) border-box;\n      border-radius: 50em;\n      border: 2px solid transparent;\n      margin:3px;\n}\n.my_btn:hover{\n      box-shadow: 0 2px 2px 0 #37517e, 0 3px 1px -2px #37517e, 0 1px 5px 0 rgb(170 71 186 / 12%);\n      background: linear-gradient(white, white) padding-box,\n                linear-gradient(to right,  #ffe3ed, #e9e3e7) border-box;\n}\n.details_icon{\n    color: #37517e;\n}\n.edit_icon{\n    color: #39ae00c7;\n}\n.delete_icon{\n      color: #ff1e1ec7;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.table_img{\r\n    width: 100px;\r\n    height: 100px;\r\n    padding: 5px;\r\n    border-radius: 5px;\r\n    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 4px 0 rgba(0, 0, 0, 0.19);\r\n    margin: 8px;\r\n    border: 1px solid #ddd;\r\n    cursor: pointer;\n}\n.table_img:hover{\r\n    transform: scale(1.1);\r\n    transition: all .2s ease-in-out;\n}\n.add_btn{\r\n      background: linear-gradient(60deg, #343a40, #37517e);\n}\n.my_btn{\r\n      box-shadow: 6px 8px 5px #dcd5d9;\r\n      background: linear-gradient(white, white) padding-box,\r\n                linear-gradient(to right,  #ffe3ed, #e9e3e7) border-box;\r\n      border-radius: 50em;\r\n      border: 2px solid transparent;\r\n      margin:3px;\n}\n.my_btn:hover{\r\n      box-shadow: 0 2px 2px 0 #37517e, 0 3px 1px -2px #37517e, 0 1px 5px 0 rgb(170 71 186 / 12%);\r\n      background: linear-gradient(white, white) padding-box,\r\n                linear-gradient(to right,  #ffe3ed, #e9e3e7) border-box;\n}\n.details_icon{\r\n    color: #37517e;\n}\n.edit_icon{\r\n    color: #39ae00c7;\n}\n.delete_icon{\r\n      color: #ff1e1ec7;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

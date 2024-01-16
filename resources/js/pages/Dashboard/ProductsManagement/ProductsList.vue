@@ -5,9 +5,9 @@
 
     <div class="col-lg-12">
         <div class="row">
-            <TextSelect title="بحث بالعلامة التجارية" :Items=BrandsList id="brand" @Select="HandleInput('brand',$event)" Mykey="brand" class_bs="col-md-3 col-sm-6" :MyValue="filter.brand" :errors= 'errors'/>
-            <TextSelect title="بحث بالفئة" :Items=Categories id="category" @Select="HandleInput('category',$event)" Mykey="category" class_bs="col-md-2 col-sm-6" :MyValue="filter.category" :errors= 'errors'/>
-            <TextSelect title="الجنس المُستهدف" id="target_sex" :Items=Gender @Select="HandleInput('target_sex',$event)" Mykey="target_sex" class_bs="col-md-3 col-sm-6" :MyValue="filter.target_sex" :errors='errors' />
+            <TextSelect title="بحث بالعلامة التجارية" :Items=BrandsList id="brand" @Select="HandleInput('brand',$event)" Mykey="brand" class_bs="col-md-3 col-sm-6" :MyValue="filter.brand"/>
+            <TextSelect title="بحث بالفئة" :Items=Categories id="category" @Select="HandleInput('category',$event)" Mykey="category" class_bs="col-md-2 col-sm-6" :MyValue="filter.category"/>
+            <TextSelect title="الجنس المُستهدف" id="target_sex" :Items=Gender @Select="HandleInput('target_sex',$event)" Mykey="target_sex" class_bs="col-md-3 col-sm-6" :MyValue="filter.target_sex"/>
             <div class="col-md-1 col-sm-1" style="margin-top: 25px;">
                 <button @click="onSearch()" type="submit" class="btn btn-white btn-round btn-just-icon">
                     <i class="material-icons">search</i>
@@ -101,7 +101,8 @@
 
         Gender:[
             {id:'male', name:'ذكر'},
-            {id:'female', name:'انثى'}
+            {id:'female', name:'انثى'},
+            {id:'both', name:'كلاهما'}
         ],
 
         sureResult:true,

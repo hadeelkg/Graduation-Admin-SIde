@@ -22,12 +22,13 @@ class ProductFactory extends Factory
             'name' => $this->faker->name(),
             'image_path' => $this->faker->text(),
             'price' => $this->faker->numberBetween(1,999),
+            // 'discount' => $this->faker->numberBetween(1,999),
             'quantity' => $this->faker->numberBetween(1,99),
             'description' => $this->faker->text(200),
-            // 'target_sex' => $this->faker->text(6),
             'target_sex' => $this->faker->randomElement([
                 "male",
                 "female",
+                "both"
             ]),
             'category_id' => Category::factory(),
             'brand_id' => Brand::factory(),

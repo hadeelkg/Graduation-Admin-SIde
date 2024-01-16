@@ -18,7 +18,7 @@ class ProductController extends Controller
         // return ProductResource::collection(Product::all());
 
             // Check if filtering criteria are provided in the request
-        if ($request->hasAny(['brand', 'category', 'target_sex'])) {
+        if ($request->hasAny(['brand', 'category', 'target_sex', 'priceSort'])) {
             // Apply filtering
             $brandId = $request->input('brand');
             $categoryId = $request->input('category');
@@ -35,6 +35,16 @@ class ProductController extends Controller
             if ($target_sex) {
                 $query->where('target_sex', $target_sex);
             }
+
+            // price sort
+            if ($request->has('priceSort')) {
+                if ($request->priceSort == 'low_to_high') {
+                    $query->orderBy('price', 'asc');
+                } elseif ($request->priceSort == 'high_to_low') {
+                    $query->orderBy('price', 'desc');
+                }
+            }
+            // end price sort
 
             $filteredProducts = $query->get();
 

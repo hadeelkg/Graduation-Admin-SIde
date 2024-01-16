@@ -582,7 +582,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     Icon: "medication_liquid"
   }, null, 8 /* PROPS */, ["Active"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_NavSingle, {
     Active: _ctx.$route.name.includes('admin.dashboard.pharmacist'),
-    MainTitle: "ادارة الصيادلة",
+    MainTitle: "ادارة فريق الصيدلية",
     Path: "admin.dashboard.pharmacists.list",
     Icon: "badge"
   }, null, 8 /* PROPS */, ["Active"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_NavSingle, {
@@ -707,7 +707,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.back{\n    cursor: pointer;\n    width: 50px;\n    height: 50px;\n    background-color: #37517e;\n    border-radius: 50%;\n    text-align: center;\n    color: #fff !important;\n}\n.navbar-expand-lg .navbar-nav .dropdown-menu-right {\n    right: auto;\n    left: 0;\n}\n.dropdown-menu{\n    max-height: 400px;\n    overflow-y: auto;\n}\n.not-seen{\n    background: #c62254;\n    color: white !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.back{\r\n    cursor: pointer;\r\n    width: 50px;\r\n    height: 50px;\r\n    background-color: #37517e;\r\n    border-radius: 50%;\r\n    text-align: center;\r\n    color: #fff !important;\n}\n.navbar-expand-lg .navbar-nav .dropdown-menu-right {\r\n    right: auto;\r\n    left: 0;\n}\n.dropdown-menu{\r\n    max-height: 400px;\r\n    overflow-y: auto;\n}\n.not-seen{\r\n    background: #c62254;\r\n    color: white !important;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -730,7 +730,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.center-logo{\n      width: 125px;\n      height: 40px;\n      display: block;\n      margin-left: auto;\n      margin-right: auto;\n}\n@media (max-width: 991px){\n.off-canvas-sidebar nav .navbar-collapse:before, .sidebar:before {\n      top: 0;\n      left: 0;\n      height: 100%;\n      width: 100%;\n      position: absolute;\n      background-color: #fafafa;\n      display: block;\n      content: \"\";\n      z-index: 1;\n}\n}\n.myColor{\n    color:red !important;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.center-logo{\r\n      width: 160px;\r\n      display: block;\r\n      margin-left: auto;\r\n      margin-right: auto;\n}\n@media (max-width: 991px){\n.off-canvas-sidebar nav .navbar-collapse:before, .sidebar:before {\r\n      top: 0;\r\n      left: 0;\r\n      height: 100%;\r\n      width: 100%;\r\n      position: absolute;\r\n      background-color: #fafafa;\r\n      display: block;\r\n      content: \"\";\r\n      z-index: 1;\n}\n}\n.myColor{\r\n    color:red !important;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

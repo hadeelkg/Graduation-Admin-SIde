@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\ClientResource;
 use App\Http\Resources\OrderProductResource;
+use Carbon\Carbon;
 
 class OrderResource extends JsonResource
 {
@@ -25,7 +26,8 @@ class OrderResource extends JsonResource
             'client' => new ClientResource($this->client),
             // لازم كوليكشن لان نوعية العلاقة hasMany
             'order_product' => OrderProductResource::collection($this->order_products),
-            'created_at' => $this->created_at,
+            // 'created_at' => $this->created_at,
+            'created_at' => Carbon::parse($this->created_at)->format('Y-m-d H:i:s'),
         ];
     }
 }

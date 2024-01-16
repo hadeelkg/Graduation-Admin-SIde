@@ -5,15 +5,15 @@
           <div class="col-md-8">
               <div class="card">
                   <div class="card-header card-header-primary">
-                    <h4 class="card-title">{{(IsNew)? 'اضافة صيدلي': 'تعديل بيانات صيدلي'  }}</h4>
-                    <p class="card-category">{{ (IsNew)? 'اضافة صيدلي جديد للنظام' : 'التعديل على بيانات صيدلي في النظام' }}</p>
+                    <h4 class="card-title">{{(IsNew)? 'اضافة عضو': 'تعديل بيانات عضو'  }}</h4>
+                    <p class="card-category">{{ (IsNew)? 'اضافة عضو جديد للنظام' : 'التعديل على بيانات عضو في النظام' }}</p>
                   </div>
                   <div class="card-body">
                     <div class="row">
                       <InputFile title="الصورة" id="image_path" :MyValue="form.image_path" @myInput="HandleInput('image_path',$event)" Mykey="image_path" :errors='errors'/>
                       <Input :MyValue="form.name" id="name" title="الاسم" @myInput="HandleInput('name',$event)" Mykey="name" :errors= 'errors'/>
                       <Input :MyValue="form.role" id="role" title="الدور الوظيفي" @myInput="HandleInput('role',$event)" Mykey="role" :errors= 'errors'/>
-                      <Input :MyValue="form.bio" id="bio" title="نبذة عن الصيدلي" @myInput="HandleInput('bio',$event)" Mykey="bio" :errors= 'errors'/>
+                      <Input :MyValue="form.bio" id="bio" title="نبذة عن العضو" @myInput="HandleInput('bio',$event)" Mykey="bio" :errors= 'errors'/>
                       <Input :MyValue="form.facebook_link" id="facebook_link" title="رابط حساب الفيسبوك" @myInput="HandleInput('facebook_link',$event)" Mykey="facebook_link" :errors= 'errors'/>
                       <Input :MyValue="form.phone" id="phone" title="رقم الهاتف" @myInput="HandleInput('phone',$event)" Mykey="phone" :errors= 'errors'/>
                     </div>
@@ -106,7 +106,7 @@
             }
             store.dispatch('admin/NewPharmacist',formData).then((response) => {
                 this.cleanErrors();
-                this.Alert.message='تمّت اضافة صيدلي جديد';
+                this.Alert.message='تمّت اضافة عضو جديد';
                 this.$refs.MySuccessAlert.showModel();
             }).catch((error) => {
             });
@@ -120,7 +120,7 @@
               formData.append('_method', 'PATCH');
               store.dispatch('admin/updatePharmacist',formData).then((response) => {
                   this.cleanErrors();
-                  this.Alert.message='تمّ تعديل بيانات الصيدلي بنجاح';
+                  this.Alert.message='تمّ تعديل بيانات العضو بنجاح';
                   this.$refs.MySuccessAlert.showModel();
               }).catch((error) => {
               });

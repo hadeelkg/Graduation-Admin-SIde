@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Carbon\Carbon;
 
 class AdminResource extends JsonResource
 {
@@ -18,7 +19,8 @@ class AdminResource extends JsonResource
             'id' => $this->id,
             'email' => $this->email,
             'password' => $this->password,
-            'created_at' => $this->created_at,
+            // 'created_at' => $this->created_at,
+            'created_at' => Carbon::parse($this->created_at)->format('Y-m-d H:i:s'),
         ];
     }
 }

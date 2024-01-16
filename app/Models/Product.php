@@ -17,6 +17,7 @@ class Product extends Model
       'name',
       'image_path',
       'price',
+      'discount',
       'quantity',
       'description',
       'target_sex',

@@ -248,24 +248,24 @@ const routes = [
                     requiresAuth: true,
                 },
             },
-            {
-                path: '/create/order',
-                component: () =>
-                    import ('../pages/Dashboard/OrdersManagement/OrderForm.vue'),
-                name: 'admin.dashboard.order.create',
-                meta: {
-                    requiresAuth: true,
-                },
-            },
-            {
-                path: '/edit/order/:id',
-                component: () =>
-                    import ('../pages/Dashboard/OrdersManagement/OrderForm.vue'),
-                name: 'admin.dashboard.order.edit',
-                meta: {
-                    requiresAuth: true,
-                },
-            },
+            // {
+            //     path: '/create/order',
+            //     component: () =>
+            //         import ('../pages/Dashboard/OrdersManagement/OrderForm.vue'),
+            //     name: 'admin.dashboard.order.create',
+            //     meta: {
+            //         requiresAuth: true,
+            //     },
+            // },
+            // {
+            //     path: '/edit/order/:id',
+            //     component: () =>
+            //         import ('../pages/Dashboard/OrdersManagement/OrderForm.vue'),
+            //     name: 'admin.dashboard.order.edit',
+            //     meta: {
+            //         requiresAuth: true,
+            //     },
+            // },
             {
                 path: '/order/:id/details',
                 component: () =>

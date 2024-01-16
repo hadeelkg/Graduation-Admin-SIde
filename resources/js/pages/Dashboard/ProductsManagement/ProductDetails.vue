@@ -31,6 +31,11 @@
                             <td>سعر المنتج</td><td>:</td>
                             <td>{{Product.price}} دينار</td>
                           </tr>
+                          <tr v-if="Product.discount>0">
+                            <td>السعر بعد التخفيض</td><td>:</td>
+                            <!-- <td>{{Product.discount}} دينار</td> -->
+                            <td>{{calculateDiscount(Product)}} دينار</td>
+                          </tr>
                           <tr>
                             <td>الكمية المتوفرة</td><td>:</td>
                             <td>{{Product.quantity}} قطعة</td>
@@ -45,8 +50,9 @@
                           </tr>
                           <tr>
                             <td>الجنس المُستهدف</td><td>:</td>
-                            <td v-if="Product.target_sex='male'">ذكر</td>
-                            <td v-else>انثى</td>
+                            <td v-if="Product.target_sex==='male'">ذكر</td>
+                            <td v-else-if="Product.target_sex==='female'">انثى</td>
+                            <td v-else>كلاهما</td>
                           </tr>
                           <tr>
                             <td>تاريخ الادخال</td><td>:</td>
@@ -69,6 +75,7 @@
         id:'',
         selectedImage: null,
         showModal: false,
+        newPrice:''
       }
     },
 
@@ -94,6 +101,9 @@
       closeModal() {
         this.showModal = false;
         this.selectedImage = null;
+      },
+      calculateDiscount(product){
+        return this.newPrice = product.price-(((product.price)*(product.discount))/100);
       }
     }
   }

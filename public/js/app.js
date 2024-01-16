@@ -17431,25 +17431,26 @@ var routes = [{
     meta: {
       requiresAuth: true
     }
-  }, {
-    path: '/create/order',
-    component: function component() {
-      return Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module '../pages/Dashboard/OrdersManagement/OrderForm.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
-    },
-    name: 'admin.dashboard.order.create',
-    meta: {
-      requiresAuth: true
-    }
-  }, {
-    path: '/edit/order/:id',
-    component: function component() {
-      return Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module '../pages/Dashboard/OrdersManagement/OrderForm.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
-    },
-    name: 'admin.dashboard.order.edit',
-    meta: {
-      requiresAuth: true
-    }
-  }, {
+  },
+  // {
+  //     path: '/create/order',
+  //     component: () =>
+  //         import ('../pages/Dashboard/OrdersManagement/OrderForm.vue'),
+  //     name: 'admin.dashboard.order.create',
+  //     meta: {
+  //         requiresAuth: true,
+  //     },
+  // },
+  // {
+  //     path: '/edit/order/:id',
+  //     component: () =>
+  //         import ('../pages/Dashboard/OrdersManagement/OrderForm.vue'),
+  //     name: 'admin.dashboard.order.edit',
+  //     meta: {
+  //         requiresAuth: true,
+  //     },
+  // },
+  {
     path: '/order/:id/details',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_pages_Dashboard_OrdersManagement_OrderDetails_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../pages/Dashboard/OrdersManagement/OrderDetails.vue */ "./resources/js/pages/Dashboard/OrdersManagement/OrderDetails.vue"));

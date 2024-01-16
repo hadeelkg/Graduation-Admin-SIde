@@ -3,7 +3,7 @@
       <div class="col-md-10">
           <div class="card text-right">
               <div class="card-header">
-                  تفاصيل الصيدلاني
+                  تفاصيل العضو
               </div>
               <div v-if="showModal" class="myModal" @click.self=" closeModal">
                 <div class="modal-content">
@@ -25,7 +25,7 @@
                               <td>{{Pharmacist.name}}</td>       
                           </tr>
                           <tr>
-                            <td>نبذة عن الصيدلاني</td><td>:</td>
+                            <td>نبذة عن العضو</td><td>:</td>
                             <td>{{Pharmacist.bio}}</td>       
                           </tr>
                           <tr>

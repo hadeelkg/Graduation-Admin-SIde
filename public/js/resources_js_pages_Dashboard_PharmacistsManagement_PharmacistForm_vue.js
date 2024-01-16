@@ -265,7 +265,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }
       _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('admin/NewPharmacist', formData).then(function (response) {
         _this2.cleanErrors();
-        _this2.Alert.message = 'تمّت اضافة صيدلي جديد';
+        _this2.Alert.message = 'تمّت اضافة عضو جديد';
         _this2.$refs.MySuccessAlert.showModel();
       })["catch"](function (error) {});
     },
@@ -278,7 +278,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       formData.append('_method', 'PATCH');
       _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('admin/updatePharmacist', formData).then(function (response) {
         _this3.cleanErrors();
-        _this3.Alert.message = 'تمّ تعديل بيانات الصيدلي بنجاح';
+        _this3.Alert.message = 'تمّ تعديل بيانات العضو بنجاح';
         _this3.$refs.MySuccessAlert.showModel();
       })["catch"](function (error) {});
     }
@@ -498,7 +498,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: $data.Alert.title,
     message: $data.Alert.message,
     back: this.goBack
-  }, null, 8 /* PROPS */, ["title", "message", "back"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.IsNew ? 'اضافة صيدلي' : 'تعديل بيانات صيدلي'), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.IsNew ? 'اضافة صيدلي جديد للنظام' : 'التعديل على بيانات صيدلي في النظام'), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputFile, {
+  }, null, 8 /* PROPS */, ["title", "message", "back"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.IsNew ? 'اضافة عضو' : 'تعديل بيانات عضو'), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.IsNew ? 'اضافة عضو جديد للنظام' : 'التعديل على بيانات عضو في النظام'), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputFile, {
     title: "الصورة",
     id: "image_path",
     MyValue: $data.form.image_path,
@@ -528,7 +528,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8 /* PROPS */, ["MyValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
     MyValue: $data.form.bio,
     id: "bio",
-    title: "نبذة عن الصيدلي",
+    title: "نبذة عن العضو",
     onMyInput: _cache[3] || (_cache[3] = function ($event) {
       return $options.HandleInput('bio', $event);
     }),

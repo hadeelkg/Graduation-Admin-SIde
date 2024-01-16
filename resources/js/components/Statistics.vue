@@ -58,23 +58,6 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <!-- <div class="col-lg-6 col-md-12 col-sm-12">
-                <div class="card">
-                    <BarChart v-if="load" :type="bar" :data="barData"/>
-                    <h4 style="color:#999;">وظائف أعضاء الفريق</h4>
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                <div class="card">
-                    <line-chart v-if="load" :type="line" :data="lineData" />
-                    <h4 style="color:#999;">عدد المشاريع المسجلة كل عام</h4>
-                </div>
-            </div> -->
-            <DonutChart :chartData="chartData" :options="chartOptions" />
-
-        </div>
     </div>
 </template>
 

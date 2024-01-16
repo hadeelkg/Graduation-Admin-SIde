@@ -14,7 +14,7 @@
             <NavSingle :Active="$route.name.includes('admin.dashboard.comment')" MainTitle="إدارة التعليقات" Path="admin.dashboard.comments.list" Icon="rate_review"/>
             <NavSingle :Active="$route.name.includes('admin.dashboard.order')" MainTitle="إدارة الطلبيات" Path="admin.dashboard.orders.list" Icon="article"/>
             <NavSingle :Active="$route.name.includes('admin.dashboard.prescriptionOrder')" MainTitle="ادارة الوصفات الطبية" Path="admin.dashboard.prescriptionOrders.list" Icon="medication_liquid"/>
-            <NavSingle :Active="$route.name.includes('admin.dashboard.pharmacist')" MainTitle="ادارة الصيادلة" Path="admin.dashboard.pharmacists.list" Icon="badge"/>
+            <NavSingle :Active="$route.name.includes('admin.dashboard.pharmacist')" MainTitle="ادارة فريق الصيدلية" Path="admin.dashboard.pharmacists.list" Icon="badge"/>
             <NavSingle :Active="$route.name.includes('admin.dashboard.admin')" MainTitle="ادارة المسؤولون" Path="admin.dashboard.admins.list" Icon="admin_panel_settings"/>
             <NavSingle  MainTitle="تسجيل الخروج " Icon="logout" class="myColor"  @logout="logout()" />
         </ul>
@@ -73,8 +73,7 @@
 <style>
 
   .center-logo{
-      width: 125px;
-      height: 40px;
+      width: 160px;
       display: block;
       margin-left: auto;
       margin-right: auto;

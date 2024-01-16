@@ -52,7 +52,12 @@
                         <tr>
                             <td>الاجمالي</td><td>:</td>
                             <td>{{orderProduct.subtotal_price}}</td>
+                        </tr>
+                        <tr>
+                            <td>التوقيت</td><td>:</td>
+                            <td>{{orderProduct.created_at}}</td>
                         </tr><br>
+                        <hr>
                     </div>
                 </table>
             </div>
